@@ -1,0 +1,25 @@
+{
+    "name": "milax/mconsole-commerce",
+    "description": "Commerce module for Mconsole",
+    "authors": [
+        {
+            "name": "Eugene Min",
+            "email": "e.min@milax.com"
+        },
+        {
+            "name": "Vladimir Rudenko",
+            "email": "rudenko@milax.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.2.*",
+        "laravelcollective/html": "5.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Milax\\Mconsole\\Commerce\\": "src/Milax/Mconsole/Commerce/"
+        }
+    },
+    "minimum-stability": "stable"
+}
