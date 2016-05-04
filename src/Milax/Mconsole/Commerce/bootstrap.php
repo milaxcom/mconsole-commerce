@@ -31,6 +31,14 @@ return [
         ], 'commerce');
         
         app('API')->menu->push([
+            'name' => 'Categories',
+            'translation' => 'commerce.menu.categories',
+            'url' => 'commerce/categories',
+            'visible' => true,
+            'enabled' => true,
+        ], 'commerce_categories', 'commerce');
+        
+        app('API')->menu->push([
             'name' => 'Delivery',
             'translation' => 'commerce.menu.delivery',
             'url' => 'commerce/delivery',
