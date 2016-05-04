@@ -6,7 +6,7 @@ Route::group([
     'namespace' => 'Milax\Mconsole\Commerce\Http\Controllers',
 ], function () {
     
-    Route::resource('commerce/categories', 'CategoriesController@index');
+    Route::resource('commerce/categories', 'CategoriesController');
     Route::get('commerce', 'CommerceController@index');
 
 });
