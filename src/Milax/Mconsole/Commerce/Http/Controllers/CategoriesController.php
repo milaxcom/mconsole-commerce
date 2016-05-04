@@ -4,7 +4,6 @@ namespace Milax\Mconsole\Commerce\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Milax\Mconsole\Commerce\Models\Category;
 use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\FormRenderer;
@@ -42,7 +41,7 @@ class CategoriesController extends Controller
                 trans('mconsole::commerce.categories.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::commerce.categories.table.slug') => $item->slug,
                 trans('mconsole::commerce.categories.table.name') => $item->name,
-                trans('mconsole::commerce.categories.table.name') => view('mconsole::indicators.state', $item),
+                trans('mconsole::tables.state.name') => view('mconsole::indicators.state', $item),
             ];
         });
     }
