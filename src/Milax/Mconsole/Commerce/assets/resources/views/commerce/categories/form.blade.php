@@ -9,7 +9,7 @@
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
                 'back' => '/mconsole/commerce/categories',
-                'title' => trans('mconsole::commerce.categiries.form.main'),
+                'title' => trans('mconsole::commerce.categiries.tabs.main'),
                 'fullscreen' => true,
             ])
             <div class="portlet-body form">
@@ -46,7 +46,7 @@
         <div class="portlet light">
             <div class="portlet-title">
                 <div class="caption">
-                    <span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::commerce.categiries.form.additional') }}</span>
+                    <span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::commerce.categiries.tabs.additional') }}</span>
                 </div>
             </div>
             <div class="portlet-body form">
