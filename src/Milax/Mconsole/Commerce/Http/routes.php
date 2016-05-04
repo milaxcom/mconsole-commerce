@@ -8,5 +8,6 @@ Route::group([
     
     Route::resource('commerce/categories', 'CategoriesController');
     Route::get('commerce', 'CommerceController@index');
+    Route::resource('commerce/delivery', 'DeliveryTypesController');
 
 });
