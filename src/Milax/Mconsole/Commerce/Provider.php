@@ -13,6 +13,10 @@ class Provider extends ServiceProvider
     
     public function register()
     {
-        //
+        $this->app->when('\Milax\Mconsole\Commerce\Http\Controllers\DeliveryTypesController')
+            ->needs('\Milax\Mconsole\Contracts\Repository')
+            ->give(function () {
+                return new \Milax\Mconsole\Commerce\Repositories\DeliveryTypesRepository(\Milax\Mconsole\Commerce\Models\DeliveryType::class);
+            });
     }
 }
