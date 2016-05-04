@@ -13,14 +13,6 @@
                 'fullscreen' => true,
             ])
             <div class="portlet-body form">
-                
-                @if (isset($item))
-                    @include('mconsole::partials.note', [
-                        'title' => trans('mconsole::commerce.categories.info.title'),
-                        'text' => trans('mconsole::commerce.categories.info.text'),
-                    ])
-                @endif
-                
     			<div class="form-body">
     				@include('mconsole::forms.text', [
     					'label' => trans('mconsole::commerce.categories.form.slug'),
