@@ -1,7 +1,7 @@
 @if (isset($item))
     {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.commerce.delivery.update', $item->id]]) !!}
 @else
-    {!! Form::open(['method' => 'POST', 'route' => 'mconsole.commerce.delivery']) !!}
+    {!! Form::open(['method' => 'POST', 'route' => 'mconsole.commerce.delivery.store']) !!}
 @endif
 
 <div class="row">

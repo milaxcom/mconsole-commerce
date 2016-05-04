@@ -6,6 +6,9 @@ return [
         'categories' => 'Categories',
         'delivery' => 'Delivery types',
     ],
+    'module' => [
+        'description' => 'E-shop solutions',
+    ],
     'delivery' => [
         'tabs' => [
             'main' => 'Main',
@@ -14,6 +17,22 @@ return [
             'name' => 'Name',
             'description' => 'Description',
             'cost' => 'Cost',
+        ],
+    ],
+    'categories' => [
+        'tabs' => [
+            'main' => 'Main',
+            'additional' => 'Additional',
+        ],
+        'table' => [
+            'updated' => 'Updated',
+            'slug' => 'Slug',
+            'name' => 'Name',
+        ],
+        'form' => [
+            'slug' => 'Slug',
+            'name' => 'Name',
+            'description' => 'Description',
         ],
     ],
 ];

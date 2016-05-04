@@ -1,12 +1,13 @@
 <?php
 
 Route::group([
-    'prefix' => 'mconsole',
+    'prefix' => 'mconsole/commerce',
     'middleware' => ['web', 'mconsole'],
     'namespace' => 'Milax\Mconsole\Commerce\Http\Controllers',
 ], function () {
     
-    Route::get('commerce', 'CommerceController@index');
-    Route::resource('commerce/delivery', 'DeliveryTypesController');
+    Route::get('/', 'CommerceController@index');
+    Route::resource('categories', 'CategoriesController');
+    Route::resource('delivery', 'DeliveryTypesController');
 
 });
