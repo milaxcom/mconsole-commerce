@@ -7,5 +7,6 @@ Route::group([
 ], function () {
     
     Route::get('commerce', 'CommerceController@index');
+    Route::resource('commerce/delivery', 'DeliveryTypesController');
 
 });
