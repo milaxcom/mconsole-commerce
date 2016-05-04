@@ -1,7 +1,7 @@
 @if (isset($item))
     {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.commerce.categories.update', $item->id]]) !!}
 @else
-    {!! Form::open(['method' => 'POST', 'url' => '/mconsole/commerce/categories']) !!}
+    {!! Form::open(['method' => 'POST', 'route' => 'mconsole.commerce.categories.store']) !!}
 @endif
 
 <div class="row">
