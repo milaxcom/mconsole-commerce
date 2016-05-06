@@ -45,5 +45,13 @@ return [
             'visible' => true,
             'enabled' => true,
         ], 'commerce_delivery', 'commerce');
+        
+        app('API')->menu->push([
+            'name' => 'Discounts',
+            'translation' => 'commerce.menu.discounts',
+            'url' => 'commerce/discounts',
+            'visible' => true,
+            'enabled' => true,
+        ], 'commerce_discounts', 'commerce');
     },
 ];
