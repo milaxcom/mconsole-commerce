@@ -3,13 +3,12 @@
 namespace Milax\Mconsole\Commerce\Http\Requests;
 
 use App\Http\Requests\Request;
-use Milax\Mconsole\Contracts\Repository;
 
 class CategoryRequest extends Request
 {
     public function __construct()
     {
-        $this->repository = new \Milax\Mconsole\Commerce\Repositories\CategoriesRepository(\Milax\Mconsole\Commerce\Models\Category::class);
+        $this->repository = app('API')->repositories->commerce->categories;
     }
     
     /**
