@@ -3,7 +3,7 @@
 namespace Milax\Mconsole\Commerce\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Milax\Mconsole\Commerce\Http\Requests\CategoryRequest;
 use Milax\Mconsole\Commerce\Models\Category;
 use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\FormRenderer;
@@ -64,9 +64,11 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = $this->repository->create($request->all());
+        
+        $this->handleUploads($category);
     }
 
     /**
@@ -101,9 +103,11 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         $category = $this->repository->find($id);
+        
+        $this->handleUploads($category);
         
         $category->update($request->all());
     }
@@ -117,5 +121,24 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
+    }
+    
+    /**
+     * Handle files upload
+     *
+     * @param Milax\Mconsole\Commerce\Models\Category $object [Category object]
+     * @return void
+     */
+    protected function handleUploads($object)
+    {
+        // Images processing
+        app('API')->uploads->handle(function ($uploads) use (&$object) {
+            app('API')->uploads->attach([
+                'group' => 'cover',
+                'uploads' => $uploads,
+                'related' => $object,
+                'unique' => true,
+            ]);
+        });
     }
 }
