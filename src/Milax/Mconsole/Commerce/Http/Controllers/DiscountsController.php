@@ -69,7 +69,7 @@ class DiscountsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->repository->create($request->all());
+        $this->repository->create($this->serialize($request->all()));
     }
 
     /**
@@ -94,7 +94,7 @@ class DiscountsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->repository->update($id, $request->all());
+        $this->repository->update($id, $this->serialize($request->all()));
     }
 
     /**
@@ -106,5 +106,17 @@ class DiscountsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    /**
+     * Serialize JSON to array
+     * 
+     * @param  array $data [POST data]
+     * @return array
+     */
+    protected function serialize($data)
+    {
+        $data['discounts'] = json_decode($data['discounts'], true);
+        return $data;
     }
 }
