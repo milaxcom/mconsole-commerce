@@ -43,8 +43,10 @@ class DiscountsController extends Controller
         return $this->list->setQuery($this->repository->index())->setAddAction('commerce/discounts/create')->render(function ($item) {
             return [
                 '#' => $item->id,
-                trans('mconsole::commerce.discount.form.name') => $item->name,
-                trans('mconsole::commerce.discount.form.table') => $item->description,
+                trans('mconsole::commerce.discounts.form.name') => $item->name,
+                trans('mconsole::commerce.discounts.form.discounts') => view('mconsole::commerce.discounts.table', [
+                    'discounts' => $item->discounts,
+                ]),
             ];
         });
     }

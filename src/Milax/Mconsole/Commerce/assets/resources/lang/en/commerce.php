@@ -52,11 +52,15 @@ return [
             'main' => 'Main',
             'discounts' => 'Discounts table',
         ],
+        'table' => [
+            'nodiscounts' => 'No discounts',
+        ],
         'form' => [
             'accumulative' => 'Accumulative',
             'name' => 'Name',
             'description' => 'Description',
             'discounts' => 'Discounts table',
+            'discount' => 'Discount',
             'sum' => 'Total',
             'discount' => 'Discount value',
             'remove' => 'Remove',
