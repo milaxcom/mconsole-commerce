@@ -35,4 +35,15 @@ return [
             'description' => 'Description',
         ],
     ],
+    'products' => [
+        'config' => [
+            'tables' => [
+                'specifications' => 'Specifications',
+            ],
+            'lists' => [
+                'composition' => 'Composition',
+                'advantages' => 'Advantages',
+            ],
+        ],
+    ],
 ];
