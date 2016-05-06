@@ -64,7 +64,7 @@
                                             'label' => null,
                                             'name' => null,
                                             'class' => 'discount-value',
-                                            'placeholder' => trans('mconsole::commerce.discounts.form.sum'),
+                                            'placeholder' => trans('mconsole::commerce.discounts.form.discount'),
                                         ])
                                     </div>
                                     <div class="col-xs-12 text-right"><a href="#" class="btn btn-xs btn-danger remove-discount">{{ trans('mconsole::commerce.discounts.form.remove') }}</a></div>
