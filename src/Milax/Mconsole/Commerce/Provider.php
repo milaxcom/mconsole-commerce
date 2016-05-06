@@ -34,5 +34,11 @@ class Provider extends ServiceProvider
             ->give(function () {
                 return new \Milax\Mconsole\Commerce\Repositories\DeliveryTypesRepository(\Milax\Mconsole\Commerce\Models\DeliveryType::class);
             });
+        
+        $this->app->when('\Milax\Mconsole\Commerce\Http\Controllers\DiscountsController')
+            ->needs('\Milax\Mconsole\Contracts\Repository')
+            ->give(function () {
+                return new \Milax\Mconsole\Commerce\Repositories\DiscountsRepository(\Milax\Mconsole\Commerce\Models\Discount::class);
+            });
     }
 }
