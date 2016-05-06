@@ -74,6 +74,7 @@
                             <div class="btn btn-sm blue append-discount">{{ trans('mconsole::commerce.discounts.form.append') }}</div>
                             @include('mconsole::forms.hidden', [
                                 'name' => 'discounts',
+                                'value' => isset($item) ? json_encode($item->discounts) : null,
                             ])
                         </div>
                     </div>
