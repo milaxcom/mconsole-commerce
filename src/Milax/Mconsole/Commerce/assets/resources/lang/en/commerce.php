@@ -34,6 +34,7 @@ return [
             'slug' => 'Slug',
             'name' => 'Name',
             'description' => 'Description',
+            'cover' => 'Cover',
         ],
     ],
     'products' => [
@@ -65,6 +66,14 @@ return [
             'discount' => 'Discount value',
             'remove' => 'Remove',
             'append' => 'Add discount item',
+        ],
+    ],
+    'settings' => [
+        'group' => [
+            'name' => 'Commerce',
+        ],
+        'category' => [
+            'cover' => 'Category has cover',
         ],
     ],
 ];

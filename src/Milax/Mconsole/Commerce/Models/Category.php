@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    use \CascadeDelete, \HasUploads, \HasState;
+    
     protected $table = 'commerce_categories';
     protected $fillable = ['category_id', 'level', 'slug', 'name', 'description', 'enabled'];
     
