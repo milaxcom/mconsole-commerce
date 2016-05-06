@@ -34,7 +34,25 @@
         </div>
 	</div>
     <div class="col-lg-5 col-md-6">
-        
+        @if (app('API')->options->getByKey('category_has_cover'))
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::commerce.categories.form.cover') }}</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    @include('mconsole::forms.upload', [
+                        'type' => MX_UPLOAD_TYPE_IMAGE,
+                        'multiple' => false,
+                        'group' => 'cover',
+                        'preset' => 'commerce_category',
+                        'id' => isset($item) ? $item->id : null,
+                        'model' => 'Milax\Mconsole\Commerce\Models\Category;',
+                    ])
+                </div>
+            </div>
+        @endif
         <div class="portlet light">
             <div class="portlet-title">
                 <div class="caption">

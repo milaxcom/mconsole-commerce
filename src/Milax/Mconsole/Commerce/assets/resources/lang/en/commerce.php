@@ -33,6 +33,7 @@ return [
             'slug' => 'Slug',
             'name' => 'Name',
             'description' => 'Description',
+            'cover' => 'Cover',
         ],
     ],
     'products' => [
@@ -44,6 +45,14 @@ return [
                 'composition' => 'Composition',
                 'advantages' => 'Advantages',
             ],
+        ],
+    ],
+    'settings' => [
+        'group' => [
+            'name' => 'Commerce',
+        ],
+        'category' => [
+            'cover' => 'Category has cover'
         ],
     ],
 ];
