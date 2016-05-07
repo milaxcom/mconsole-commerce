@@ -28,12 +28,11 @@ class CategoryRequest extends Request
      */
     public function rules()
     {
-        $category = $this->repository->index()->find($this->categories);
         switch ($this->method) {
             case 'PUT':
             case 'UPDATE':
                 return [
-                    'slug' => 'required|max:255|unique:commerce_categories,slug,' . $category->id,
+                    'slug' => 'required|max:255|unique:commerce_categories,slug,' . $this->repository->find($this->categories)->id,
                     'name' => 'required|max:255',
                 ];
                 break;
@@ -44,6 +43,24 @@ class CategoryRequest extends Request
                     'name' => 'required|max:255',
                 ];
         }
+    }
+    
+    /**
+     * Modify request input
+     * 
+     * @return array
+     */
+    public function all()
+    {
+        $input = parent::all();
+        
+        if (strlen($input['slug']) == 0) {
+            $input['slug'] = str_slug($input['name']);
+        } else {
+            $input['slug'] = str_slug($input['slug']);
+        }
+        
+        return $input;
     }
     
     /**
