@@ -23,32 +23,28 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'Commerce',
-            'translation' => 'commerce.menu.index',
+            'name' => 'commerce.menu.index',
             'url' => 'commerce',
             'visible' => true,
             'enabled' => true,
         ], 'commerce');
         
         app('API')->menu->push([
-            'name' => 'Categories',
-            'translation' => 'commerce.menu.categories',
+            'name' => 'commerce.menu.categories',
             'url' => 'commerce/categories',
             'visible' => true,
             'enabled' => true,
         ], 'commerce_categories', 'commerce');
         
         app('API')->menu->push([
-            'name' => 'Delivery',
-            'translation' => 'commerce.menu.delivery',
+            'name' => 'commerce.menu.delivery',
             'url' => 'commerce/delivery',
             'visible' => true,
             'enabled' => true,
         ], 'commerce_delivery', 'commerce');
         
         app('API')->menu->push([
-            'name' => 'Discounts',
-            'translation' => 'commerce.menu.discounts',
+            'name' => 'commerce.menu.discounts',
             'url' => 'commerce/discounts',
             'visible' => true,
             'enabled' => true,
