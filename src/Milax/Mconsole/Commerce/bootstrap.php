@@ -23,28 +23,28 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'commerce.menu.index',
+            'name' => 'mconsole::commerce.menu.index',
             'url' => 'commerce',
             'visible' => true,
             'enabled' => true,
         ], 'commerce');
         
         app('API')->menu->push([
-            'name' => 'commerce.menu.categories',
+            'name' => 'mconsole::commerce.menu.categories',
             'url' => 'commerce/categories',
             'visible' => true,
             'enabled' => true,
         ], 'commerce_categories', 'commerce');
         
         app('API')->menu->push([
-            'name' => 'commerce.menu.delivery',
+            'name' => 'mconsole::commerce.menu.delivery',
             'url' => 'commerce/delivery',
             'visible' => true,
             'enabled' => true,
         ], 'commerce_delivery', 'commerce');
         
         app('API')->menu->push([
-            'name' => 'commerce.menu.discounts',
+            'name' => 'mconsole::commerce.menu.discounts',
             'url' => 'commerce/discounts',
             'visible' => true,
             'enabled' => true,
