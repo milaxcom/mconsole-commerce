@@ -14,7 +14,6 @@ class DiscountsController extends Controller
     use \HasRedirects, \DoesNotHaveShow;
     
     protected $model = '\Milax\Mconsole\Commerce\Models\Discount';
-    protected $redirectTo = '/mconsole/commerce/discount';
     
     /**
      * Create new instance
@@ -25,6 +24,7 @@ class DiscountsController extends Controller
         $this->form = $form;
         $this->repository = $repository;
         
+        $this->redirectTo = mconsole_url('commerce/discounts');
         $this->form->addStyles([
             '/massets/modules/mconsole-commerce/css/commerce.css',
         ])->addScripts([

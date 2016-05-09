@@ -14,7 +14,6 @@ class CategoriesController extends Controller
 {
     use \HasRedirects, \DoesNotHaveShow;
     
-    protected $redirectTo = '/mconsole/commerce/categories';
     protected $model = 'Milax\Mconsole\Commerce\Models\Category';
     
     /**
@@ -22,6 +21,7 @@ class CategoriesController extends Controller
      */
     public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
+        $this->redirectTo = mconsole_url('commerce/categories');
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;

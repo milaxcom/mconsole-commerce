@@ -14,13 +14,13 @@ class DeliveryTypesController extends Controller
     use \HasRedirects, \DoesNotHaveShow;
     
     protected $model = '\Milax\Mconsole\Commerce\Models\DeliveryType';
-    protected $redirectTo = '/mconsole/commerce/delivery';
     
     /**
      * Create new instance
      */
     public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
+        $this->redirectTo = mconsole_url('commerce/delivery');
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;

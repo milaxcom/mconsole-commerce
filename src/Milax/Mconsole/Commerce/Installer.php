@@ -10,12 +10,12 @@ class Installer implements ModuleInstaller
 {
     public static $options = [
         [
-            'group' => 'commerce.settings.group.name',
-            'label' => 'commerce.settings.category.cover',
+            'group' => 'mconsole::commerce.settings.group.name',
+            'label' => 'mconsole::commerce.settings.category.cover',
             'key' => 'category_has_cover',
             'value' => 0,
             'type' => 'select',
-            'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+            'options' => ['1' => 'mconsole::settings.options.on', '0' => 'mconsole::settings.options.off'],
         ],
     ];
     

@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'prefix' => 'mconsole/commerce',
+    'prefix' => sprintf('%s/commerce', config('mconsole.url')),
     'middleware' => ['web', 'mconsole'],
     'namespace' => 'Milax\Mconsole\Commerce\Http\Controllers',
 ], function () {

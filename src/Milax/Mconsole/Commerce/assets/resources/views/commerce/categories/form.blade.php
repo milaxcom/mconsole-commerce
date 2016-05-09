@@ -1,14 +1,14 @@
 @if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.commerce.categories.update', $item->id]]) !!}
+    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('commerce/categories/%s', $item->id))]) !!}
 @else
-    {!! Form::open(['method' => 'POST', 'route' => 'mconsole.commerce.categories.store']) !!}
+    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('commerce/categories')]) !!}
 @endif
 
 <div class="row">
 	<div class="col-lg-7 col-md-6">
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
-                'back' => '/mconsole/commerce/categories',
+                'back' => mconsole_url('commerce/categories'),
                 'title' => trans('mconsole::commerce.categories.tabs.main'),
                 'fullscreen' => true,
             ])

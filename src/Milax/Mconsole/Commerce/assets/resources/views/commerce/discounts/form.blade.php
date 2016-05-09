@@ -1,14 +1,14 @@
 @if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.commerce.discounts.update', $item->id]]) !!}
+    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('commerce/discounts/%s', $item->id))]) !!}
 @else
-    {!! Form::open(['method' => 'POST', 'route' => 'mconsole.commerce.discounts.store']) !!}
+    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('commerce/discounts')]) !!}
 @endif
 
 <div id="discounts-editor" class="row">
     <div class="col-sm-6">
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
-                'back' => '/mconsole/commerce/discounts',
+                'back' => mconsole_url('commerce/discounts'),
                 'title' => trans('mconsole::commerce.discounts.tabs.main'),
             ])
             <div class="portlet-body form">
