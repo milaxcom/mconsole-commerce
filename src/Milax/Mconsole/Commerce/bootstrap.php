@@ -30,6 +30,13 @@ return [
         ], 'commerce');
         
         app('API')->menu->push([
+            'name' => 'mconsole::commerce.menu.products',
+            'url' => 'commerce/products',
+            'visible' => true,
+            'enabled' => true,
+        ], 'commerce_products', 'commerce');
+        
+        app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.categories',
             'url' => 'commerce/categories',
             'visible' => true,
