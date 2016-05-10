@@ -20,4 +20,9 @@ class Category extends Model
     {
         return $this->hasMany('Milax\Mconsole\Commerce\Models\Category', 'category_id');
     }
+    
+    public function products()
+    {
+        return $this->belongsToMany('\Milax\Mconsole\Commerce\Models\Product', 'commerce_categories_products', 'category_id', 'product_id');
+    }
 }
