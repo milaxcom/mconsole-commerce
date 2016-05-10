@@ -16,9 +16,9 @@ class CreateCommerceDiscountsTable extends Migration
             $table->increments('id');
             $table->string('key')->nullable();
             $table->boolean('accumulative')->default(false);
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->text('description')->nullable();
-            $table->text('discounts');
+            $table->json('discounts')->nullable();
             $table->timestamps();
         });
     }

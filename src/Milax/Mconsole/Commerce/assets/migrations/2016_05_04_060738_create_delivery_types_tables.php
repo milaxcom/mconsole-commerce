@@ -14,9 +14,9 @@ class CreateDeliveryTypesTables extends Migration
     {
         Schema::create('commerce_delivery_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('cost');
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('cost')->nullable();
             $table->timestamps();
         });
     }
