@@ -12,7 +12,7 @@ use Milax\Mconsole\Contracts\Repository;
 
 class CategoriesController extends Controller
 {
-    use \HasRedirects, \DoesNotHaveShow;
+    use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = 'Milax\Mconsole\Commerce\Models\Category';
     
@@ -25,6 +25,8 @@ class CategoriesController extends Controller
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
+        
+        $this->setCaption(trans('mconsole::commerce.categories.caption'));
     }
     
     
