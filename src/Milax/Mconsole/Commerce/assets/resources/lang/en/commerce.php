@@ -56,6 +56,8 @@ return [
             'name' => 'Name',
             'article' => 'Article',
             'price' => 'Price',
+            'inventory' => 'Inventory',
+            'quantity' => 'Aviablable quantity',
             'discount_price' => 'Discount price',
             'increase_price' => 'Increase price (%)',
             'decrease_price' => 'Decrease price (%)',
