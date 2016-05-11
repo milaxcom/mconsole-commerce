@@ -14,19 +14,19 @@ class CreateCommerceProductsTable extends Migration
     {
         Schema::create('commerce_products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
+            $table->integer('product_id')->default(0);
             $table->string('article')->nullable();
             $table->string('slug')->unique();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->text('tables')->nullable();
-            $table->text('lists')->nullable();
+            $table->json('tables')->nullable();
+            $table->json('lists')->nullable();
             $table->integer('price')->nullable();
             $table->integer('discount_price')->nullable();
             $table->integer('increase_price')->nullable();
-            $table->integer('discrease_price')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->boolean('enabled');
+            $table->integer('decrease_price')->nullable();
+            $table->integer('quantity')->default(0)->nullable();
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }
