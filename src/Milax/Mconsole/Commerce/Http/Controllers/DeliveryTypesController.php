@@ -3,7 +3,7 @@
 namespace Milax\Mconsole\Commerce\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Milax\Mconsole\Commerce\Http\Requests\DeliveryTypesRequest;
+use Milax\Mconsole\Commerce\Http\Requests\DeliveryTypeRequest;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Contracts\Repository;
@@ -59,7 +59,7 @@ class DeliveryTypesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DeliveryTypesRequest $request)
+    public function store(DeliveryTypeRequest $request)
     {
         $this->repository->create($request->all());
     }
@@ -84,11 +84,9 @@ class DeliveryTypesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DeliveryTypesRequest $request, $id)
+    public function update(DeliveryTypeRequest $request, $id)
     {
-        $deliveryType = $this->repository->find($id);
-        
-        $deliveryType->update($request->all());
+        $this->repository->update($id, $request->all());
     }
 
     /**

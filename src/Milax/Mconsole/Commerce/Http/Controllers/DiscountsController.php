@@ -3,7 +3,7 @@
 namespace Milax\Mconsole\Commerce\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Milax\Mconsole\Commerce\Http\Requests\DiscountsRequest;
+use Milax\Mconsole\Commerce\Http\Requests\DiscountRequest;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Contracts\Repository;
@@ -68,7 +68,7 @@ class DiscountsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DiscountsRequest $request)
+    public function store(DiscountRequest $request)
     {
         $this->repository->create($this->serialize($request->all()));
     }
@@ -93,7 +93,7 @@ class DiscountsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DiscountsRequest $request, $id)
+    public function update(DiscountRequest $request, $id)
     {
         $this->repository->update($id, $this->serialize($request->all()));
     }

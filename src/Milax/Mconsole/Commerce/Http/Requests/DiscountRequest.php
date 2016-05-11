@@ -4,13 +4,8 @@ namespace Milax\Mconsole\Commerce\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class DiscountsRequest extends Request
-{
-    public function __construct()
-    {
-        $this->repository = app('API')->repositories->commerce->discounts;
-    }
-    
+class DiscountRequest extends Request
+{    
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -41,18 +36,6 @@ class DiscountsRequest extends Request
                     'name' => 'required|max:255',
                 ];
         }
-    }
-    
-    /**
-     * Modify request input
-     * 
-     * @return array
-     */
-    public function all()
-    {
-        $input = parent::all();
-        
-        return $input;
     }
     
     /**

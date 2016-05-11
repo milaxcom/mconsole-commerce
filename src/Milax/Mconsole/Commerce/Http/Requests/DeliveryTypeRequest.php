@@ -4,13 +4,8 @@ namespace Milax\Mconsole\Commerce\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class DeliveryTypesRequest extends Request
-{
-    public function __construct()
-    {
-        $this->repository = app('API')->repositories->commerce->deliveries;
-    }
-    
+class DeliveryTypeRequest extends Request
+{    
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -41,18 +36,6 @@ class DeliveryTypesRequest extends Request
                     'name' => 'required|max:255',
                 ];
         }
-    }
-    
-    /**
-     * Modify request input
-     * 
-     * @return array
-     */
-    public function all()
-    {
-        $input = parent::all();
-        
-        return $input;
     }
     
     /**
