@@ -34,13 +34,21 @@ class ProductRequest extends Request
                 return [
                     'slug' => 'max:255|unique:commerce_products,slug,' . $this->repository->find($this->products)->slug,
                     'name' => 'required|max:255',
+                    'price' => 'integer',
+                    'discount_price' => 'integer',
+                    'increase_price' => 'integer',
+                    'decrease_price' => 'integer',
                 ];
                 break;
             
-            default:
+            case 'POST':
                 return [
-                    'slug' => 'required|max:255|unique:commerce_products',
+                    'slug' => 'max:255|unique:commerce_products',
                     'name' => 'required|max:255',
+                    'price' => 'integer',
+                    'discount_price' => 'integer',
+                    'increase_price' => 'integer',
+                    'decrease_price' => 'integer',
                 ];
         }
     }
