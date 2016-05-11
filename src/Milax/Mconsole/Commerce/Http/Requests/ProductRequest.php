@@ -32,7 +32,7 @@ class ProductRequest extends Request
             case 'PUT':
             case 'UPDATE':
                 return [
-                    'slug' => 'required|max:255|unique:commerce_products,slug,' . $this->repository->find($this->products)->id,
+                    'slug' => 'max:255|unique:commerce_products,slug,' . $this->repository->find($this->products)->slug,
                     'name' => 'required|max:255',
                 ];
                 break;
