@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 namespace Milax\Mconsole\Commerce\Models;
 
@@ -9,7 +10,7 @@ class Product extends Model
     use \CascadeDelete, \HasUploads, \HasState;
     
     protected $table = 'commerce_products';
-    protected $fillable = ['article', 'name', 'slug', 'description', 'lists', 'tables', 'price', 'discount_price', 'increase_price', 'decrease_price', 'quntity', 'enabled'];
+    protected $fillable = ['article', 'name', 'slug', 'description', 'lists', 'tables', 'price', 'discount_price', 'increase_price', 'decrease_price', 'quntity', 'enabled', 'in_stock', 'of_stock', 'on_request'];
     
     public function product()
     {
