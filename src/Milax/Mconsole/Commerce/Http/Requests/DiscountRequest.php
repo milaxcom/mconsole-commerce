@@ -23,19 +23,9 @@ class DiscountRequest extends Request
      */
     public function rules()
     {
-        switch ($this->method) {
-            case 'PUT':
-            case 'UPDATE':
-                return [
-                    'name' => 'required|max:255',
-                ];
-                break;
-            
-            default:
-                return [
-                    'name' => 'required|max:255',
-                ];
-        }
+        return [
+            'name' => 'required|max:255',
+        ];
     }
     
     /**
