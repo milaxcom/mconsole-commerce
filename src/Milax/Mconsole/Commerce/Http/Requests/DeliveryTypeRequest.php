@@ -25,6 +25,7 @@ class DeliveryTypeRequest extends Request
     {
         return [
             'name' => 'required|max:255',
+            'cost' => 'integer',
         ];
     }
     
