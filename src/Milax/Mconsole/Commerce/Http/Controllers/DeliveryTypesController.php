@@ -2,16 +2,15 @@
 
 namespace Milax\Mconsole\Commerce\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Milax\Mconsole\Commerce\Http\Requests\DeliveryTypesRequest;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Contracts\Repository;
 
 class DeliveryTypesController extends Controller
 {
-    use \HasRedirects, \DoesNotHaveShow;
+    use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = '\Milax\Mconsole\Commerce\Models\DeliveryType';
     
@@ -20,6 +19,7 @@ class DeliveryTypesController extends Controller
      */
     public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
+        $this->setCaption(trans('mconsole::commerce.menu.delivery'));
         $this->redirectTo = mconsole_url('commerce/delivery');
         $this->list = $list;
         $this->form = $form;
@@ -59,7 +59,7 @@ class DeliveryTypesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DeliveryTypesRequest $request)
     {
         $this->repository->create($request->all());
     }
@@ -84,9 +84,11 @@ class DeliveryTypesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DeliveryTypesRequest $request, $id)
     {
-        //
+        $deliveryType = $this->repository->find($id);
+        
+        $deliveryType->update($request->all());
     }
 
     /**
@@ -97,6 +99,6 @@ class DeliveryTypesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->destroy($id);
     }
 }
