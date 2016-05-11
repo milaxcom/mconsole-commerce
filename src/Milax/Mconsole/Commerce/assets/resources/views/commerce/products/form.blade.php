@@ -22,36 +22,6 @@
     					'label' => trans('mconsole::commerce.products.form.name'),
     					'name' => 'name',
     				])
-                    @include('mconsole::forms.text', [
-                        'label' => trans('mconsole::commerce.products.form.article'),
-                        'name' => 'article',
-                    ])
-                    <div class="row">
-                        <div class="col-sm-3 col-xs-6">
-                            @include('mconsole::forms.text', [
-                                'label' => trans('mconsole::commerce.products.form.price'),
-                                'name' => 'price',
-                            ])
-                        </div>
-                        <div class="col-sm-3 col-xs-6">
-                            @include('mconsole::forms.text', [
-                                'label' => trans('mconsole::commerce.products.form.discount_price'),
-                                'name' => 'discount_price',
-                            ])
-                        </div>
-                        <div class="col-sm-3 col-xs-6">
-                            @include('mconsole::forms.text', [
-                                'label' => trans('mconsole::commerce.products.form.increase_price'),
-                                'name' => 'increase_price',
-                            ])
-                        </div>
-                        <div class="col-sm-3 col-xs-6">
-                            @include('mconsole::forms.text', [
-                                'label' => trans('mconsole::commerce.products.form.decrease_price'),
-                                'name' => 'decrease_price',
-                            ])
-                        </div>
-                    </div>
     				@include('mconsole::forms.textarea', [
     					'label' => trans('mconsole::commerce.products.form.description'),
     					'name' => 'description',
@@ -64,6 +34,86 @@
         </div>
 	</div>
     <div class="col-lg-5 col-md-6">
+        
+        <div class="portlet light">
+            @include('mconsole::partials.portlet-title', [
+                'title' => trans('mconsole::commerce.products.form.inventory'),
+            ])
+            <div class="portlet-body form">
+                <div class="row">
+                    <div class="col-sm-6">
+                        @include('mconsole::forms.text', [
+                            'label' => trans('mconsole::commerce.products.form.article'),
+                            'name' => 'article',
+                        ])
+                    </div>
+                    <div class="col-sm-6">
+                        @include('mconsole::forms.text', [
+                            'label' => trans('mconsole::commerce.products.form.quantity'),
+                            'name' => 'quantity',
+                            'value' => 0,
+                        ])
+                    </div>
+                    <div class="col-sm-6">
+                        @include('mconsole::forms.text', [
+                            'label' => trans('mconsole::commerce.products.form.price'),
+                            'name' => 'price',
+                            'value' => 0,
+                        ])
+                    </div>
+                    <div class="col-sm-6">
+                        @include('mconsole::forms.text', [
+                            'label' => trans('mconsole::commerce.products.form.discount_price'),
+                            'name' => 'discount_price',
+                            'value' => 0,
+                        ])
+                    </div>
+                    <div class="col-sm-6">
+                        @include('mconsole::forms.text', [
+                            'label' => trans('mconsole::commerce.products.form.increase_price'),
+                            'name' => 'increase_price',
+                            'value' => 0,
+                        ])
+                    </div>
+                    <div class="col-sm-6">
+                        @include('mconsole::forms.text', [
+                            'label' => trans('mconsole::commerce.products.form.decrease_price'),
+                            'name' => 'decrease_price',
+                            'value' => 0,
+                        ])
+                    </div>
+                </div>
+                {{-- @include('mconsole::forms.checkbox', [
+                    'label' => 'INSTOCK',
+                    'name' => 'in_stock',
+                ])
+                @include('mconsole::forms.checkbox', [
+                    'label' => 'OFSTOCK',
+                    'name' => 'of_stock',
+                ])
+                @include('mconsole::forms.checkbox', [
+                    'label' => 'ONREQUEST',
+                    'name' => 'on_request',
+                ]) --}}
+                @include('mconsole::forms.checkboxes', [
+                    'items' => [
+                        [
+                            'label' => 'INSTOCK',
+                            'name' => 'in_stock',
+                        ],
+                        [
+                            'label' => 'OFSTOCK',
+                            'name' => 'of_stock',
+                        ],
+                        [
+                            'label' => 'ONREQUEST',
+                            'name' => 'on_request',
+                        ],
+                    ],
+                ])
+            </div>
+        </div>
+        
         @if (app('API')->options->getByKey('product_has_cover'))
             <div class="portlet light">
                 @include('mconsole::partials.portlet-title', [
