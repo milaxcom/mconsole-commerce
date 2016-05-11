@@ -28,29 +28,26 @@ class ProductRequest extends Request
      */
     public function rules()
     {
+        $rules = [
+            'name' => 'required|max:255',
+            'price' => 'integer',
+            'discount_price' => 'integer',
+            'increase_price' => 'integer',
+            'decrease_price' => 'integer',
+            'quantity' => 'integer',
+        ];
+        
         switch ($this->method) {
             case 'PUT':
             case 'UPDATE':
-                return [
-                    'slug' => 'max:255|unique:commerce_products,slug,' . $this->repository->find($this->products)->slug,
-                    'name' => 'required|max:255',
-                    'price' => 'integer',
-                    'discount_price' => 'integer',
-                    'increase_price' => 'integer',
-                    'decrease_price' => 'integer',
-                ];
+                $rules['slug'] = 'max:255|unique:commerce_products,slug,' . $this->repository->find($this->products)->slug;
                 break;
             
             case 'POST':
-                return [
-                    'slug' => 'max:255|unique:commerce_products',
-                    'name' => 'required|max:255',
-                    'price' => 'integer',
-                    'discount_price' => 'integer',
-                    'increase_price' => 'integer',
-                    'decrease_price' => 'integer',
-                ];
+                $rules['slug'] = 'max:255|unique:commerce_products';
         }
+        
+        return $rules;
     }
     
     /**
