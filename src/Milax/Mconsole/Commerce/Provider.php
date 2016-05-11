@@ -24,6 +24,7 @@ class Provider extends ServiceProvider
     public function register()
     {
         app('API')->repositories->register('categories', new \Milax\Mconsole\Commerce\Repositories\CategoriesRepository(\Milax\Mconsole\Commerce\Models\Category::class), 'commerce');
+        app('API')->repositories->register('products', new \Milax\Mconsole\Commerce\Repositories\ProductsRepository(\Milax\Mconsole\Commerce\Models\Product::class), 'commerce');
         app('API')->repositories->register('deliveries', new \Milax\Mconsole\Commerce\Repositories\DeliveryTypesRepository(\Milax\Mconsole\Commerce\Models\DeliveryType::class), 'commerce');
         app('API')->repositories->register('discounts', new \Milax\Mconsole\Commerce\Repositories\DiscountsRepository(\Milax\Mconsole\Commerce\Models\Discount::class), 'commerce');
 
@@ -31,6 +32,12 @@ class Provider extends ServiceProvider
             ->needs('\Milax\Mconsole\Contracts\Repository')
             ->give(function () {
                 return app('API')->repositories->commerce->categories;
+            });
+            
+        $this->app->when('\Milax\Mconsole\Commerce\Http\Controllers\ProductsController')
+            ->needs('\Milax\Mconsole\Contracts\Repository')
+            ->give(function () {
+                return app('API')->repositories->commerce->products;
             });
         
         $this->app->when('\Milax\Mconsole\Commerce\Http\Controllers\DeliveryTypesController')

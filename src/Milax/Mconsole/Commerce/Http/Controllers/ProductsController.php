@@ -1,34 +1,33 @@
-<?php
+<?php 
 
 namespace Milax\Mconsole\Commerce\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Milax\Mconsole\Commerce\Http\Requests\CategoryRequest;
-use Milax\Mconsole\Commerce\Models\Category;
+use Milax\Mconsole\Commerce\Http\Requests\ProductRequest;
+use Milax\Mconsole\Commerce\Models\Product;
 use Milax\Mconsole\Models\Language;
-use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Contracts\ListRenderer;
+use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Contracts\Repository;
 
-class CategoriesController extends Controller
+class ProductsController extends Controller
 {
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
-    protected $model = 'Milax\Mconsole\Commerce\Models\Category';
+    protected $model = 'Milax\Mconsole\Commerce\Models\Product';
     
     /**
      * Create new class instance
      */
     public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
-        $this->redirectTo = mconsole_url('commerce/categories');
+        $this->redirectTo = mconsole_url('commerce/products');
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
         
-        $this->setCaption(trans('mconsole::commerce.categories.caption'));
+        $this->setCaption(trans('mconsole::commerce.products.caption'));
     }
-    
     
     /**
      * Display a listing of the resource.
@@ -37,17 +36,18 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return $this->list->setQuery($this->repository->index())->setAddAction('commerce/categories/create')->render(function ($item) {
+        return $this->list->setQuery($this->repository->index())->setAddAction('commerce/products/create')->render(function ($item) {
             return [
                 '#' => $item->id,
-                trans('mconsole::commerce.categories.table.updated') => $item->updated_at->format('m.d.Y'),
-                trans('mconsole::commerce.categories.table.slug') => $item->slug,
-                trans('mconsole::commerce.categories.table.name') => $item->name,
+                trans('mconsole::commerce.products.table.updated') => $item->updated_at->format('m.d.Y'),
+                trans('mconsole::commerce.products.table.article') => $item->article,
+                trans('mconsole::commerce.products.table.slug') => $item->slug,
+                trans('mconsole::commerce.products.table.name') => $item->name,
                 trans('mconsole::tables.state.name') => view('mconsole::indicators.state', $item),
             ];
         });
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -55,24 +55,24 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return $this->form->render('mconsole::commerce.categories.form', [
+        return $this->form->render('mconsole::commerce.products.form', [
             'languages' => Language::all(),
         ]);
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(ProductRequest $request)
     {
-        $category = $this->repository->create($request->all());
+        $product = $this->repository->create($request->all());
         
-        $this->handleUploads($category);
+        $this->handleUploads($product);
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -83,7 +83,7 @@ class CategoriesController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -92,8 +92,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        return $this->form->render('mconsole::commerce.categories.form', [
-            'item' => Category::find($id),
+        return $this->form->render('mconsole::commerce.products.form', [
+            'item' => Product::find($id),
             'languages' => Language::all(),
         ]);
     }
@@ -105,15 +105,15 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        $category = $this->repository->find($id);
+        $product = $this->repository->find($id);
         
-        $this->handleUploads($category);
+        $this->handleUploads($product);
         
-        $category->update($request->all());
+        $product->update($request->all());
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -140,6 +140,12 @@ class CategoriesController extends Controller
                 'uploads' => $uploads,
                 'related' => $object,
                 'unique' => true,
+            ]);
+            app('API')->uploads->attach([
+                'group' => 'gallery',
+                'uploads' => $uploads,
+                'related' => $object,
+                'unique' => false,
             ]);
         });
     }

@@ -17,6 +17,22 @@ class Installer implements ModuleInstaller
             'type' => 'select',
             'options' => ['1' => 'mconsole::settings.options.on', '0' => 'mconsole::settings.options.off'],
         ],
+        [
+            'group' => 'mconsole::commerce.settings.group.name',
+            'label' => 'mconsole::commerce.settings.product.cover',
+            'key' => 'product_has_cover',
+            'value' => 1,
+            'type' => 'select',
+            'options' => ['1' => 'mconsole::settings.options.on', '0' => 'mconsole::settings.options.off'],
+        ],
+        [
+            'group' => 'mconsole::commerce.settings.group.name',
+            'label' => 'mconsole::commerce.settings.product.gallery',
+            'key' => 'product_has_gallery',
+            'value' => 1,
+            'type' => 'select',
+            'options' => ['1' => 'mconsole::settings.options.on', '0' => 'mconsole::settings.options.off'],
+        ],
     ];
     
     public static $presets = [
@@ -42,6 +58,61 @@ class Installer implements ModuleInstaller
                 ],
             ],
         ],
+        [
+            'key' => 'commerce_product_cover',
+            'type' => MX_UPLOAD_TYPE_IMAGE,
+            'name' => 'Product cover',
+            'path' => 'commerce/product',
+            'extensions' => ['jpg', 'jpeg', 'png'],
+            'min_width' => 90,
+            'min_height' => 90,
+            'operations' => [
+                [
+                    'operation' => 'resize',
+                    'type' => 'center',
+                    'width' => '90',
+                    'height' => '90',
+                ],
+                [
+                    'operation' => 'save',
+                    'path' => 'cover',
+                    'quality' => '',
+                ],
+            ],
+        ],
+        [
+            'key' => 'commerce_product_gallery',
+            'type' => MX_UPLOAD_TYPE_IMAGE,
+            'name' => 'Product gallery',
+            'path' => 'commerce/product',
+            'extensions' => ['jpg', 'jpeg', 'png'],
+            'min_width' => 800,
+            'min_height' => 600,
+            'operations' => [
+                [
+                    'operation' => 'resize',
+                    'type' => 'ratio',
+                    'width' => '800',
+                    'height' => '600',
+                ],
+                [
+                    'operation' => 'save',
+                    'path' => 'gallery',
+                    'quality' => '',
+                ],
+                [
+                    'operation' => 'resize',
+                    'type' => 'center',
+                    'width' => '90',
+                    'height' => '90',
+                ],
+                [
+                    'operation' => 'save',
+                    'path' => 'preview',
+                    'quality' => '',
+                ],
+            ],
+        ],
     ];
     
     public static function install()
@@ -56,6 +127,11 @@ class Installer implements ModuleInstaller
         app('API')->presets->uninstall(self::$presets);
         
         $repository = new \Milax\Mconsole\Commerce\Repositories\CategoriesRepository(\Milax\Mconsole\Commerce\Models\Category::class);
+        foreach ($repository->get() as $instance) {
+            $instance->delete();
+        }
+        
+        $repository = new \Milax\Mconsole\Commerce\Repositories\ProductsRepository(\Milax\Mconsole\Commerce\Models\Product::class);
         foreach ($repository->get() as $instance) {
             $instance->delete();
         }
