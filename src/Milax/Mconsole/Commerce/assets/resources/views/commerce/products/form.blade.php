@@ -88,6 +88,7 @@
                         [
                             'label' => trans('mconsole::commerce.products.form.in_stock'),
                             'name' => 'in_stock',
+                            'checked' => true,
                         ],
                         [
                             'label' => trans('mconsole::commerce.products.form.of_stock'),
