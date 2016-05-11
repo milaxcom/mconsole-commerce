@@ -64,6 +64,9 @@ return [
             'description' => 'Description',
             'cover' => 'Cover',
             'gallery' => 'Gallery',
+            'in_stock' => 'In stock',
+            'of_stock' => 'Of stock',
+            'on_request' => 'On request',
         ],
         'config' => [
             'tables' => [

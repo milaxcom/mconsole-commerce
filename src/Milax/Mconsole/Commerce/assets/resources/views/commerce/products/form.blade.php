@@ -83,30 +83,18 @@
                         ])
                     </div>
                 </div>
-                {{-- @include('mconsole::forms.checkbox', [
-                    'label' => 'INSTOCK',
-                    'name' => 'in_stock',
-                ])
-                @include('mconsole::forms.checkbox', [
-                    'label' => 'OFSTOCK',
-                    'name' => 'of_stock',
-                ])
-                @include('mconsole::forms.checkbox', [
-                    'label' => 'ONREQUEST',
-                    'name' => 'on_request',
-                ]) --}}
                 @include('mconsole::forms.checkboxes', [
                     'items' => [
                         [
-                            'label' => 'INSTOCK',
+                            'label' => trans('mconsole::commerce.products.form.in_stock'),
                             'name' => 'in_stock',
                         ],
                         [
-                            'label' => 'OFSTOCK',
+                            'label' => trans('mconsole::commerce.products.form.of_stock'),
                             'name' => 'of_stock',
                         ],
                         [
-                            'label' => 'ONREQUEST',
+                            'label' => trans('mconsole::commerce.products.form.on_request'),
                             'name' => 'on_request',
                         ],
                     ],
