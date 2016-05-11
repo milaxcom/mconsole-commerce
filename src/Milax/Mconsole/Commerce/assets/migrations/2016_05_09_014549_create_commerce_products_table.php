@@ -26,6 +26,9 @@ class CreateCommerceProductsTable extends Migration
             $table->integer('increase_price')->nullable();
             $table->integer('decrease_price')->nullable();
             $table->integer('quantity')->default(0)->nullable();
+            $table->boolean('in_stock')->default(true);
+            $table->boolean('of_stock')->default(false);
+            $table->boolean('on_request')->deafult(false);
             $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
