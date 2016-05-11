@@ -2,16 +2,15 @@
 
 namespace Milax\Mconsole\Commerce\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Milax\Mconsole\Commerce\Http\Requests\DiscountsRequest;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Contracts\Repository;
 
 class DiscountsController extends Controller
 {
-    use \HasRedirects, \DoesNotHaveShow;
+    use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = '\Milax\Mconsole\Commerce\Models\Discount';
     
@@ -20,6 +19,7 @@ class DiscountsController extends Controller
      */
     public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
+        $this->setCaption(trans('mconsole::commerce.menu.discounts'));
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
@@ -68,7 +68,7 @@ class DiscountsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DiscountsRequest $request)
     {
         $this->repository->create($this->serialize($request->all()));
     }
@@ -93,7 +93,7 @@ class DiscountsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DiscountsRequest $request, $id)
     {
         $this->repository->update($id, $this->serialize($request->all()));
     }
