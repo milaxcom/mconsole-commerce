@@ -16,9 +16,9 @@ class CreateCommerceCategoriesTable extends Migration
             $table->increments('id');
             $table->integer('category_id')->default(0);
             $table->integer('level')->default(0);
-            $table->string('slug')->unique();
-            $table->string('name');
-            $table->text('description');
+            $table->string('slug')->nullable()->unique();
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
