@@ -3,10 +3,11 @@
 namespace Milax\Mconsole\Commerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Milax\Mconsole\Commerce\Traits\Models\HasProducts;
 
 class Category extends Model
 {
-    use \CascadeDelete, \HasUploads, \HasState;
+    use \CascadeDelete, \HasUploads, \HasState, HasProducts;
     
     protected $table = 'commerce_categories';
     protected $fillable = ['category_id', 'level', 'slug', 'name', 'description', 'enabled'];
@@ -21,8 +22,8 @@ class Category extends Model
         return $this->hasMany('Milax\Mconsole\Commerce\Models\Category', 'category_id');
     }
     
-    public function products()
+    public static function getMaxLevel()
     {
-        return $this->belongsToMany('\Milax\Mconsole\Commerce\Models\Product', 'commerce_categories_products', 'category_id', 'product_id');
+        return self::max('level');
     }
 }

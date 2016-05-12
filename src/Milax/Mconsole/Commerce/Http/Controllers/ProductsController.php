@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 namespace Milax\Mconsole\Commerce\Http\Controllers;
 
@@ -110,7 +111,7 @@ class ProductsController extends Controller
         $product = $this->repository->find($id);
         
         $this->handleUploads($product);
-        
+
         $product->update($request->all());
     }
     
