@@ -14,7 +14,8 @@ class CreateTableCommerceProductables extends Migration
     {
         Schema::create('commerce_productables', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('commerce_products')->onDelete('cascade');
             $table->integer('productable_id');
             $table->string('productable_type');
         });

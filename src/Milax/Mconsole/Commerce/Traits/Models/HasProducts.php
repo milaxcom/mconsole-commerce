@@ -15,4 +15,14 @@ trait HasProducts
     {
         return $this->morphToMany('Milax\Mconsole\Commerce\Models\Product', 'productable', 'commerce_productables');
     }
+    
+    /**
+     * Cascade Delete Products
+     * 
+     * @return void
+     */
+    protected function cascadeDeleteProducts()
+    {
+        $this->products()->detach();
+    }
 }

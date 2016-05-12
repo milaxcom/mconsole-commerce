@@ -51,7 +51,7 @@ class Product extends Model
     {
         parent::boot();
         static::deleting(function ($product) {
-            $product->products->each(function ($child) {
+            $product->children()->each(function ($child) {
                 $child->delete();
             });
         });
