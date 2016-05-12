@@ -11,18 +11,8 @@ trait HasProducts
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function relatedProducts()
+    public function products()
     {
         return $this->morphToMany('Milax\Mconsole\Commerce\Models\Product', 'productable', 'commerce_productables');
-    }
-    
-    /**
-     * Cascade Delete products
-     * 
-     * @return void
-     */
-    protected function cascadeDeleteRelatedProducts()
-    {
-        //
     }
 }
