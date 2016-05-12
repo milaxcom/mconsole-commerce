@@ -2,7 +2,7 @@
 
 namespace Milax\Mconsole\Commerce\Models;
 
-use Illuminate\Contracts\Database\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Productable extends Model
 {
