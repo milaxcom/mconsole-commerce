@@ -54,12 +54,18 @@
             </div>
         @endif
         <div class="portlet light">
-            <div class="portlet-title">
-                <div class="caption">
-                    <span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::commerce.categories.tabs.additional') }}</span>
-                </div>
-            </div>
+            @include('mconsole::partials.portlet-title', [
+                'title' => trans('mconsole::commerce.categories.tabs.additional'),
+            ])
             <div class="portlet-body form">
+                @include('mconsole::forms.select', [
+                    'options' => isset($item) ? $categories->reject(function ($catName, $catId) use ($item) {
+                        return ($catId == $item->id);
+                    })->toArray() : $categories->toArray(),
+                    'label' => trans('mconsole::commerce.categories.form.category_id'),
+                    'name' => 'category_id',
+                    'value' => 0,
+                ])
                 @include('mconsole::forms.state', isset($item) ? $item : [])
             </div>
         </div>

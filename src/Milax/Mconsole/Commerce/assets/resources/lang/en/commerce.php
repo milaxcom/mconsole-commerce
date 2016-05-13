@@ -37,6 +37,7 @@ return [
             'name' => 'Name',
             'description' => 'Description',
             'cover' => 'Cover',
+            'category_id' => 'Parent category',
         ],
     ],
     'products' => [
