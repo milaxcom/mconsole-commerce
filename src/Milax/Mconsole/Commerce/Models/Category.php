@@ -26,4 +26,23 @@ class Category extends Model
     {
         return self::max('level');
     }
+    
+    public function scopeWithParent($query)
+    {
+        return $query->with('parent');
+    }
+    
+    public function scopeWithChildren($query)
+    {
+        $max = \Milax\Mconsole\Commerce\Models\Category::getMaxLevel();
+        
+        for ($i = 1; $i <= $max; $i++) {
+            $with = implode('.', array_pad(['children'], $i, 'children'));
+            $query->with($with);
+            $with = implode('.', array_pad(['parent'], $i, 'parent'));
+            $query->with($with);
+        }
+        
+        return $query;
+    }
 }

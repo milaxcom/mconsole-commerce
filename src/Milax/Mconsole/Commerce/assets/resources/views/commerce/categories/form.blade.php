@@ -14,13 +14,13 @@
             ])
             <div class="portlet-body form">
     			<div class="form-body">
+                    @include('mconsole::forms.text', [
+                        'label' => trans('mconsole::commerce.categories.form.name'),
+                        'name' => 'name',
+                    ])
     				@include('mconsole::forms.text', [
     					'label' => trans('mconsole::commerce.categories.form.slug'),
     					'name' => 'slug',
-    				])
-    				@include('mconsole::forms.text', [
-    					'label' => trans('mconsole::commerce.categories.form.name'),
-    					'name' => 'name',
     				])
     				@include('mconsole::forms.textarea', [
     					'label' => trans('mconsole::commerce.categories.form.description'),
@@ -36,11 +36,9 @@
     <div class="col-lg-5 col-md-6">
         @if (app('API')->options->getByKey('category_has_cover'))
             <div class="portlet light">
-                <div class="portlet-title">
-                    <div class="caption">
-                        <span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::commerce.categories.form.cover') }}</span>
-                    </div>
-                </div>
+                @include('mconsole::partials.portlet-title', [
+                    'title' => trans('mconsole::commerce.categories.form.cover'),
+                ])
                 <div class="portlet-body form">
                     @include('mconsole::forms.upload', [
                         'type' => MX_UPLOAD_TYPE_IMAGE,
@@ -58,17 +56,44 @@
                 'title' => trans('mconsole::commerce.categories.tabs.additional'),
             ])
             <div class="portlet-body form">
-                @include('mconsole::forms.select', [
-                    'options' => isset($item) ? $categories->reject(function ($catName, $catId) use ($item) {
-                        return ($catId == $item->id);
-                    })->toArray() : $categories->toArray(),
-                    'label' => trans('mconsole::commerce.categories.form.category_id'),
-                    'name' => 'category_id',
-                    'value' => 0,
-                ])
-                @include('mconsole::forms.state', isset($item) ? $item : [])
+                @if (count($categories) == 1)
+                    @include('mconsole::forms.hidden', [
+                        'name' => 'category_id',
+                        'value' => 0,
+                    ])
+                @else
+                    @include('mconsole::forms.select', [
+                        'options' => $categories,
+                        'label' => trans('mconsole::commerce.categories.form.category_id'),
+                        'name' => 'category_id',
+                        'value' => 0,
+                        'class' => 'select2',
+                    ])
+                @endif
+                @include('mconsole::forms.state')
             </div>
         </div>
+        
+        <div class="portlet light">
+            @include('mconsole::partials.portlet-title', [
+                'title' => trans('mconsole::commerce.categories.tabs.relationships'),
+            ])
+            <div class="portlet-body form">
+                @if ($item->parent)
+                    <p>{{ trans('mconsole::commerce.categories.form.parent') }} — <a href="{{ mconsole_url(sprintf('commerce/categories/%s/edit', $item->parent->id)) }}">{{ $item->parent->name }}</a></p>
+                @endif
+                
+                @if ($item->children)
+                    {{ trans('mconsole::commerce.categories.form.children') }}
+                    <ul>
+                        @foreach ($item->children as $child)
+                            <li><a href="{{ mconsole_url(sprintf('commerce/categories/%s/edit', $child->id)) }}">{{ $child->name }}</a></li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        </div>
+        
     </div>
 </div>
 
