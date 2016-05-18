@@ -1,1 +1,1 @@
-(function(){$(function(){$("#discounts-editor").length>0&&new DiscountsTable})}).call(this);
+$(function(){$("#discounts-editor").length>0&&new DiscountsTable});
