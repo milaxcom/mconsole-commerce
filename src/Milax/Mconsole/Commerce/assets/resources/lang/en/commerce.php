@@ -31,12 +31,16 @@ return [
         'tabs' => [
             'main' => 'Main',
             'additional' => 'Additional',
+            'relationships' => 'Relationships',
         ],
         'form' => [
             'slug' => 'Slug',
             'name' => 'Name',
             'description' => 'Description',
             'cover' => 'Cover',
+            'category_id' => 'Parent category',
+            'parent' => 'Parent',
+            'children' => 'Children',
         ],
     ],
     'products' => [

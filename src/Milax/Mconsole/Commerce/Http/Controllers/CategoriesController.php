@@ -69,7 +69,6 @@ class CategoriesController extends Controller
     public function store(CategoryRequest $request)
     {
         $category = $this->repository->create($request->all());
-        
         $this->handleUploads($category);
     }
 
@@ -93,7 +92,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         return $this->form->render('mconsole::commerce.categories.form', [
-            'item' => Category::find($id),
+            'item' => $this->repository->query->withChildren()->withParent()->find($id),
             'languages' => Language::all(),
         ]);
     }
@@ -107,11 +106,8 @@ class CategoriesController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        $category = $this->repository->find($id);
-        
-        $this->handleUploads($category);
-        
-        $category->update($request->all());
+        $this->handleUploads($this->repository->find($id));
+        $this->repository->update($id, $request->all());
     }
 
     /**
