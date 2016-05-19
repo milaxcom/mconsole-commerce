@@ -78,20 +78,22 @@
             @include('mconsole::partials.portlet-title', [
                 'title' => trans('mconsole::commerce.categories.tabs.relationships'),
             ])
-            <div class="portlet-body form">
-                @if ($item->parent)
-                    <p>{{ trans('mconsole::commerce.categories.form.parent') }} — <a href="{{ mconsole_url(sprintf('commerce/categories/%s/edit', $item->parent->id)) }}">{{ $item->parent->name }}</a></p>
-                @endif
-                
-                @if ($item->children)
-                    {{ trans('mconsole::commerce.categories.form.children') }}
-                    <ul>
-                        @foreach ($item->children as $child)
-                            <li><a href="{{ mconsole_url(sprintf('commerce/categories/%s/edit', $child->id)) }}">{{ $child->name }}</a></li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
+            @if (isset($item))
+                <div class="portlet-body form">
+                    @if ($item->parent)
+                        <p>{{ trans('mconsole::commerce.categories.form.parent') }} — <a href="{{ mconsole_url(sprintf('commerce/categories/%s/edit', $item->parent->id)) }}">{{ $item->parent->name }}</a></p>
+                    @endif
+                    
+                    @if ($item->children)
+                        {{ trans('mconsole::commerce.categories.form.children') }}
+                        <ul>
+                            @foreach ($item->children as $child)
+                                <li><a href="{{ mconsole_url(sprintf('commerce/categories/%s/edit', $child->id)) }}">{{ $child->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            @endif
         </div>
         
     </div>
