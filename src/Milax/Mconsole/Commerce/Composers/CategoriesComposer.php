@@ -4,14 +4,15 @@ namespace Milax\Mconsole\Commerce\Composers;
 
 use Illuminate\View\View;
 use Request;
+use Milax\Mconsole\Commecrce\Contracts\Repositories\CategoriesRepository;
 
 class CategoriesComposer
 {
     protected $tree;
     
-    public function __construct()
+    public function __construct(CategoriesRepository $repository)
     {
-        $this->repository = app('API')->repositories->commerce->categories;
+        $this->repository = $repository;
         $this->tree = collect();
     }
     

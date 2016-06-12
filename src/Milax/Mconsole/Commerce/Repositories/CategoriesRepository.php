@@ -1,12 +1,14 @@
 <?php
 
-
 namespace Milax\Mconsole\Commerce\Repositories;
 
 use Milax\Mconsole\Repositories\EloquentRepository;
+use Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository as Repository;
 
-class CategoriesRepository extends EloquentRepository
+class CategoriesRepository extends EloquentRepository implements Repository
 {
+    public $model = \Milax\Mconsole\Commerce\Models\Category::class;
+    
     public function index()
     {
         return $this->query()->orderBy('level', 'asc');

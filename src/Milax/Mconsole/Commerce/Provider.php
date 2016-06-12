@@ -23,33 +23,9 @@ class Provider extends ServiceProvider
      */
     public function register()
     {
-        app('API')->repositories->register('categories', new \Milax\Mconsole\Commerce\Repositories\CategoriesRepository(\Milax\Mconsole\Commerce\Models\Category::class), 'commerce');
-        app('API')->repositories->register('products', new \Milax\Mconsole\Commerce\Repositories\ProductsRepository(\Milax\Mconsole\Commerce\Models\Product::class), 'commerce');
-        app('API')->repositories->register('deliveries', new \Milax\Mconsole\Commerce\Repositories\DeliveryTypesRepository(\Milax\Mconsole\Commerce\Models\DeliveryType::class), 'commerce');
-        app('API')->repositories->register('discounts', new \Milax\Mconsole\Commerce\Repositories\DiscountsRepository(\Milax\Mconsole\Commerce\Models\Discount::class), 'commerce');
-
-        $this->app->when('\Milax\Mconsole\Commerce\Http\Controllers\CategoriesController')
-            ->needs('\Milax\Mconsole\Contracts\Repository')
-            ->give(function () {
-                return app('API')->repositories->commerce->categories;
-            });
-            
-        $this->app->when('\Milax\Mconsole\Commerce\Http\Controllers\ProductsController')
-            ->needs('\Milax\Mconsole\Contracts\Repository')
-            ->give(function () {
-                return app('API')->repositories->commerce->products;
-            });
-        
-        $this->app->when('\Milax\Mconsole\Commerce\Http\Controllers\DeliveryTypesController')
-            ->needs('\Milax\Mconsole\Contracts\Repository')
-            ->give(function () {
-                return app('API')->repositories->commerce->deliveries;
-            });
-        
-        $this->app->when('\Milax\Mconsole\Commerce\Http\Controllers\DiscountsController')
-            ->needs('\Milax\Mconsole\Contracts\Repository')
-            ->give(function () {
-                return app('API')->repositories->commerce->discounts;
-            });
+        $this->app->bind('Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository', 'Milax\Mconsole\Commerce\Repositories\CategoriesRepository');
+        $this->app->bind('Milax\Mconsole\Commerce\Contracts\Repositories\DeliveryTypesRepository', 'Milax\Mconsole\Commerce\Repositories\DeliveryTypesRepository');
+        $this->app->bind('Milax\Mconsole\Commerce\Contracts\Repositories\DiscountsRepository', 'Milax\Mconsole\Commerce\Repositories\DiscountsRepository');
+        $this->app->bind('Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository', 'Milax\Mconsole\Commerce\Repositories\ProductsRepository');
     }
 }
