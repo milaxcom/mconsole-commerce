@@ -92,7 +92,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         return $this->form->render('mconsole::commerce.categories.form', [
-            'item' => $this->repository->query->withChildren()->withParent()->find($id),
+            'item' => $this->repository->query()->withChildren()->withParent()->find($id),
             'languages' => Language::all(),
         ]);
     }
