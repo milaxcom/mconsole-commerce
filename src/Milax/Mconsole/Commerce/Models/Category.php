@@ -12,6 +12,11 @@ class Category extends Model
     protected $table = 'commerce_categories';
     protected $fillable = ['category_id', 'level', 'slug', 'name', 'description', 'enabled'];
     
+    public function products()
+    {
+        return $this->belongsToMany('Milax\Mconsole\Commerce\Models\Product', 'commerce_categories_products', 'category_id');
+    }
+    
     public function parent()
     {
         return $this->belongsTo('Milax\Mconsole\Commerce\Models\Category', 'category_id');
