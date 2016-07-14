@@ -109,11 +109,8 @@ class ProductsController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $product = $this->repository->find($id);
-        
+        $product = $this->repository->update($id, $request->all());
         $this->handleUploads($product);
-
-        $product->update($request->all());
     }
     
     /**
