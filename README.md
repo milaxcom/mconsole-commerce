@@ -11,10 +11,10 @@ $ php artisan vendor:publish
 
 ## Repositories
 
-Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository
-Milax\Mconsole\Commerce\Contracts\Repositories\DeliveryTypesRepository
-Milax\Mconsole\Commerce\Contracts\Repositories\DiscountsRepository
-Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository
+- Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository
+- Milax\Mconsole\Commerce\Contracts\Repositories\DeliveryTypesRepository
+- Milax\Mconsole\Commerce\Contracts\Repositories\DiscountsRepository
+- Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository
 
 ## Adding product custom tables and properties
 
