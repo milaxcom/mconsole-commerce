@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Milax\Mconsole\Commerce\Http\Requests\DeliveryTypeRequest;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
-use Milax\Mconsole\Contracts\Repository;
+use Milax\Mconsole\Commerce\Contracts\Repositories\DeliveryTypesRepository;
 
 class DeliveryTypesController extends Controller
 {
@@ -17,7 +17,7 @@ class DeliveryTypesController extends Controller
     /**
      * Create new instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
+    public function __construct(ListRenderer $list, FormRenderer $form, DeliveryTypesRepository $repository)
     {
         $this->setCaption(trans('mconsole::commerce.menu.delivery'));
         $this->redirectTo = mconsole_url('commerce/delivery');

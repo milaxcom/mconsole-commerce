@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Milax\Mconsole\Commerce\Http\Requests\DiscountRequest;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
-use Milax\Mconsole\Contracts\Repository;
+use Milax\Mconsole\Commerce\Contracts\Repositories\DiscountsRepository;
 
 class DiscountsController extends Controller
 {
@@ -17,7 +17,7 @@ class DiscountsController extends Controller
     /**
      * Create new instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
+    public function __construct(ListRenderer $list, FormRenderer $form, DiscountsRepository $repository)
     {
         $this->setCaption(trans('mconsole::commerce.menu.discounts'));
         $this->list = $list;
@@ -26,10 +26,10 @@ class DiscountsController extends Controller
         
         $this->redirectTo = mconsole_url('commerce/discounts');
         $this->form->addStyles([
-            '/mmodules/mconsole-commerce/css/commerce.css',
+            '/mconsole-modules/mconsole-commerce/css/commerce.css',
         ])->addScripts([
-            '/mmodules/mconsole-commerce/js/discounts-table.js',
-            '/mmodules/mconsole-commerce/js/commerce.js',
+            '/mconsole-modules/mconsole-commerce/js/discounts-table.js',
+            '/mconsole-modules/mconsole-commerce/js/commerce.js',
         ]);
     }
     

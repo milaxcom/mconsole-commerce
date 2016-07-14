@@ -24,22 +24,7 @@ class Product extends Model
     
     public function categories()
     {
-        $max = \Milax\Mconsole\Commerce\Models\Category::getMaxLevel();
-        
-        $query = $this->morphedByMany(
-            '\Milax\Mconsole\Commerce\Models\Category',
-            'productable',
-            'commerce_productables',
-            'product_id',
-            'productable_id'
-        );
-        
-        for ($i = 1; $i <= $max; $i++) {
-            $with = implode('.', array_pad(['category'], $i + 1, 'category'));
-            $query->with($with);
-        }
-        
-        return $query;
+        return $this->belongsToMany('\Milax\Mconsole\Commerce\Models\Category', 'commerce_categories_products');
     }
     
     /**

@@ -67,10 +67,17 @@ return [
             'decrease_price' => 'Decrease price (%)',
             'description' => 'Description',
             'cover' => 'Cover',
+            'categories' => 'Categories',
             'gallery' => 'Gallery',
             'in_stock' => 'In stock',
             'of_stock' => 'Of stock',
             'on_request' => 'On request',
+        ],
+        'categories' => [
+            'placeholder' => 'Product must belong to at least one category',
+        ],
+        'info' => [
+            'category' => 'Available categories not found. Please create new category.',
         ],
         'config' => [
             'tables' => [

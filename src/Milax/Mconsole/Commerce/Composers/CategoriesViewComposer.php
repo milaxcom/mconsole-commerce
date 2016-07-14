@@ -4,9 +4,9 @@ namespace Milax\Mconsole\Commerce\Composers;
 
 use Illuminate\View\View;
 use Request;
-use Milax\Mconsole\Commecrce\Contracts\Repositories\CategoriesRepository;
+use Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository;
 
-class CategoriesComposer
+class CategoriesViewComposer
 {
     protected $tree;
     

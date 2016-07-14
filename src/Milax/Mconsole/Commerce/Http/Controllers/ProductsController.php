@@ -9,7 +9,7 @@ use Milax\Mconsole\Commerce\Models\Product;
 use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
-use Milax\Mconsole\Contracts\Repository;
+use Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository;
 
 class ProductsController extends Controller
 {
@@ -20,7 +20,7 @@ class ProductsController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
+    public function __construct(ListRenderer $list, FormRenderer $form, ProductsRepository $repository)
     {
         $this->redirectTo = mconsole_url('commerce/products');
         $this->list = $list;
@@ -93,6 +93,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
+        #dd(Product::find($id)->with('categories'));
         return $this->form->render('mconsole::commerce.products.form', [
             'item' => Product::find($id),
             'languages' => Language::all(),
@@ -108,11 +109,8 @@ class ProductsController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $product = $this->repository->find($id);
-        
+        $product = $this->repository->update($id, $request->all());
         $this->handleUploads($product);
-
-        $product->update($request->all());
     }
     
     /**

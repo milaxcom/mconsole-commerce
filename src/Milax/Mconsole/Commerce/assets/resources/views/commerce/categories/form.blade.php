@@ -84,7 +84,7 @@
                         <p>{{ trans('mconsole::commerce.categories.form.parent') }} — <a href="{{ mconsole_url(sprintf('commerce/categories/%s/edit', $item->parent->id)) }}">{{ $item->parent->name }}</a></p>
                     @endif
                     
-                    @if ($item->children)
+                    @if ($item->children && count($item->children) > 0)
                         {{ trans('mconsole::commerce.categories.form.children') }}
                         <ul>
                             @foreach ($item->children as $child)

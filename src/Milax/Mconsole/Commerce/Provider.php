@@ -13,7 +13,8 @@ class Provider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('mconsole::commerce.categories.form', '\Milax\Mconsole\Commerce\Composers\CategoriesComposer');
+        view()->composer('mconsole::commerce.categories.form', '\Milax\Mconsole\Commerce\Composers\CategoriesViewComposer');
+        view()->composer('mconsole::commerce.products.form', '\Milax\Mconsole\Commerce\Composers\ProductsCategoriesViewComposer');
     }
     
     /**
