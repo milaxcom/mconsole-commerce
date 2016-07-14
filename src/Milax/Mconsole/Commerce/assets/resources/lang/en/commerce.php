@@ -84,8 +84,8 @@ return [
                 'specifications' => 'Specifications',
             ],
             'lists' => [
-                'composition' => 'Composition',
-                'advantages' => 'Advantages',
+                'composition' => 'Composition (each on a new line)',
+                'advantages' => 'Advantages (each on a new line)',
             ],
         ],
     ],

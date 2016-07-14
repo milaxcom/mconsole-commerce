@@ -11,6 +11,8 @@ class ProductsRepository extends EloquentRepository implements Repository
     
     public function create($data)
     {
+        $data['lists'] = $this->serializeLists($data['lists']);
+        
         $instance = $this->fill($data);
         if (!empty($data['categories'])) {
             $instance->categories()->sync($data['categories']);
@@ -23,6 +25,8 @@ class ProductsRepository extends EloquentRepository implements Repository
     
     public function update($id, $data)
     {
+        $data['lists'] = $this->serializeLists($data['lists']);
+        
         $model = $this->model;
         
         $instance = $model::findOrFail((int) $id);
@@ -34,9 +38,23 @@ class ProductsRepository extends EloquentRepository implements Repository
             $instance->categories()->detach();
         }
         
-        $instance = $model::findOrFail((int) $id)->update($data);
+        $model::findOrFail((int) $id)->update($data);
         
         return $instance;
+    }
+    
+    /**
+     * Serialize lists field to array
+     * 
+     * @return array
+     */
+    protected function serializeLists($lists)
+    {
+        foreach ($lists as $key => $list) {
+            $lists[$key] = explode("\r\n", $list);
+        }
+        
+        return $lists;
     }
     
 }
