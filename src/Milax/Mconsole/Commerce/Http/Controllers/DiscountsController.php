@@ -26,10 +26,10 @@ class DiscountsController extends Controller
         
         $this->redirectTo = mconsole_url('commerce/discounts');
         $this->form->addStyles([
-            '/mmodules/mconsole-commerce/css/commerce.css',
+            '/mconsole-modules/mconsole-commerce/css/commerce.css',
         ])->addScripts([
-            '/mmodules/mconsole-commerce/js/discounts-table.js',
-            '/mmodules/mconsole-commerce/js/commerce.js',
+            '/mconsole-modules/mconsole-commerce/js/discounts-table.js',
+            '/mconsole-modules/mconsole-commerce/js/commerce.js',
         ]);
     }
     
