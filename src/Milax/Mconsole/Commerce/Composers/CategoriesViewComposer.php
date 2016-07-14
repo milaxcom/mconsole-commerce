@@ -6,7 +6,7 @@ use Illuminate\View\View;
 use Request;
 use Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository;
 
-class ProductsCategories
+class CategoriesViewComposer
 {
     protected $tree;
     
@@ -24,7 +24,7 @@ class ProductsCategories
             $this->appendToTree($category);
         }
         
-        $view->with('categories', $this->tree->lists('name', 'id')->toArray());
+        $view->with('categories', $this->tree->lists('name', 'id')->prepend(trans('mconsole::forms.options.notselected'), 0)->toArray());
     }
     
     protected function appendToTree($category, $parent = null)
@@ -39,10 +39,7 @@ class ProductsCategories
                 $category->name = $name->implode(' / ');
             }
             
-            if ($category->children->count()) {
-                $this->tree->push($category);
-            }
-            
+            $this->tree->push($category);
             if ($category->children) {
                 foreach ($category->children as $child) {
                     $this->appendToTree($child, $category);
