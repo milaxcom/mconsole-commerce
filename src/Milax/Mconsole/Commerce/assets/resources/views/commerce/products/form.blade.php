@@ -34,7 +34,33 @@
         </div>
 	</div>
     <div class="col-lg-5 col-md-6">
-        
+        <div class="portlet light">
+            @include('mconsole::partials.portlet-title', [
+                'title' => trans('mconsole::commerce.products.tabs.additional'),
+            ])
+            <div class="portlet-body form">
+                @if (count($categories) == 0)
+                    @include('mconsole::forms.hidden', [
+                        'name' => 'category_id',
+                        'value' => 0,
+                    ])
+                    
+                @else
+                    @include('mconsole::commerce.products.categories', [
+                        'label' => trans('mconsole::commerce.products.form.categories'),
+                        'allCategories' => $categories,
+                        'categories' => [],
+                        //isset($item) ? $item->categories : 
+                        'name' => 'categories',
+                    ])
+                    <p>
+                        {{ trans('mconsole::commerce.products.info.category')}}
+                        <a href="{{ mconsole_url('commerce/categories/create') }}" class="btn green-jungle btn-xs">Create category</a>
+                    </p>
+                @endif
+                @include('mconsole::forms.state')
+            </div>
+        </div>
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
                 'title' => trans('mconsole::commerce.products.form.inventory'),
@@ -137,14 +163,6 @@
                 </div>
             </div>
         @endif
-        <div class="portlet light">
-            @include('mconsole::partials.portlet-title', [
-                'title' => trans('mconsole::commerce.products.tabs.additional'),
-            ])
-            <div class="portlet-body form">
-                @include('mconsole::forms.state')
-            </div>
-        </div>
     </div>
 </div>
 

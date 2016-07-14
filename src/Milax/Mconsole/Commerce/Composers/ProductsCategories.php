@@ -4,13 +4,13 @@ namespace Milax\Mconsole\Commerce\Composers;
 
 use Illuminate\View\View;
 use Request;
-use Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository;
+use Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository;
 
-class CategoriesComposer
+class ProductsCategories
 {
     protected $tree;
     
-    public function __construct(CategoriesRepository $repository)
+    public function __construct(ProductsRepository $repository)
     {
         $this->repository = $repository;
         $this->tree = collect();
@@ -24,7 +24,7 @@ class CategoriesComposer
             $this->appendToTree($category);
         }
         
-        $view->with('categories', $this->tree->lists('name', 'id')->prepend(trans('mconsole::forms.options.notselected'), 0)->toArray());
+        $view->with('categories', $this->tree->lists('name', 'id')->toArray());
     }
     
     protected function appendToTree($category, $parent = null)
@@ -39,7 +39,10 @@ class CategoriesComposer
                 $category->name = $name->implode(' / ');
             }
             
-            $this->tree->push($category);
+            if ($category->children->count()) {
+                $this->tree->push($category);
+            }
+            
             if ($category->children) {
                 foreach ($category->children as $child) {
                     $this->appendToTree($child, $category);

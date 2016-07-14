@@ -2,14 +2,12 @@
 
 namespace Milax\Mconsole\Commerce\Traits\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-
 trait HasProducts
 {
     /**
      * Dynamic hasMany relationship on Product model
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\morphToMany
      */
     public function products()
     {

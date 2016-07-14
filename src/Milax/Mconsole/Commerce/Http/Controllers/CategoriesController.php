@@ -8,7 +8,7 @@ use Milax\Mconsole\Commerce\Models\Category;
 use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Contracts\ListRenderer;
-use Milax\Mconsole\Contracts\Repository;
+use Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository;
 
 class CategoriesController extends Controller
 {
@@ -19,7 +19,7 @@ class CategoriesController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
+    public function __construct(ListRenderer $list, FormRenderer $form, CategoriesRepository $repository)
     {
         $this->redirectTo = mconsole_url('commerce/categories');
         $this->list = $list;
