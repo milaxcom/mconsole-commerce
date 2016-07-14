@@ -39,7 +39,7 @@ class ProductsCategoriesViewComposer
                 $category->name = $name->implode(' / ');
             }
             
-            if ($category->children->count()) {
+            if ($category->children->count() || config('commerce.categories.depth') == 0) {
                 $this->tree->push($category);
             }
             
