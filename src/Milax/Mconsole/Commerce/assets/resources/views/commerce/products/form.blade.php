@@ -26,6 +26,16 @@
     					'label' => trans('mconsole::commerce.products.form.description'),
     					'name' => 'description',
     				])
+                    @if (count(Config::get('commerce.products.lists')) > 0)
+                        <div class="row">
+                            @foreach (Config::get('commerce.products.lists') as $listKey => $listName)
+                                <div class="form-group col-sm-6">
+                                	<label>{{ trans($listName) }}</label>
+                                	<textarea class="form-control" name="lists[{{ $listKey }}]" rows="10">{{ implode("\r\n", $item->lists->$listKey) }}</textarea>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
     			</div>
                 <div class="form-actions">
                     @include('mconsole::forms.submit')
@@ -122,6 +132,24 @@
                 ])
             </div>
         </div>
+        
+        @if (count(Config::get('commerce.products.tables')) > 0)
+            @foreach (Config::get('commerce.products.tables') as $tableKey => $table)
+                <div class="portlet light">
+                    @include('mconsole::partials.portlet-title', [
+                        'title' => trans($table['name']),
+                    ])
+                    <div class="portlet-body form">
+                        @foreach ($table['fields'] as $fieldKey => $value)
+                            <div class="form-group">
+                            	<label>{{ trans($value) }}</label>
+                            	<input class="form-control" name="tables[{{ $tableKey }}][{{ $fieldKey }}]" type="text" value="{{ $item->tables->$tableKey->$fieldKey }}">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
+        @endif
         
         @if (app('API')->options->getByKey('product_has_cover'))
             <div class="portlet light">
