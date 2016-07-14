@@ -31,7 +31,11 @@
                             @foreach (Config::get('commerce.products.lists') as $listKey => $listName)
                                 <div class="form-group col-sm-6">
                                 	<label>{{ trans($listName) }}</label>
-                                	<textarea class="form-control" name="lists[{{ $listKey }}]" rows="10">{{ implode("\r\n", $item->lists->$listKey) }}</textarea>
+                                    @if (isset($item->lists->$listKey))
+                                    	<textarea class="form-control" name="lists[{{ $listKey }}]" rows="10">{{ implode("\r\n", $item->lists->$listKey) }}</textarea>
+                                    @else
+                                        <textarea class="form-control" name="lists[{{ $listKey }}]" rows="10"></textarea>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -143,7 +147,11 @@
                         @foreach ($table['fields'] as $fieldKey => $value)
                             <div class="form-group">
                             	<label>{{ trans($value) }}</label>
-                            	<input class="form-control" name="tables[{{ $tableKey }}][{{ $fieldKey }}]" type="text" value="{{ $item->tables->$tableKey->$fieldKey }}">
+                                @if (isset($item->tables) && isset($item->tables->$tableKey->$fieldKey))
+                                	<input class="form-control" name="tables[{{ $tableKey }}][{{ $fieldKey }}]" type="text" value="{{ $item->tables->$tableKey->$fieldKey }}">
+                                @else
+                                    <input class="form-control" name="tables[{{ $tableKey }}][{{ $fieldKey }}]" type="text">
+                                @endif
                             </div>
                         @endforeach
                     </div>
