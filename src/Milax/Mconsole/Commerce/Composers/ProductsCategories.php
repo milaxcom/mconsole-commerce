@@ -4,13 +4,13 @@ namespace Milax\Mconsole\Commerce\Composers;
 
 use Illuminate\View\View;
 use Request;
-use Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository;
+use Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository;
 
 class ProductsCategories
 {
     protected $tree;
     
-    public function __construct(ProductsRepository $repository)
+    public function __construct(CategoriesRepository $repository)
     {
         $this->repository = $repository;
         $this->tree = collect();
