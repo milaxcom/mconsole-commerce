@@ -43,6 +43,13 @@ class ProductsRepository extends EloquentRepository implements Repository
         return $instance;
     }
     
+    public function findBySlug($slug)
+    {
+        $model = $this->model;
+        $product = $model::where('slug', $slug)->firstOrFail();
+        return $product;
+    }
+    
     /**
      * Serialize lists field to array
      * 
