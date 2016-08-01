@@ -26,6 +26,6 @@ class CreateCommerceCategoriesProductsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('commerce_categories_prodicts');
+        Schema::drop('commerce_categories_products');
     }
 }
