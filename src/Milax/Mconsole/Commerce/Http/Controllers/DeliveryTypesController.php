@@ -35,7 +35,7 @@ class DeliveryTypesController extends Controller
     {
         return $this->list->setQuery($this->repository->index())->setAddAction('commerce/delivery/create')->render(function ($item) {
             return [
-                '#' => $item->id,
+                trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::commerce.delivery.form.name') => $item->name,
                 trans('mconsole::commerce.delivery.form.cost') => $item->cost,
                 trans('mconsole::commerce.delivery.form.description') => $item->description,

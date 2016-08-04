@@ -39,12 +39,12 @@ class ProductsController extends Controller
     {
         return $this->list->setQuery($this->repository->index())->setAddAction('commerce/products/create')->render(function ($item) {
             return [
-                '#' => $item->id,
+                trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
+                trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::commerce.products.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::commerce.products.table.article') => $item->article,
                 trans('mconsole::commerce.products.table.slug') => $item->slug,
                 trans('mconsole::commerce.products.table.name') => $item->name,
-                trans('mconsole::tables.state.name') => view('mconsole::indicators.state', $item),
             ];
         });
     }

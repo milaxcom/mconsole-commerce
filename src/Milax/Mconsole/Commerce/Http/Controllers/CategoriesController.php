@@ -39,11 +39,11 @@ class CategoriesController extends Controller
     {
         return $this->list->setQuery($this->repository->index())->setAddAction('commerce/categories/create')->render(function ($item) {
             return [
-                '#' => $item->id,
+                trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
+                trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::commerce.categories.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::commerce.categories.table.slug') => $item->slug,
                 trans('mconsole::commerce.categories.table.name') => $item->name,
-                trans('mconsole::tables.state.name') => view('mconsole::indicators.state', $item),
             ];
         });
     }
