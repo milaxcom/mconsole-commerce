@@ -1,5 +1,7 @@
 <?php
 
+require 'helpers.php';
+
 use Milax\Mconsole\Commerce\Installer;
 
 return [

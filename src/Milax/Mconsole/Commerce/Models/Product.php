@@ -31,6 +31,16 @@ class Product extends Model
     }
     
     /**
+     * Get product formated price
+     * 
+     * @return string
+     */
+    public function getFormatPriceAttribute()
+    {
+        return currency_format($this->price);
+    }
+    
+    /**
      * Automatically delete related data
      * 
      * @return void
