@@ -10,7 +10,7 @@ class Order extends Model
     protected $fillable = ['identifier', 'status', 'slug', 'user_id', 'info', 'cart', 'delivery_type', 'payment_method'];
     protected $casts = [
         'info' => 'object',
-        'cart' => 'array',
+        'cart' => 'object',
         'delivery_type' => 'object',
         'payment_method' => 'object',
     ];
