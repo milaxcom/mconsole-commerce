@@ -29,5 +29,6 @@ class Provider extends ServiceProvider
         $this->app->bind('Milax\Mconsole\Commerce\Contracts\Repositories\DiscountsRepository', 'Milax\Mconsole\Commerce\Repositories\DiscountsRepository');
         $this->app->bind('Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository', 'Milax\Mconsole\Commerce\Repositories\ProductsRepository');
         $this->app->bind('Milax\Mconsole\Commerce\Contracts\Repositories\OrdersRepository', 'Milax\Mconsole\Commerce\Repositories\OrdersRepository');
+        $this->app->bind('Milax\Mconsole\Commerce\Contracts\Repositories\PaymentMethodsRepository', 'Milax\Mconsole\Commerce\Repositories\PaymentMethodsRepository');
     }
 }

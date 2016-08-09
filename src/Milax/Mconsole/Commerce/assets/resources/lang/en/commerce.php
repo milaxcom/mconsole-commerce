@@ -7,6 +7,7 @@ return [
         'products' => 'Products',
         'delivery' => 'Delivery types',
         'discounts' => 'Discounts',
+        'payment' => 'Payment',
     ],
     'module' => [
         'description' => 'E-shop solutions',
@@ -107,6 +108,26 @@ return [
             'discount' => 'Discount value',
             'remove' => 'Remove',
             'append' => 'Add discount item',
+        ],
+    ],
+    'payment' => [
+        'tabs' => [
+            'main' => 'Main',
+            'settings' => 'Settings',
+        ],
+        'table' => [
+            //
+        ],
+        'form' => [
+            'type' => 'Payment provider',
+            'name' => 'Name',
+            'description' => 'Description',
+            'commission' => 'Commission',
+            'commission_type' => 'Type',
+        ],
+        'robokassa' => [
+            'login' => 'Shop login',
+            'password' => 'Password #1',
         ],
     ],
     'settings' => [
