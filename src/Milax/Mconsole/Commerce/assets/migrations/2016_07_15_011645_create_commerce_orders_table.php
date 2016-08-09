@@ -14,11 +14,14 @@ class CreateCommerceOrdersTable extends Migration
     {
         Schema::create('commerce_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('number');
+            $table->string('identifier');
+            $table->string('status')->default('new');
+            $table->string('slug')->nullable();
             $table->integer('user_id');
-            $table->integer('delivery_type_id');
             $table->json('info');
             $table->json('cart');
+            $table->json('delivery_type');
+            $table->json('payment_method');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace Milax\Mconsole\Commerce;
 use Milax\Mconsole\Contracts\Modules\ModuleInstaller;
 use Milax\Mconsole\Models\MconsoleOption;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
+use Schema;
 
 class Installer implements ModuleInstaller
 {
@@ -126,14 +127,18 @@ class Installer implements ModuleInstaller
         app('API')->options->uninstall(self::$options);
         app('API')->presets->uninstall(self::$presets);
         
-        $repository = new \Milax\Mconsole\Commerce\Repositories\CategoriesRepository(\Milax\Mconsole\Commerce\Models\Category::class);
-        foreach ($repository->get() as $instance) {
-            $instance->delete();
+        if (Schema::hasTable('commerce_categories')) {
+            $repository = app('\Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository');
+            foreach ($repository->get() as $instance) {
+                $instance->delete();
+            }
         }
         
-        $repository = new \Milax\Mconsole\Commerce\Repositories\ProductsRepository(\Milax\Mconsole\Commerce\Models\Product::class);
-        foreach ($repository->get() as $instance) {
-            $instance->delete();
+        if (Schema::hasTable('commerce_products')) {
+            $repository = app('\Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository');
+            foreach ($repository->get() as $instance) {
+                $instance->delete();
+            }
         }
     }
 }

@@ -41,6 +41,31 @@ class Product extends Model
     }
     
     /**
+     * Get product formated discount price
+     * 
+     * @return string
+     */
+    public function getFormatDiscountPriceAttribute()
+    {
+        return currency_format($this->discount_price);
+    }
+    
+    public function getRealPriceAttribute()
+    {
+        $price = $this->discount_price ? $this->discount_price : $this->price;
+        
+        if ($this->decrease_price > 0) {
+            $price = $price - ($price / 100) * $this->decrease_price;
+        }
+        
+        if ($this->increase_price > 0) {
+            $price = $price + ($price / 100) * $this->increase_price;
+        }
+        
+        return $price;
+    }
+    
+    /**
      * Automatically delete related data
      * 
      * @return void
