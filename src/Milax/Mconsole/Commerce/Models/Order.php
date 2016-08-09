@@ -27,13 +27,15 @@ class Order extends Model
      */
     public function getTotal()
     {
+        $total = 0;
+        
         foreach ($this->cart as $product) {
-            
+            $total += $product->price * $product->quantity;
         }
-        // Стоимость товара + наценка - скидки x количество
-        // Добавляем стоимость доставки
-        // Добавляем комиссию
-        // return $total;
+        
+        $total += $this->delivery_type->cost;
+        
+        return $total;
     }
     
 }
