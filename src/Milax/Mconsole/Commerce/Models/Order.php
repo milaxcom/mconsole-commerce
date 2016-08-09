@@ -20,16 +20,6 @@ class Order extends Model
         return $this->belongsTo('\App\User', 'user_id');
     }
     
-    public function deliveryType()
-    {
-        return $this->belongsTo('\Milax\Mconsole\Commerce\Models\DeliveryType', 'delivery_type_id');
-    }
-    
-    public function paymentMethod()
-    {
-        return $this->belongsTo('\Milax\Mconsole\Commerce\Models\PaymentMethod', 'payment_method_id');
-    }
-    
     /**
      * Get order total sum
      * 
