@@ -11,4 +11,7 @@ class PaymentMethod extends Model
     protected $casts = [
         'settings' => 'object'
     ];
+    protected $hidden = [
+        'settings',
+    ];
 }
