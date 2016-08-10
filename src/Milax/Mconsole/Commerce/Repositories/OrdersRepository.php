@@ -11,7 +11,7 @@ class OrdersRepository extends EloquentRepository implements Repository
     
     public function findBySlug($slug)
     {
-        return $this->query()->where('slug', $slug)->first();
+        return $this->query()->where('slug', $slug)->firstOrFail();
     }
     
     public function place($cart, $delivery, $payment, $info)
