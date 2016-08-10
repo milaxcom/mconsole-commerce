@@ -14,11 +14,12 @@ class OrdersRepository extends EloquentRepository implements Repository
         return $this->query()->where('slug', $slug)->first();
     }
     
-    public function place($delivery, $products, $info)
+    public function place($cart, $delivery, $payment, $info)
     {
         $order = new $this->model([
-            'delivery_type_id' => $delivery,
-            'products' => $products,
+            'cart' => $cart,
+            'delivery_type' => $delivery,
+            'payment_method' => $payment,
             'info' => $info,
         ]);
         
