@@ -9,7 +9,7 @@ class OrdersRepository extends EloquentRepository implements Repository
 {
     public $model = \Milax\Mconsole\Commerce\Models\Order::class;
     
-    public function getBySlug($slug)
+    public function findBySlug($slug)
     {
         return $this->query()->where('slug', $slug)->first();
     }

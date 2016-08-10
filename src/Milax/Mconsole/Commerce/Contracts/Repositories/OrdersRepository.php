@@ -5,12 +5,12 @@ namespace Milax\Mconsole\Commerce\Contracts\Repositories;
 interface OrdersRepository
 {
     /**
-     * Get order by slug
+     * Find order by slug
      *
      * @param  string $slug
      * @return Order
      */
-    public function getBySlug($slug);
+    public function findBySlug($slug);
     
     /**
      * Place order
