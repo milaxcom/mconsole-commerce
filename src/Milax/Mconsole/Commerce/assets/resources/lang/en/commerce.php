@@ -134,8 +134,20 @@ return [
         'group' => [
             'name' => 'Commerce',
         ],
+        'shop' => [
+            'enabled' => 'Shop is enabled',
+            'decrease_price' => 'Global price decrease (%)',
+            'increase_price' => 'Global price increase (%)',
+            'guests' => 'Allow guests to use shop',
+            'message' => 'Message of the day',
+            'show_empty_categories' => 'Show empty categories',
+        ],
         'category' => [
             'cover' => 'Category has cover',
+        ],
+        'product' => [
+            'cover' => 'Product has cover',
+            'gallery' => 'Product has gallery',
         ],
     ],
 ];
