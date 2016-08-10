@@ -15,12 +15,13 @@ interface OrdersRepository
     /**
      * Place order
      *
-     * @param int $delivery [Delivery type id]
-     * @param array $products [Product objects array]
+     * @param array $cart [Shopping cart contents]
+     * @param DeliveryType $delivery [DeliveryType object]
+     * @param PaymentMethod $payment [PaymentMethod object]
      * @param array $info [Contact and delivery info]
      * @return Order
      */
-    public function place($delivery, $products, $info);
+    public function place($cart, $delivery, $payment, $info);
     
     /**
      * Change order status
