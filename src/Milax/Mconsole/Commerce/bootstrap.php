@@ -65,5 +65,27 @@ return [
             'visible' => true,
             'enabled' => true,
         ], 'commerce_payment', 'commerce');
+        
+        app('API')->search->register(function ($text) {
+            return app('Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository')->query()->select('id', 'name', 'slug')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('name', 'like', sprintf('%%%s%%', $text))->orWhere('description', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($result) {
+                return [
+                    'title' => $result->name,
+                    'description' => $result->slug,
+                    'link' => mconsole_url(sprintf('commerce/categories/%s/edit', $result->id)),
+                    'tags' => ['commerce', 'categories', sprintf('#%s', $result->id)],
+                ];
+            });
+        });
+        
+        app('API')->search->register(function ($text) {
+            return app('Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository')->query()->select('id', 'name', 'slug', 'article')->where('article', 'like', sprintf('%%%s%%', $text))->orWhere('name', 'like', sprintf('%%%s%%', $text))->orWhere('slug', 'like', sprintf('%%%s%%', $text))->orWhere('description', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($result) {
+                return [
+                    'title' => $result->name,
+                    'description' => $result->slug,
+                    'link' => mconsole_url(sprintf('commerce/products/%s/edit', $result->id)),
+                    'tags' => ['commerce', 'products', sprintf('#%s', $result->id)],
+                ];
+            });
+        });
     },
 ];
