@@ -24,7 +24,7 @@ class RobokassaPaymentProvider implements PaymentProvider
         #$p = new Milax\Mconsole\Commerce\PaymentProviders\RobokassaPaymentProvider($r)
         #$p->getUrl((object)['identifier'=>4,'description'=>'Test product x 1'], true);
         
-        $total = $order->getTotal();
+        $total = $order->getTotal() / config('commerce.currency.basic');
         $hash = $this->calculateHash($total, $order->identifier);
         
         $query = http_build_query([
