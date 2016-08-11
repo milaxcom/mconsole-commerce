@@ -31,3 +31,27 @@ Open and edit `config/commerce.products.php`, remove example tables and lists.
 * `commerce_guests_enabled` - Allow unauthorized users to use shop
 * `commerce_show_empty_categories` - Show empty categories
 * `commerce_commerce_message` - Set shop message of the day
+
+## Notes
+
+Required localization files:
+
+`/resources/lang/vendor/mconsole/{lang}/commerce/custom.php` example:
+
+```php
+<?php
+
+return [
+    'orders' => [
+        'status' => [
+            'new' => null,
+            'delivery' => null,
+            'done' => null,
+        ],
+        'fields' => [
+            'name' => null,
+            'email' => null,
+        ],
+    ],
+];
+```
