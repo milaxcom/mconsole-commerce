@@ -29,7 +29,7 @@ class Order extends Model
     {
         $total = 0;
         
-        foreach ($this->cart as $product) {
+        foreach ($this->cart->cart as $product) {
             $total += $product->price * $product->quantity;
         }
         
