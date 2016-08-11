@@ -18,26 +18,18 @@ class RobokassaPaymentProvider implements PaymentProvider
     public function pay($payload)
     {
         $order = $this->repository->find($payload['InvId']);
-        
         $signature = $this->verifySignature($order->getTotal(), $order->id);
-        
-        dump($payload['SignatureValue'], $signature);
         
         if ($payload['OutSum'] == $order->getTotal() / config('commerce.currency.basic') && $payload['SignatureValue'] == $signature) {
             return true;
         } else {
             return false;
         }
-        /*
-        ['InvId' => 3, 'OutSum' => 1401.54, 'SignatureValue' => 'ee67f6dce4c1782c429d054cc1963f6c', 'Culture' => 'ru', 'IsTest' => 1]
-        */
-        
-        
     }
     
     public function getUrl($order, $debug = false)
     {
-        $total = $order->getTotal() / config('commerce.currency.basic');
+        $total = $order->getTotal();
         $hash = $this->calculateSignature($total, $order->id);
         
         $query = http_build_query([
@@ -61,7 +53,7 @@ class RobokassaPaymentProvider implements PaymentProvider
      */
     protected function calculateSignature($total, $id)
     {
-        return md5(sprintf('%s:%s:%s:%s', $this->settings->login, $total, $id, $this->settings->password1));
+        return md5(sprintf('%s:%s:%s:%s', $this->settings->login, $total / config('commerce.currency.basic'), $id, $this->settings->password1));
     }
     
     /**
@@ -73,7 +65,6 @@ class RobokassaPaymentProvider implements PaymentProvider
      */
     protected function verifySignature($total, $id)
     {
-        dump(sprintf('%s:%s:%s', $total / config('commerce.currency.basic'), $id, $this->settings->password2));
-        return md5(sprintf('%s:%s:%s', $total / config('commerce.currency.basic'), $id, $this->settings->password2));
+        return md5(sprintf('%s:%s:%s', $total / config('commerce.currency.basic'), $id, $this->settings->password1));
     }
 }
