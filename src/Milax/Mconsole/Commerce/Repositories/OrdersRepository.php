@@ -17,6 +17,7 @@ class OrdersRepository extends EloquentRepository implements Repository
     public function place($cart, $delivery, $payment, $info)
     {
         $order = new $this->model([
+            'slug' => $this->makeSlug(),
             'cart' => $cart,
             'delivery_type' => $delivery,
             'payment_method' => $payment,
@@ -24,7 +25,37 @@ class OrdersRepository extends EloquentRepository implements Repository
         ]);
         
         $order->save();
+        $order->identifier = $this->makeIdentifier($order->id);
+        $order->save();
         
         return $order;
     }
+    
+    /**
+     * Generate unique slug
+     * 
+     * @return string
+     */
+    protected function makeSlug()
+    {
+        $slug = strtolower(str_random(6));
+        while ($this->query()->where('slug', $slug)->count() > 0) {
+            $slug = strtolower(str_random(6));
+        }
+        
+        return $slug;
+    }
+    
+    /**
+     * Generate unique identifier
+     *
+     * @param int $id
+     * 
+     * @return string
+     */
+    protected function makeIdentifier($id)
+    {
+        return str_pad(sprintf('%s%s', config('commerce.orders.prefix'), $id), config('commerce.ordes.length'), 0, STR_PAD_LEFT);
+    }
+    
 }
