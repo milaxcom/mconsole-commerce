@@ -3,34 +3,47 @@
 namespace Milax\Mconsole\Commerce\PaymentProviders;
 
 use Milax\Mconsole\Commerce\Contracts\PaymentProvider;
+use Milax\Mconsole\Commerce\Contracts\Repositories\OrdersRepository;
 
 class RobokassaPaymentProvider implements PaymentProvider
 {
     protected $settings;
     
-    public function __construct($settings)
+    public function __construct(OrdersRepository $repository, $settings)
     {
+        $this->repository = $repository;
         $this->settings = $settings;
     }
     
-    public function processOrder()
+    public function pay($payload)
     {
+        $order = $this->repository->find($payload['InvId']);
+        
+        $signature = $this->verifySignature($order->getTotal(), $order->id);
+        
+        dump($payload['SignatureValue'], $signature);
+        
+        if ($payload['OutSum'] == $order->getTotal() / config('commerce.currency.basic') && $payload['SignatureValue'] == $signature) {
+            return true;
+        } else {
+            return false;
+        }
+        /*
+        ['InvId' => 3, 'OutSum' => 1401.54, 'SignatureValue' => 'ee67f6dce4c1782c429d054cc1963f6c', 'Culture' => 'ru', 'IsTest' => 1]
+        */
+        
         
     }
     
     public function getUrl($order, $debug = false)
     {
-        #$r = Milax\Mconsole\Commerce\Models\PaymentMethod::first()->settings
-        #$p = new Milax\Mconsole\Commerce\PaymentProviders\RobokassaPaymentProvider($r)
-        #$p->getUrl((object)['identifier'=>4,'description'=>'Test product x 1'], true);
-        
         $total = $order->getTotal() / config('commerce.currency.basic');
-        $hash = $this->calculateHash($total, $order->identifier);
+        $hash = $this->calculateSignature($total, $order->id);
         
         $query = http_build_query([
             'MrchLogin' => $this->settings->login,
             'OutSum' => $total,
-            'InvId' => $order->identifier,
+            'InvId' => $order->id,
             'Desc' => isset($order->description) ? $order->description : null,
             'SignatureValue' => $hash,
             'IsTest' => $debug,
@@ -40,14 +53,27 @@ class RobokassaPaymentProvider implements PaymentProvider
     }
     
     /**
-     * Get crc sum for order
+     * Get signature for order
      * 
      * @param  float $total
-     * @param  integer $id
+     * @param  int $id
      * @return string
      */
-    protected function calculateHash($total, $identifier)
+    protected function calculateSignature($total, $id)
     {
-        return md5(sprintf('%s:%s:%s:%s', $this->settings->login, $total, $identifier, $this->settings->password));
+        return md5(sprintf('%s:%s:%s:%s', $this->settings->login, $total, $id, $this->settings->password1));
+    }
+    
+    /**
+     * Verify signature for order
+     * 
+     * @param  float $total
+     * @param  int $id [description]
+     * @return string
+     */
+    protected function verifySignature($total, $id)
+    {
+        dump(sprintf('%s:%s:%s', $total / config('commerce.currency.basic'), $id, $this->settings->password2));
+        return md5(sprintf('%s:%s:%s', $total / config('commerce.currency.basic'), $id, $this->settings->password2));
     }
 }
