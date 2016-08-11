@@ -28,12 +28,12 @@ interface ShoppingCart
     public function add($product, $num);
     
     /**
-     * Remove product from cart
+     * Remove one or all products from cart
      *
      * @param Product $product [Product object]
      * @return void
      */
-    public function remove($product);
+    public function remove($product = null);
     
     /**
      * Change product quantity
