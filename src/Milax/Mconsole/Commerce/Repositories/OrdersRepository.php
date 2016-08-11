@@ -55,7 +55,7 @@ class OrdersRepository extends EloquentRepository implements Repository
      */
     protected function makeIdentifier($id)
     {
-        return str_pad(sprintf('%s%s', config('commerce.orders.prefix'), $id), config('commerce.ordes.length'), 0, STR_PAD_LEFT);
+        return str_pad(sprintf('%s%s', config('commerce.orders.prefix'), $id), config('commerce.orders.length'), 0, STR_PAD_LEFT);
     }
     
 }
