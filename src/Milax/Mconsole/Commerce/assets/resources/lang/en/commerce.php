@@ -127,7 +127,8 @@ return [
         ],
         'robokassa' => [
             'login' => 'Shop login',
-            'password' => 'Password #1',
+            'password1' => 'Password #1',
+            'password2' => 'Password #2',
         ],
     ],
     'settings' => [
