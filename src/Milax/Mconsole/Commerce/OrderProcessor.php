@@ -53,8 +53,8 @@ class OrderProcessor implements Processor
             // @todo add YandexMoneyPaymentProvider
         }
         
-        $paymentMethod->settings = $this->paymentMethods->find($paymentMethod->id)->settings;
+        $settings = $this->paymentMethods->find($paymentMethod->id)->settings;
         
-        return app('Milax\Mconsole\Commerce\Contracts\PaymentProvider')->setSettings($paymentMethod->settings);
+        return app('Milax\Mconsole\Commerce\Contracts\PaymentProvider')->setSettings($settings);
     }
 }
