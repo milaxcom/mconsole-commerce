@@ -23,24 +23,38 @@ class OrderProcessor implements Processor
         // @todo get order by request from Yandex.Money
     }
     
+    public function getUrl($order)
+    {
+        return $this->getPaymentProvider($order->payment_method)->getUrl($order);
+    }
+    
     public function pay($payload, $callback)
     {
         $order = $this->getOrder($payload);
         
-        switch ($order->payment_method->type) {
+        $paid = $this->getPaymentProvider($order->payment_method)->pay($order, $payload);
+        
+        $callback($order, $paid);
+        // пример вызова: processor->pay([], function($order, $paid) { //logic })
+    }
+    
+    /**
+     * Get PaymentProvider
+     * 
+     * @param  array $paymentMethod
+     * @return PaymentProvider
+     */
+    protected function getPaymentProvider($paymentMethod)
+    {
+        switch ($paymentMethod->type) {
             case 'robokassa':
                 App::bind('Milax\Mconsole\Commerce\Contracts\PaymentProvider', 'Milax\Mconsole\Commerce\PaymentProviders\RobokassaPaymentProvider');
                 break;
             // @todo add YandexMoneyPaymentProvider
         }
         
-        $paymentMethod = $this->paymentMethods->find($order->payment_method->id);
+        $paymentMethod->settings = $this->paymentMethods->find($paymentMethod->id)->settings;
         
-        $paymentProvider = app('Milax\Mconsole\Commerce\Contracts\PaymentProvider')->setSettings($paymentMethod->settings);
-        
-        $paid = $paymentProvider->pay($order, $payload);
-        
-        $callback($order, $paid);
-        // пример вызова: processor->pay([], function($order, $paid) { //logic })
+        return app('Milax\Mconsole\Commerce\Contracts\PaymentProvider')->setSettings($paymentMethod->settings);
     }
 }
