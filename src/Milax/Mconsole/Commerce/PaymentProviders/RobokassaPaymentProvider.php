@@ -3,28 +3,32 @@
 namespace Milax\Mconsole\Commerce\PaymentProviders;
 
 use Milax\Mconsole\Commerce\Contracts\PaymentProvider;
-use Milax\Mconsole\Commerce\Contracts\Repositories\OrdersRepository;
 
 class RobokassaPaymentProvider implements PaymentProvider
 {
     protected $settings;
     
-    public function __construct(OrdersRepository $repository, $settings)
+    public function setSettings($settings)
     {
-        $this->repository = $repository;
         $this->settings = $settings;
+        return $this;
     }
     
-    public function pay($payload)
+    public function pay($order, $payload)
     {
-        $order = $this->repository->find($payload['InvId']);
-        $signature = $this->verifySignature($order->getTotal(), $order->id);
+        $signature = $this->verifySignature($order->getTotal(), $order->id, $this->settings->password2);
+        return $this->checkHash($order, $payload, $signature);
+        /*
+        ['InvId' => 1, 'OutSum' => 1401.54, 'SignatureValue' => '14351073458b4f60843acb523b273bb1', 'Culture' => 'ru', 'IsTest' => 1]
         
-        if ($payload['OutSum'] == $order->getTotal() / config('commerce.currency.basic') && $payload['SignatureValue'] == $signature) {
-            return true;
-        } else {
-            return false;
-        }
+        verify: 14351073458b4f60843acb523b273bb1
+        */
+    }
+    
+    public function check($order, $payload)
+    {
+        $signature = $this->verifySignature($order->getTotal(), $order->id, $this->settings->password1);
+        return $this->checkHash($order, $payload, $signature);
     }
     
     public function getUrl($order, $debug = false)
@@ -42,6 +46,15 @@ class RobokassaPaymentProvider implements PaymentProvider
         ]);
         
         return sprintf('https://auth.robokassa.ru/Merchant/Index.aspx?%s', $query);
+    }
+    
+    protected function checkHash($order, $payload, $signature)
+    {
+        if ($payload['OutSum'] == $order->getTotal() / config('commerce.currency.basic') && $payload['SignatureValue'] == $signature) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     /**
@@ -63,8 +76,8 @@ class RobokassaPaymentProvider implements PaymentProvider
      * @param  int $id [description]
      * @return string
      */
-    protected function verifySignature($total, $id)
+    protected function verifySignature($total, $id, $password)
     {
-        return md5(sprintf('%s:%s:%s', $total / config('commerce.currency.basic'), $id, $this->settings->password1));
+        return md5(sprintf('%s:%s:%s', $total / config('commerce.currency.basic'), $id, $password));
     }
 }
