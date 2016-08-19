@@ -5,6 +5,13 @@ namespace Milax\Mconsole\Commerce\Contracts;
 interface PaymentProvider
 {
     /**
+     * Set payment provider settings
+     * 
+     * @param object $settings
+     */
+    public function setSettings($settings);
+    
+    /**
      * Get url for payment
      * 
      * @param  Order $order
@@ -15,8 +22,9 @@ interface PaymentProvider
     /**
      * Attempt to pay order
      * 
+     * @param  object $order
      * @param  array $payload
      * @return bool
      */
-    public function pay($payload);
+    public function pay($order, $payload);
 }
