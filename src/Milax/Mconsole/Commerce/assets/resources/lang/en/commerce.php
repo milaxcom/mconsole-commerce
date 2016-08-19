@@ -136,6 +136,7 @@ return [
             'name' => 'Commerce',
         ],
         'shop' => [
+            'url' => 'Shop url prefix',
             'enabled' => 'Shop is enabled',
             'decrease_price' => 'Global price decrease (%)',
             'increase_price' => 'Global price increase (%)',
