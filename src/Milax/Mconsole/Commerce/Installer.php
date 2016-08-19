@@ -12,6 +12,15 @@ class Installer implements ModuleInstaller
     public static $options = [
         [
             'group' => 'mconsole::commerce.settings.group.name',
+            'label' => 'mconsole::commerce.settings.shop.url',
+            'key' => 'commerce_shop_url',
+            'value' => 'shop',
+            'type' => 'text',
+            'options' => NULL,
+            'rules' => ['required'],
+        ],
+        [
+            'group' => 'mconsole::commerce.settings.group.name',
             'label' => 'mconsole::commerce.settings.category.cover',
             'key' => 'commerce_category_has_cover',
             'value' => 0,
