@@ -7,6 +7,7 @@ Route::group([
 ], function () {
     
     Route::get('/', 'CommerceController@index');
+    Route::resource('orders', 'OrdersController');
     Route::resource('categories', 'CategoriesController');
     Route::resource('products', 'ProductsController');
     Route::resource('delivery', 'DeliveryTypesController');

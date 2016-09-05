@@ -3,6 +3,7 @@
 return [
     'menu' => [
         'index' => 'Commerce',
+        'orders' => 'Orders',
         'categories' => 'Categories',
         'products' => 'Products',
         'delivery' => 'Delivery types',
@@ -20,6 +21,16 @@ return [
             'name' => 'Name',
             'description' => 'Description',
             'cost' => 'Cost',
+        ],
+    ],
+    'orders' => [
+        'caption' => 'Orders',
+        'table' => [
+            'identifier' => 'Order N',
+            'total' => 'Total',
+            'status' => 'Status',
+            'delivery' => 'Delivery',
+            'payment' => 'Payment',
         ],
     ],
     'categories' => [
