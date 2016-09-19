@@ -38,7 +38,7 @@ class RobokassaPaymentProvider implements PaymentProvider
         
         $query = http_build_query([
             'MrchLogin' => $this->settings->login,
-            'OutSum' => $total,
+            'OutSum' => $total  / config('commerce.currency.basic'),
             'InvId' => $order->id,
             'Desc' => isset($order->description) ? $order->description : null,
             'SignatureValue' => $hash,
