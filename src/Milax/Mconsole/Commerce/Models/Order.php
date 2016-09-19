@@ -48,7 +48,12 @@ class Order extends Model
             }
         }
         
-        $total += $this->delivery_type->cost;
+        /**
+         * Apple delivery type
+         */
+        if ($this->delivery_type) {
+            $total += $this->delivery_type->cost;
+        }
         
         return $total;
     }
