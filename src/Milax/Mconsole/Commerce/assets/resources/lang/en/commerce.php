@@ -26,6 +26,23 @@ return [
     ],
     'orders' => [
         'caption' => 'Orders',
+        'order' => 'Order #:identifier',
+        'cart' => [
+            'product' => 'Product',
+            'quantity' => 'Quantity',
+            'price' => 'Price',
+            'total' => 'Total',
+        ],
+        'tabs' => [
+            'status' => 'Status',
+            'delivery' => 'Delivery information',
+            'cart' => 'Cart',
+            'total' => 'Total',
+        ],
+        'form' => [
+            'status' => 'Status',
+            'change_status' => 'Change status',
+        ],
         'table' => [
             'identifier' => 'Order N',
             'total' => 'Total',
