@@ -4,6 +4,7 @@ namespace Milax\Mconsole\Commerce\Repositories;
 
 use Milax\Mconsole\Repositories\EloquentRepository;
 use Milax\Mconsole\Commerce\Contracts\Repositories\PromocodesRepository as Repository;
+use Carbon\Carbon;
 
 class PromocodesRepository extends EloquentRepository implements Repository
 {
