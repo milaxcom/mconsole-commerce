@@ -14,6 +14,7 @@ class OrdersController extends Controller
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = 'Milax\Mconsole\Commerce\Models\Order';
+    protected $statuses = [];
     
     /**
      * Create new class instance
@@ -24,6 +25,10 @@ class OrdersController extends Controller
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
+        
+        collect(config('commerce.orders.status'))->each(function ($key) {
+            $this->statuses[$key] = trans(sprintf('mconsole::commerce/custom.orders.status.%s', $key));
+        });
         
         $this->setCaption(trans('mconsole::commerce.orders.caption'));
     }
@@ -36,6 +41,8 @@ class OrdersController extends Controller
      */
     public function index()
     {
+        $this->list->setText('#', 'id', true)->setText(trans('mconsole::commerce.orders.form.email'), 'info->email', true)->setSelect(trans('mconsole::commerce.orders.form.status'), 'status', $this->statuses, true);
+        
         return $this->list->removeDeleteAction()->setQuery($this->repository->index())->render(function ($item) {
             return [
                 trans('mconsole::tables.id') => $item->id,
@@ -61,15 +68,9 @@ class OrdersController extends Controller
             'identifier' => $order->identifier,
         ]));
         
-        $status = [];
-        
-        collect(config('commerce.orders.status'))->each(function ($key) use (&$status) {
-            $status[$key] = trans(sprintf('mconsole::commerce/custom.orders.status.%s', $key));
-        });
-        
         return $this->form->render('mconsole::commerce.orders.form', [
             'item' => $order,
-            'status' => $status,
+            'status' => $this->statuses,
         ]);
     }
 

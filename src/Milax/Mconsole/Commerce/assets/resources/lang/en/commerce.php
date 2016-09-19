@@ -41,6 +41,7 @@ return [
         ],
         'form' => [
             'status' => 'Status',
+            'email' => 'Email',
             'change_status' => 'Change status',
         ],
         'table' => [

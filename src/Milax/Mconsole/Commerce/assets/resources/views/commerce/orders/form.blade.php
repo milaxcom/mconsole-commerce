@@ -8,31 +8,9 @@
 	<div class="col-lg-7 col-md-6">
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
-                'back' => mconsole_url('commerce/orders'),
-                'title' => trans('mconsole::commerce.orders.tabs.status'),
-                'fullscreen' => true,
-            ])
-            <div class="portlet-body form">
-    			<div class="form-body">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            @include('mconsole::forms.select', [
-                                'name' => 'status',
-                                'options' => $status,
-                            ])
-                        </div>
-                        <div class="col-xs-6">
-                            @include('mconsole::forms.submit', [
-                                'text' => trans('mconsole::commerce.orders.form.change_status'),
-                            ])
-                        </div>
-                    </div>
-    			</div>
-            </div>
-        </div>
-        <div class="portlet light">
-            @include('mconsole::partials.portlet-title', [
                 'title' => trans('mconsole::commerce.orders.tabs.cart'),
+                'back' => mconsole_url('commerce/orders'),
+                'fullscreen' => true,
             ])
             <div class="portlet-body form">
     			<div class="form-body">
@@ -59,6 +37,28 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+    			</div>
+            </div>
+        </div>
+        <div class="portlet light">
+            @include('mconsole::partials.portlet-title', [
+                'title' => trans('mconsole::commerce.orders.tabs.status'),
+            ])
+            <div class="portlet-body form">
+    			<div class="form-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            @include('mconsole::forms.select', [
+                                'name' => 'status',
+                                'options' => $status,
+                            ])
+                        </div>
+                        <div class="col-xs-6">
+                            @include('mconsole::forms.submit', [
+                                'text' => trans('mconsole::commerce.orders.form.change_status'),
+                            ])
+                        </div>
                     </div>
     			</div>
             </div>
