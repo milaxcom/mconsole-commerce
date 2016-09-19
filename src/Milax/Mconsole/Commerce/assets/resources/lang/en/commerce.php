@@ -154,6 +154,7 @@ return [
             'guests' => 'Allow guests to use shop',
             'message' => 'Message of the day',
             'show_empty_categories' => 'Show empty categories',
+            'notifications_email' => 'Email for shop notifications',
         ],
         'category' => [
             'cover' => 'Category has cover',

@@ -100,6 +100,15 @@ class Installer implements ModuleInstaller
             'options' => NULL,
             'rules' => NULL,
         ],
+        [
+            'group' => 'mconsole::commerce.settings.group.name',
+            'label' => 'mconsole::commerce.settings.shop.notifications_email',
+            'key' => 'commerce_notifications_email',
+            'value' => NULL,
+            'type' => 'text',
+            'options' => NULL,
+            'rules' => NULL,
+        ],
     ];
     
     public static $presets = [
