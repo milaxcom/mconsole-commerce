@@ -32,6 +32,13 @@ class OrdersRepository extends EloquentRepository implements Repository
         return $order;
     }
     
+    public function changeStatus($id, $status)
+    {
+        return $this->query()->findOrFail($id)->update([
+            'status' => $status,
+        ]);
+    }
+    
     /**
      * Generate unique slug
      * 

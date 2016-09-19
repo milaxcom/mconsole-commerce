@@ -31,5 +31,6 @@ interface OrdersRepository
      * @param mixed $status [Active status]
      * @return Order
      */
-    // public function changeStatus($id, $status);
+    
+    public function changeStatus($id, $status);
 }
