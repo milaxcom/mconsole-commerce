@@ -34,8 +34,7 @@ class OrderProcessor implements Processor
         
         $paid = $this->getPaymentProvider($order->payment_method)->pay($order, $payload);
         
-        $callback($order, $paid);
-        // пример вызова: processor->pay([], function($order, $paid) { //logic })
+        return $callback($order, $paid);
     }
     
     /**
