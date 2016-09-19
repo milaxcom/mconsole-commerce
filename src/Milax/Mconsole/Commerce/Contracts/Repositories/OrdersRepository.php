@@ -19,9 +19,10 @@ interface OrdersRepository
      * @param DeliveryType $delivery [DeliveryType object]
      * @param PaymentMethod $payment [PaymentMethod object]
      * @param array $info [Contact and delivery info]
+     * @param Promocode $promocode [Promocode object]
      * @return Order
      */
-    public function place($cart, $delivery, $payment, $info);
+    public function place($cart, $delivery, $payment, $info, $promocode = null);
     
     /**
      * Change order status

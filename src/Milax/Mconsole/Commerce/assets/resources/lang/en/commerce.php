@@ -8,6 +8,7 @@ return [
         'products' => 'Products',
         'delivery' => 'Delivery types',
         'discounts' => 'Discounts',
+        'promocodes' => 'Promocodes',
         'payment' => 'Payment',
     ],
     'module' => [
@@ -119,6 +120,25 @@ return [
             'discount' => 'Discount value',
             'remove' => 'Remove',
             'append' => 'Add discount item',
+        ],
+    ],
+    'promocodes' => [
+        'tabs' => [
+            'main' => 'Main',
+            'additional' => 'Additional',
+        ],
+        'form' => [
+            'code' => 'Code',
+            'type' => 'Type',
+            'discount' => 'Discount',
+            'amount' => 'Amount (percents or basic currency)',
+            'one_off' => 'One-off',
+            'started_at' => 'Promocode start date',
+            'expired_at' => 'Promocode end date',
+        ],
+        'type' => [
+            'percent' => 'Percents',
+            'amount' => 'Amount',
         ],
     ],
     'payment' => [

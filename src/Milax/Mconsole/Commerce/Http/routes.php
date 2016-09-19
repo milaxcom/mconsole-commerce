@@ -12,6 +12,7 @@ Route::group([
     Route::resource('products', 'ProductsController');
     Route::resource('delivery', 'DeliveryTypesController');
     Route::resource('discounts', 'DiscountsController');
+    Route::resource('promocodes', 'PromocodesController');
     Route::resource('payment', 'PaymentMethodsController');
 
 });

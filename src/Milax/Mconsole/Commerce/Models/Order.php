@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     public $table = 'commerce_orders';
-    protected $fillable = ['identifier', 'status', 'slug', 'user_id', 'info', 'cart', 'delivery_type', 'payment_method'];
+    protected $fillable = ['identifier', 'status', 'slug', 'user_id', 'info', 'cart', 'delivery_type', 'payment_method', 'promocode'];
     protected $casts = [
         'info' => 'object',
         'cart' => 'object',
         'delivery_type' => 'object',
         'payment_method' => 'object',
+        'promocode' => 'object',
     ];
     
     public function user()
@@ -31,6 +32,20 @@ class Order extends Model
         
         foreach ($this->cart->cart as $product) {
             $total += $product->price * $product->quantity;
+        }
+        
+        /**
+         * Apply promocode if exists
+         */
+        if ($this->promocode) {
+            switch ($this->promocode->type) {
+                case 'perc':
+                    $total -= $total / 100 * $this->promocode->amount;
+                    break;
+                case 'amount':
+                    $total -= $this->promocode->amount;
+                    break;
+            }
         }
         
         $total += $this->delivery_type->cost;

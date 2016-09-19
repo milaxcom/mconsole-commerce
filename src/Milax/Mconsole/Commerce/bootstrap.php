@@ -67,6 +67,13 @@ return [
         ], 'commerce_discounts', 'commerce');
         
         app('API')->menu->push([
+            'name' => 'mconsole::commerce.menu.promocodes',
+            'url' => 'commerce/promocodes',
+            'visible' => true,
+            'enabled' => true,
+        ], 'commerce_promocodes', 'commerce');
+        
+        app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.payment',
             'url' => 'commerce/payment',
             'visible' => true,
