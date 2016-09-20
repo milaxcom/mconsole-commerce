@@ -50,17 +50,22 @@
                     <div class="row">
                         <div class="col-xs-6">
                             @include('mconsole::forms.select', [
+                                'label' => trans('mconsole::commerce.orders.form.change_status'),
                                 'name' => 'status',
                                 'options' => $status,
                             ])
                         </div>
-                        <div class="col-xs-6">
-                            @include('mconsole::forms.submit', [
-                                'text' => trans('mconsole::commerce.orders.form.change_status'),
-                            ])
-                        </div>
                     </div>
+                    @include('mconsole::forms.textarea', [
+                        'label' => trans('mconsole::commerce.orders.form.comment'),
+                        'name' => 'comment',
+                    ])
     			</div>
+                <div class="form-actions">
+                    @include('mconsole::forms.submit', [
+                        'text' => trans('mconsole::commerce.orders.form.change_status'),
+                    ])
+                </div>
             </div>
         </div>
 	</div>

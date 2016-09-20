@@ -42,7 +42,8 @@ return [
         'form' => [
             'status' => 'Status',
             'email' => 'Email',
-            'change_status' => 'Change status',
+            'change_status' => 'Change order status',
+            'comment' => 'Operator comment (not visible to customer)',
         ],
         'table' => [
             'identifier' => 'Order N',

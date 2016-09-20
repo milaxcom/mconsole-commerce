@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     public $table = 'commerce_orders';
-    protected $fillable = ['identifier', 'status', 'slug', 'user_id', 'info', 'cart', 'delivery_type', 'payment_method', 'promocode'];
+    protected $fillable = ['identifier', 'status', 'comment', 'slug', 'user_id', 'info', 'cart', 'delivery_type', 'payment_method', 'promocode'];
     protected $casts = [
         'info' => 'object',
         'cart' => 'object',
