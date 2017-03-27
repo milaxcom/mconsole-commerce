@@ -71,6 +71,8 @@ class DiscountsController extends Controller
     public function store(DiscountRequest $request)
     {
         $this->repository->create($this->serialize($request->all()));
+        
+        $this->redirect();
     }
 
     /**
@@ -96,6 +98,8 @@ class DiscountsController extends Controller
     public function update(DiscountRequest $request, $id)
     {
         $this->repository->update($id, $this->serialize($request->all()));
+        
+        $this->redirect();
     }
 
     /**
@@ -107,6 +111,8 @@ class DiscountsController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
+        
+        $this->redirect();
     }
     
     /**

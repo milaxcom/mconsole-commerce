@@ -21,11 +21,11 @@
                             ])
                         </div>
                         <div class="col-sm-6">
-                            @include('mconsole::forms.select', [
-                                'type' => MX_SELECT_YESNO,
-                                'label' => trans('mconsole::commerce.discounts.form.accumulative'),
-                                'name' => 'accumulative',
-                            ])
+@include('mconsole::forms.select', [
+    'type' => MconsoleFormSelectType::YesNo,
+    'label' => trans('mconsole::commerce.discounts.form.accumulative'),
+    'name' => 'accumulative',
+])
                         </div>
                     </div>
                     @include('mconsole::forms.textarea', [

@@ -2,9 +2,9 @@
 
 namespace Milax\Mconsole\Commerce\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class PaymentMethodRequest extends Request
+class PaymentMethodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
