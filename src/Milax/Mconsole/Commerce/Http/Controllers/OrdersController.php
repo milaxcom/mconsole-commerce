@@ -84,5 +84,7 @@ class OrdersController extends Controller
     public function update(Request $request, $id)
     {
         $this->repository->update($id, $request->all());
+        
+        $this->redirect();
     }
 }

@@ -166,7 +166,7 @@
                 ])
                 <div class="portlet-body form">
                     @include('mconsole::forms.upload', [
-                        'type' => MX_UPLOAD_TYPE_IMAGE,
+                        'type' => MconsoleUploadType::Image,
                         'multiple' => false,
                         'group' => 'cover',
                         'preset' => 'commerce_product_cover',
@@ -183,7 +183,7 @@
                 ])
                 <div class="portlet-body form">
                     @include('mconsole::forms.upload', [
-                        'type' => MX_UPLOAD_TYPE_IMAGE,
+                        'type' => MconsoleUploadType::Image,
                         'multiple' => true,
                         'group' => 'gallery',
                         'preset' => 'commerce_product_gallery',

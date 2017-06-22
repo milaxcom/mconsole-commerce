@@ -70,6 +70,8 @@ class CategoriesController extends Controller
     {
         $category = $this->repository->create($request->all());
         $this->handleUploads($category);
+        
+        $this->redirect();
     }
 
     /**
@@ -108,6 +110,8 @@ class CategoriesController extends Controller
     {
         $this->handleUploads($this->repository->find($id));
         $this->repository->update($id, $request->all());
+        
+        $this->redirect();
     }
 
     /**
@@ -119,6 +123,8 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
+        
+        $this->redirect();
     }
     
     /**

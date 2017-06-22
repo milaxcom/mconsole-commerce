@@ -65,6 +65,8 @@ class PromocodesController extends Controller
     public function store(PromocodeRequest $request)
     {
         $this->repository->create($request->all());
+        
+        $this->redirect();
     }
 
     /**
@@ -90,6 +92,8 @@ class PromocodesController extends Controller
     public function update(PromocodeRequest $request, $id)
     {
         $this->repository->update($id, $request->all());
+        
+        $this->redirect();
     }
 
     /**
@@ -101,5 +105,7 @@ class PromocodesController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
+        
+        $this->redirect();
     }
 }

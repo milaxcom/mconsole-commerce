@@ -71,6 +71,8 @@ class ProductsController extends Controller
         $product = $this->repository->create($request->all());
         
         $this->handleUploads($product);
+        
+        $this->redirect();
     }
     
     /**
@@ -110,6 +112,8 @@ class ProductsController extends Controller
     {
         $product = $this->repository->update($id, $request->all());
         $this->handleUploads($product);
+        
+        $this->redirect();
     }
     
     /**
@@ -121,6 +125,8 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
+        
+        $this->redirect();
     }
     
     /**
