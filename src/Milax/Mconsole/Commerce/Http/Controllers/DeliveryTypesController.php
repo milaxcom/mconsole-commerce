@@ -62,6 +62,8 @@ class DeliveryTypesController extends Controller
     public function store(DeliveryTypeRequest $request)
     {
         $this->repository->create($request->all());
+        
+        $this->redirect();
     }
 
     /**
@@ -87,6 +89,8 @@ class DeliveryTypesController extends Controller
     public function update(DeliveryTypeRequest $request, $id)
     {
         $this->repository->update($id, $request->all());
+        
+        $this->redirect();
     }
 
     /**
@@ -98,5 +102,7 @@ class DeliveryTypesController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
+        
+        $this->redirect();
     }
 }
