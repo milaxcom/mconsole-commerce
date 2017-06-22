@@ -2,9 +2,9 @@
 
 namespace Milax\Mconsole\Commerce\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
-class DeliveryTypeRequest extends FormRequest
+class DeliveryTypeRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

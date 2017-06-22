@@ -2,10 +2,10 @@
 
 namespace Milax\Mconsole\Commerce\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 use Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository;
 
-class ProductRequest extends FormRequest
+class ProductRequest extends Request
 {
     public function __construct(ProductsRepository $repository)
     {
@@ -38,7 +38,7 @@ class ProductRequest extends FormRequest
             'quantity' => 'integer',
         ];
         
-        switch ($this->method()) {
+        switch ($this->method) {
             case 'PUT':
             case 'UPDATE':
                 $rules['slug'] = 'max:255|unique:commerce_products,slug,' . $this->repository->find($this->products)->id;

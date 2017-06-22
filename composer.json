@@ -12,7 +12,9 @@
         }
     ],
     "require": {
-        "milax/mconsole": "^0.5"
+        "php": ">=5.5.9",
+        "illuminate/support": "5.2.*",
+        "laravelcollective/html": "5.2.*"
     },
     "autoload": {
         "psr-4": {

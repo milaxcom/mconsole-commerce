@@ -24,7 +24,7 @@ class CategoriesViewComposer
             $this->appendToTree($category);
         }
         
-        $view->with('categories', $this->tree->pluck('name', 'id')->prepend(trans('mconsole::forms.options.notselected'), 0)->toArray());
+        $view->with('categories', $this->tree->lists('name', 'id')->prepend(trans('mconsole::forms.options.notselected'), 0)->toArray());
     }
     
     protected function appendToTree($category, $parent = null)

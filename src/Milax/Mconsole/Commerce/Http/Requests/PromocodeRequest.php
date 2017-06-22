@@ -2,10 +2,10 @@
 
 namespace Milax\Mconsole\Commerce\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 use Milax\Mconsole\Commerce\Contracts\Repositories\PromocodesRepository;
 
-class PromocodeRequest extends FormRequest
+class PromocodeRequest extends Request
 {
     public function __construct(PromocodesRepository $repository)
     {

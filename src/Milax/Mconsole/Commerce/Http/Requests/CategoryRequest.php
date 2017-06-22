@@ -2,10 +2,10 @@
 
 namespace Milax\Mconsole\Commerce\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 use Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository;
 
-class CategoryRequest extends FormRequest
+class CategoryRequest extends Request
 {
     public function __construct(CategoriesRepository $repository)
     {
@@ -29,7 +29,7 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->method()) {
+        switch ($this->method) {
             case 'PUT':
             case 'UPDATE':
                 return [

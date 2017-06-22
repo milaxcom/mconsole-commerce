@@ -65,8 +65,6 @@ class PaymentMethodsController extends Controller
     public function store(PaymentMethodRequest $request)
     {
         $this->repository->create($request->all());
-        
-        $this->redirect();
     }
 
     /**
@@ -92,8 +90,6 @@ class PaymentMethodsController extends Controller
     public function update(PaymentMethodRequest $request, $id)
     {
         $this->repository->update($id, $request->all());
-        
-        $this->redirect();
     }
 
     /**
@@ -105,7 +101,5 @@ class PaymentMethodsController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
-        
-        $this->redirect();
     }
 }

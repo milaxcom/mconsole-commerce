@@ -114,7 +114,7 @@ class Installer implements ModuleInstaller
     public static $presets = [
         [
             'key' => 'commerce_category',
-            'type' => \MconsoleUploadType::Image,
+            'type' => MX_UPLOAD_TYPE_IMAGE,
             'name' => 'Commerce category',
             'path' => 'commerce',
             'extensions' => ['jpg', 'jpeg', 'png'],
@@ -136,7 +136,7 @@ class Installer implements ModuleInstaller
         ],
         [
             'key' => 'commerce_product_cover',
-            'type' => \MconsoleUploadType::Image,
+            'type' => MX_UPLOAD_TYPE_IMAGE,
             'name' => 'Product cover',
             'path' => 'commerce/product',
             'extensions' => ['jpg', 'jpeg', 'png'],
@@ -158,7 +158,7 @@ class Installer implements ModuleInstaller
         ],
         [
             'key' => 'commerce_product_gallery',
-            'type' => \MconsoleUploadType::Image,
+            'type' => MX_UPLOAD_TYPE_IMAGE,
             'name' => 'Product gallery',
             'path' => 'commerce/product',
             'extensions' => ['jpg', 'jpeg', 'png'],

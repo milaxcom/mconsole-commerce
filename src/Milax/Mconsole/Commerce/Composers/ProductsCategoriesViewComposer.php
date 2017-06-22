@@ -24,7 +24,7 @@ class ProductsCategoriesViewComposer
             $this->appendToTree($category);
         }
         
-        $view->with('categories', $this->tree->pluck('name', 'id')->toArray());
+        $view->with('categories', $this->tree->lists('name', 'id')->toArray());
     }
     
     protected function appendToTree($category, $parent = null)
