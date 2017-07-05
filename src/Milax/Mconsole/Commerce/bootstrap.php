@@ -26,7 +26,6 @@ return [
     'init' => function () {
         app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.index',
-            'url' => 'commerce',
             'visible' => true,
             'enabled' => true,
         ], 'commerce');
