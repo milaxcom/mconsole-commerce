@@ -36,49 +36,49 @@ return [
             'url' => 'commerce/orders',
             'visible' => true,
             'enabled' => true,
-        ], 'commerce_orders', 'commerce');
+        ], 'commerce/orders', 'commerce');
         
         app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.products',
             'url' => 'commerce/products',
             'visible' => true,
             'enabled' => true,
-        ], 'commerce_products', 'commerce');
+        ], 'commerce/products', 'commerce');
         
         app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.categories',
             'url' => 'commerce/categories',
             'visible' => true,
             'enabled' => true,
-        ], 'commerce_categories', 'commerce');
+        ], 'commerce/categories', 'commerce');
         
         app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.delivery',
             'url' => 'commerce/delivery',
             'visible' => true,
             'enabled' => true,
-        ], 'commerce_delivery', 'commerce');
+        ], 'commerce/delivery', 'commerce');
         
         app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.discounts',
             'url' => 'commerce/discounts',
             'visible' => true,
             'enabled' => true,
-        ], 'commerce_discounts', 'commerce');
+        ], 'commerce/discounts', 'commerce');
         
         app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.promocodes',
             'url' => 'commerce/promocodes',
             'visible' => true,
             'enabled' => true,
-        ], 'commerce_promocodes', 'commerce');
+        ], 'commerce/promocodes', 'commerce');
         
         app('API')->menu->push([
             'name' => 'mconsole::commerce.menu.payment',
             'url' => 'commerce/payment',
             'visible' => true,
             'enabled' => true,
-        ], 'commerce_payment', 'commerce');
+        ], 'commerce/payment', 'commerce');
         
         app('API')->search->register(function ($text) {
             return app('Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository')->query()->select('id', 'name', 'slug')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('name', 'like', sprintf('%%%s%%', $text))->orWhere('description', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($result) {
