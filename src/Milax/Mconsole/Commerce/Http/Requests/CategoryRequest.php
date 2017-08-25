@@ -33,7 +33,7 @@ class CategoryRequest extends FormRequest
             case 'PUT':
             case 'UPDATE':
                 return [
-                    'slug' => 'required|max:255|unique:commerce_categories,slug,' . $this->repository->find($this->categories)->id,
+                    'slug' => 'required|max:255|unique:commerce_categories,slug,' . $this->repository->find($this->category)->id,
                     'name' => 'required|max:255',
                 ];
                 break;

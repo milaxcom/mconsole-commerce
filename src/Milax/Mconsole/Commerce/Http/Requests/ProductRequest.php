@@ -41,7 +41,7 @@ class ProductRequest extends FormRequest
         switch ($this->method()) {
             case 'PUT':
             case 'UPDATE':
-                $rules['slug'] = 'max:255|unique:commerce_products,slug,' . $this->repository->find($this->products)->id;
+                $rules['slug'] = 'max:255|unique:commerce_products,slug,' . $this->repository->find($this->product)->id;
                 break;
             
             case 'POST':

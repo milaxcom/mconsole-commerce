@@ -46,7 +46,7 @@ class PromocodeRequest extends FormRequest
             case 'PUT':
             case 'PATCH':
             {
-                $promocode = $this->repository->find($this->promocodes);
+                $promocode = $this->repository->find($this->promocode);
                 return [
                     'code' => 'required|unique:commerce_promocodes,code,' . $promocode->id,
                     'amount' => 'required|integer',
