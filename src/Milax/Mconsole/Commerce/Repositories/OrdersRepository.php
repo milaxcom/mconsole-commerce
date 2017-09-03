@@ -13,6 +13,11 @@ class OrdersRepository extends EloquentRepository implements Repository
     {
         return $this->query()->where('slug', $slug)->firstOrFail();
     }
+
+    public function index()
+    {
+        return $this->query()->orderBy('id', 'desc');
+    }
     
     public function place($cart, $delivery, $payment, $info, $promocode = null)
     {
