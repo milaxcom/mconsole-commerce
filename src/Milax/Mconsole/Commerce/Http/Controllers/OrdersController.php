@@ -47,7 +47,7 @@ class OrdersController extends Controller
             return [
                 trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::commerce.orders.table.identifier') => $item->identifier,
-                trans('mconsole::commerce.orders.table.status') => $item->status,
+                trans('mconsole::commerce.orders.table.status') => trans(sprintf('mconsole::commerce/custom.orders.status.%s', $item->status)),
                 trans('mconsole::commerce.orders.table.total') => currency_format($item->getTotal()),
                 trans('mconsole::commerce.orders.table.delivery') => sprintf('%s: %s', $item->delivery_type->name, currency_format($item->delivery_type->cost)),
                 trans('mconsole::commerce.orders.table.payment') => $item->payment_method->name,
