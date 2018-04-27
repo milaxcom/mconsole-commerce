@@ -158,8 +158,8 @@
                 </div>
             @endforeach
         @endif
-        
-        @if (app('API')->options->getByKey('product_has_cover'))
+
+        @if (app('API')->options->getByKey('commerce_product_has_cover'))
             <div class="portlet light">
                 @include('mconsole::partials.portlet-title', [
                     'title' => trans('mconsole::commerce.products.form.cover'),
@@ -176,7 +176,7 @@
                 </div>
             </div>
         @endif
-        @if (app('API')->options->getByKey('product_has_gallery'))
+        @if (app('API')->options->getByKey('commerce_product_has_gallery'))
             <div class="portlet light">
                 @include('mconsole::partials.portlet-title', [
                     'title' => trans('mconsole::commerce.products.form.gallery'),

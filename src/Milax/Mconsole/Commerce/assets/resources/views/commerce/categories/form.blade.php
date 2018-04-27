@@ -34,7 +34,7 @@
         </div>
 	</div>
     <div class="col-lg-5 col-md-6">
-        @if (app('API')->options->getByKey('category_has_cover'))
+        @if (app('API')->options->getByKey('commerce_category_has_cover'))
             <div class="portlet light">
                 @include('mconsole::partials.portlet-title', [
                     'title' => trans('mconsole::commerce.categories.form.cover'),
