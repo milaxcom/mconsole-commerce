@@ -11,7 +11,9 @@ class ProductsRepository extends EloquentRepository implements Repository
     
     public function create($data)
     {
-        $data['lists'] = $this->serializeLists($data['lists']);
+        if (!empty($data['lists'])) {
+            $data['lists'] = $this->serializeLists($data['lists']);
+        }
         
         $instance = $this->fill($data);
         if (!empty($data['categories'])) {
@@ -25,7 +27,9 @@ class ProductsRepository extends EloquentRepository implements Repository
     
     public function update($id, $data)
     {
-        $data['lists'] = $this->serializeLists($data['lists']);
+        if (!empty($data['lists'])) {
+            $data['lists'] = $this->serializeLists($data['lists']);
+        }
         
         $model = $this->model;
         
