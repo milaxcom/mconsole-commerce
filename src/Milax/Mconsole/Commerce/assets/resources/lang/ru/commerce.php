@@ -63,7 +63,7 @@ return [
             'products' => 'Продукты',
         ],
         'tabs' => [
-            'main' => 'Main',
+            'main' => 'Основное',
         ],
         'form' => [
             'slug' => 'Slug',
