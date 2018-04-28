@@ -66,6 +66,13 @@
                         'name' => 'categories',
                     ])
                 @endif
+
+                @include('mconsole::commerce.products.brand', [
+                    'label' => trans('mconsole::commerce.products.form.brand'),
+                    'allBrands' => $brands,
+                    'current' => isset($item) ? $item->brand_id : '',
+                ])
+
                 @include('mconsole::forms.state')
             </div>
         </div>

@@ -10,6 +10,7 @@ use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository;
+use Milax\Mconsole\Commerce\Models\Brand;
 
 class ProductsController extends Controller
 {
@@ -57,6 +58,7 @@ class ProductsController extends Controller
     {
         return $this->form->render('mconsole::commerce.products.form', [
             'languages' => Language::all(),
+            'brands' => Brand::enabled()->get(),
         ]);
     }
     
@@ -94,10 +96,10 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        #dd(Product::find($id)->with('categories'));
         return $this->form->render('mconsole::commerce.products.form', [
             'item' => Product::find($id),
             'languages' => Language::all(),
+            'brands' => Brand::enabled()->get(),
         ]);
     }
 

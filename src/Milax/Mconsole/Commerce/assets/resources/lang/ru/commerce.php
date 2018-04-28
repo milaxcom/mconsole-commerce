@@ -3,6 +3,7 @@
 return [
     'menu' => [
         'index' => 'Коммерция',
+        'brands' => 'Производители',
         'orders' => 'Заказы',
         'categories' => 'Категории',
         'products' => 'Товары',
@@ -53,6 +54,23 @@ return [
             'payment' => 'Способ оплаты',
         ],
     ],
+    'brands' => [
+        'caption' => 'Производители',
+        'table' => [
+            'updated' => 'Обновлено',
+            'slug' => 'Slug',
+            'name' => 'Название',
+            'products' => 'Продукты',
+        ],
+        'tabs' => [
+            'main' => 'Main',
+        ],
+        'form' => [
+            'slug' => 'Slug',
+            'name' => 'Name',
+            'description' => 'Description',
+        ],
+    ],
     'categories' => [
         'caption' => 'Категории',
         'table' => [
@@ -88,6 +106,7 @@ return [
             'additional' => 'Дополнительное',
         ],
         'form' => [
+            'brand' => 'Производитель',
             'slug' => 'Slug',
             'name' => 'Название',
             'article' => 'Артикул',

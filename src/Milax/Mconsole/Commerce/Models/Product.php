@@ -9,7 +9,7 @@ class Product extends Model
     use \CascadeDelete, \HasUploads, \HasState;
     
     protected $table = 'commerce_products';
-    protected $fillable = ['article', 'name', 'slug', 'description', 'lists', 'tables', 'price', 'discount_price', 'increase_price', 'decrease_price', 'quantity', 'enabled', 'in_stock', 'of_stock', 'on_request'];
+    protected $fillable = ['brand_id', 'article', 'name', 'slug', 'description', 'lists', 'tables', 'price', 'discount_price', 'increase_price', 'decrease_price', 'quantity', 'enabled', 'in_stock', 'of_stock', 'on_request'];
     protected $casts = [
         'tables' => 'object',
         'lists' => 'object',
@@ -28,6 +28,11 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany('\Milax\Mconsole\Commerce\Models\Category', 'commerce_categories_products');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo('\Milax\Mconsole\Commerce\Models\Brand', 'brand_id');
     }
     
     /**

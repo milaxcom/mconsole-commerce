@@ -3,6 +3,7 @@
 return [
     'menu' => [
         'index' => 'Commerce',
+        'brands' => 'Brands',
         'orders' => 'Orders',
         'categories' => 'Categories',
         'products' => 'Products',
@@ -53,6 +54,23 @@ return [
             'payment' => 'Payment',
         ],
     ],
+    'brands' => [
+        'caption' => 'Brands',
+        'table' => [
+            'updated' => 'Updated',
+            'slug' => 'Slug',
+            'name' => 'Name',
+            'products' => 'Products',
+        ],
+        'tabs' => [
+            'main' => 'Main',
+        ],
+        'form' => [
+            'slug' => 'Slug',
+            'name' => 'Name',
+            'description' => 'Description',
+        ],
+    ],
     'categories' => [
         'caption' => 'Categories',
         'table' => [
@@ -88,6 +106,7 @@ return [
             'additional' => 'Additional',
         ],
         'form' => [
+            'brand' => 'Brand',
             'slug' => 'Slug',
             'name' => 'Name',
             'article' => 'Article',
