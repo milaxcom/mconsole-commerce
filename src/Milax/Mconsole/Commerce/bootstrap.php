@@ -108,74 +108,84 @@ return [
             });
         });
         
-        // app('API')->acl->register([
-        //     ['GET', 'commerce/products', 'mconsole::products.acl.index'],
-        //     ['GET', 'commerce/products/create', 'mconsole::products.acl.create'],
-        //     ['POST', 'commerce/products', 'mconsole::products.acl.store'],
-        //     ['GET', 'commerce/products/{product}/edit', 'mconsole::products.acl.edit'],
-        //     ['PUT', 'commerce/products/{product}', 'mconsole::products.acl.update'],
-        //     ['GET', 'commerce/products/{product}', 'mconsole::products.acl.show'],
-        //     ['DELETE', 'commerce/products/{product}', 'mconsole::products.acl.destroy'],
-        // ]);
+        app('API')->acl->register([
+            ['GET', 'commerce/products', 'mconsole::products.acl.index'],
+            ['GET', 'commerce/products/create', 'mconsole::products.acl.create'],
+            ['POST', 'commerce/products', 'mconsole::products.acl.store'],
+            ['GET', 'commerce/products/{product}/edit', 'mconsole::products.acl.edit'],
+            ['PUT', 'commerce/products/{product}', 'mconsole::products.acl.update'],
+            ['GET', 'commerce/products/{product}', 'mconsole::products.acl.show'],
+            ['DELETE', 'commerce/products/{product}', 'mconsole::products.acl.destroy'],
+        ]);
         
-        // app('API')->acl->register([
-        //     ['GET', 'commerce/categories', 'mconsole::categories.acl.index'],
-        //     ['GET', 'commerce/categories/create', 'mconsole::categories.acl.create'],
-        //     ['POST', 'commerce/categories', 'mconsole::categories.acl.store'],
-        //     ['GET', 'commerce/categories/{category}/edit', 'mconsole::categories.acl.edit'],
-        //     ['PUT', 'commerce/categories/{category}', 'mconsole::categories.acl.update'],
-        //     ['GET', 'commerce/categories/{category}', 'mconsole::categories.acl.show'],
-        //     ['DELETE', 'commerce/categories/{category}', 'mconsole::categories.acl.destroy'],
-        // ]);
+        app('API')->acl->register([
+            ['GET', 'commerce/brands', 'mconsole::brands.acl.index'],
+            ['GET', 'commerce/brands/create', 'mconsole::brands.acl.create'],
+            ['POST', 'commerce/brands', 'mconsole::brands.acl.store'],
+            ['GET', 'commerce/brands/{category}/edit', 'mconsole::brands.acl.edit'],
+            ['PUT', 'commerce/brands/{category}', 'mconsole::brands.acl.update'],
+            ['GET', 'commerce/brands/{category}', 'mconsole::brands.acl.show'],
+            ['DELETE', 'commerce/brands/{category}', 'mconsole::brands.acl.destroy'],
+        ]);
+
+        app('API')->acl->register([
+            ['GET', 'commerce/categories', 'mconsole::categories.acl.index'],
+            ['GET', 'commerce/categories/create', 'mconsole::categories.acl.create'],
+            ['POST', 'commerce/categories', 'mconsole::categories.acl.store'],
+            ['GET', 'commerce/categories/{category}/edit', 'mconsole::categories.acl.edit'],
+            ['PUT', 'commerce/categories/{category}', 'mconsole::categories.acl.update'],
+            ['GET', 'commerce/categories/{category}', 'mconsole::categories.acl.show'],
+            ['DELETE', 'commerce/categories/{category}', 'mconsole::categories.acl.destroy'],
+        ]);
         
-        // app('API')->acl->register([
-        //     ['GET', 'commerce/delivery', 'mconsole::delivery.acl.index'],
-        //     ['GET', 'commerce/delivery/create', 'mconsole::delivery.acl.create'],
-        //     ['POST', 'commerce/delivery', 'mconsole::delivery.acl.store'],
-        //     ['GET', 'commerce/delivery/{delivery}/edit', 'mconsole::delivery.acl.edit'],
-        //     ['PUT', 'commerce/delivery/{delivery}', 'mconsole::delivery.acl.update'],
-        //     ['GET', 'commerce/delivery/{delivery}', 'mconsole::delivery.acl.show'],
-        //     ['DELETE', 'commerce/delivery/{delivery}', 'mconsole::delivery.acl.destroy'],
-        // ]);
+        app('API')->acl->register([
+            ['GET', 'commerce/delivery', 'mconsole::delivery.acl.index'],
+            ['GET', 'commerce/delivery/create', 'mconsole::delivery.acl.create'],
+            ['POST', 'commerce/delivery', 'mconsole::delivery.acl.store'],
+            ['GET', 'commerce/delivery/{delivery}/edit', 'mconsole::delivery.acl.edit'],
+            ['PUT', 'commerce/delivery/{delivery}', 'mconsole::delivery.acl.update'],
+            ['GET', 'commerce/delivery/{delivery}', 'mconsole::delivery.acl.show'],
+            ['DELETE', 'commerce/delivery/{delivery}', 'mconsole::delivery.acl.destroy'],
+        ]);
         
-        // app('API')->acl->register([
-        //     ['GET', 'commerce/discounts', 'mconsole::discounts.acl.index'],
-        //     ['GET', 'commerce/discounts/create', 'mconsole::discounts.acl.create'],
-        //     ['POST', 'commerce/discounts', 'mconsole::discounts.acl.store'],
-        //     ['GET', 'commerce/discounts/{discount}/edit', 'mconsole::discounts.acl.edit'],
-        //     ['PUT', 'commerce/discounts/{discount}', 'mconsole::discounts.acl.update'],
-        //     ['GET', 'commerce/discounts/{discount}', 'mconsole::discounts.acl.show'],
-        //     ['DELETE', 'commerce/discounts/{discount}', 'mconsole::discounts.acl.destroy'],
-        // ]);
+        app('API')->acl->register([
+            ['GET', 'commerce/discounts', 'mconsole::discounts.acl.index'],
+            ['GET', 'commerce/discounts/create', 'mconsole::discounts.acl.create'],
+            ['POST', 'commerce/discounts', 'mconsole::discounts.acl.store'],
+            ['GET', 'commerce/discounts/{discount}/edit', 'mconsole::discounts.acl.edit'],
+            ['PUT', 'commerce/discounts/{discount}', 'mconsole::discounts.acl.update'],
+            ['GET', 'commerce/discounts/{discount}', 'mconsole::discounts.acl.show'],
+            ['DELETE', 'commerce/discounts/{discount}', 'mconsole::discounts.acl.destroy'],
+        ]);
         
-        // app('API')->acl->register([
-        //     ['GET', 'commerce/payment', 'mconsole::payment.acl.index'],
-        //     ['GET', 'commerce/payment/create', 'mconsole::payment.acl.create'],
-        //     ['POST', 'commerce/payment', 'mconsole::payment.acl.store'],
-        //     ['GET', 'commerce/payment/{payment}/edit', 'mconsole::payment.acl.edit'],
-        //     ['PUT', 'commerce/payment/{payment}', 'mconsole::payment.acl.update'],
-        //     ['GET', 'commerce/payment/{payment}', 'mconsole::payment.acl.show'],
-        //     ['DELETE', 'commerce/payment/{payment}', 'mconsole::payment.acl.destroy'],
-        // ]);
+        app('API')->acl->register([
+            ['GET', 'commerce/payment', 'mconsole::payment.acl.index'],
+            ['GET', 'commerce/payment/create', 'mconsole::payment.acl.create'],
+            ['POST', 'commerce/payment', 'mconsole::payment.acl.store'],
+            ['GET', 'commerce/payment/{payment}/edit', 'mconsole::payment.acl.edit'],
+            ['PUT', 'commerce/payment/{payment}', 'mconsole::payment.acl.update'],
+            ['GET', 'commerce/payment/{payment}', 'mconsole::payment.acl.show'],
+            ['DELETE', 'commerce/payment/{payment}', 'mconsole::payment.acl.destroy'],
+        ]);
         
-        // app('API')->acl->register([
-        //     ['GET', 'commerce/orders', 'mconsole::orders.acl.index'],
-        //     ['GET', 'commerce/orders/create', 'mconsole::orders.acl.create'],
-        //     ['POST', 'commerce/orders', 'mconsole::orders.acl.store'],
-        //     ['GET', 'commerce/orders/{order}/edit', 'mconsole::orders.acl.edit'],
-        //     ['PUT', 'commerce/orders/{order}', 'mconsole::orders.acl.update'],
-        //     ['GET', 'commerce/orders/{order}', 'mconsole::orders.acl.show'],
-        //     ['DELETE', 'commerce/orders/{order}', 'mconsole::orders.acl.destroy'],
-        // ]);
+        app('API')->acl->register([
+            ['GET', 'commerce/orders', 'mconsole::orders.acl.index'],
+            ['GET', 'commerce/orders/create', 'mconsole::orders.acl.create'],
+            ['POST', 'commerce/orders', 'mconsole::orders.acl.store'],
+            ['GET', 'commerce/orders/{order}/edit', 'mconsole::orders.acl.edit'],
+            ['PUT', 'commerce/orders/{order}', 'mconsole::orders.acl.update'],
+            ['GET', 'commerce/orders/{order}', 'mconsole::orders.acl.show'],
+            ['DELETE', 'commerce/orders/{order}', 'mconsole::orders.acl.destroy'],
+        ]);
         
-        // app('API')->acl->register([
-        //     ['GET', 'commerce/promocodes', 'mconsole::promocodes.acl.index'],
-        //     ['GET', 'commerce/promocodes/create', 'mconsole::promocodes.acl.create'],
-        //     ['POST', 'commerce/promocodes', 'mconsole::promocodes.acl.store'],
-        //     ['GET', 'commerce/promocodes/{promocode}/edit', 'mconsole::promocodes.acl.edit'],
-        //     ['PUT', 'commerce/promocodes/{promocode}', 'mconsole::promocodes.acl.update'],
-        //     ['GET', 'commerce/promocodes/{promocode}', 'mconsole::promocodes.acl.show'],
-        //     ['DELETE', 'commerce/promocodes/{promocode}', 'mconsole::promocodes.acl.destroy'],
-        // ]);
+        app('API')->acl->register([
+            ['GET', 'commerce/promocodes', 'mconsole::promocodes.acl.index'],
+            ['GET', 'commerce/promocodes/create', 'mconsole::promocodes.acl.create'],
+            ['POST', 'commerce/promocodes', 'mconsole::promocodes.acl.store'],
+            ['GET', 'commerce/promocodes/{promocode}/edit', 'mconsole::promocodes.acl.edit'],
+            ['PUT', 'commerce/promocodes/{promocode}', 'mconsole::promocodes.acl.update'],
+            ['GET', 'commerce/promocodes/{promocode}', 'mconsole::promocodes.acl.show'],
+            ['DELETE', 'commerce/promocodes/{promocode}', 'mconsole::promocodes.acl.destroy'],
+        ]);
     },
 ];
