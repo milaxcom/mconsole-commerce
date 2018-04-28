@@ -67,8 +67,8 @@ return [
         ],
         'form' => [
             'slug' => 'Slug',
-            'name' => 'Name',
-            'description' => 'Description',
+            'name' => 'Название',
+            'description' => 'Описание',
         ],
     ],
     'categories' => [
