@@ -72,8 +72,12 @@
                     'allBrands' => $brands,
                     'current' => isset($item) ? $item->brand_id : '',
                 ])
-
+                
                 @include('mconsole::forms.state')
+                @include('mconsole::forms.checkbox', [
+                    'name' => 'new',
+                    'label' => trans('mconsole::commerce.products.form.new')
+                ])
             </div>
         </div>
         <div class="portlet light">

@@ -123,6 +123,7 @@ return [
             'in_stock' => 'In stock',
             'of_stock' => 'Of stock',
             'on_request' => 'On request',
+            'new' => 'Mark as new',
         ],
         'categories' => [
             'placeholder' => 'Product must belong to at least one category',
