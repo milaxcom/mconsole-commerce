@@ -125,11 +125,8 @@ return [
             'in_stock' => 'In stock',
             'of_stock' => 'Of stock',
             'on_request' => 'On request',
-<<<<<<< Updated upstream
             'new' => 'Mark as new',
-=======
             'brand' => 'Brand',
->>>>>>> Stashed changes
         ],
         'categories' => [
             'placeholder' => 'Product must belong to at least one category',
