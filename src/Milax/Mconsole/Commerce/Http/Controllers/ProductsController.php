@@ -28,7 +28,7 @@ class ProductsController extends Controller
         $this->form = $form;
         $this->repository = $repository;
         $this->brands = Brand::query()->select('id', 'name')->orderBy('name')->get()->pluck('name', 'id')->all();
-        $this->brands = array_prepend($this->brands, 'Не указан');
+        #dd(array_prepend(, 'Не указан'));
         
         $this->setCaption(trans('mconsole::commerce.products.caption'));
     }
@@ -68,7 +68,7 @@ class ProductsController extends Controller
         return $this->form->render('mconsole::commerce.products.form', [
             'languages' => Language::all(),
             'brands' => Brand::enabled()->get(),
-            'brands' => $this->brands,
+            'brands' => ['Не указан'] + $this->brands,
         ]);
     }
     
@@ -109,7 +109,7 @@ class ProductsController extends Controller
         return $this->form->render('mconsole::commerce.products.form', [
             'item' => Product::find($id),
             'languages' => Language::all(),
-            'brands' => $this->brands,
+            'brands' => ['Не указан'] + $this->brands,
         ]);
     }
 
