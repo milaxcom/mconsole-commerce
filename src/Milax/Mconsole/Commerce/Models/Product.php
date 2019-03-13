@@ -9,11 +9,7 @@ class Product extends Model
     use \CascadeDelete, \HasUploads, \HasState;
     
     protected $table = 'commerce_products';
-<<<<<<< Updated upstream
     protected $fillable = ['brand_id', 'article', 'name', 'slug', 'description', 'lists', 'tables', 'price', 'discount_price', 'increase_price', 'decrease_price', 'quantity', 'enabled', 'in_stock', 'of_stock', 'on_request', 'new'];
-=======
-    protected $fillable = ['article', 'name', 'slug', 'description', 'lists', 'tables', 'price', 'discount_price', 'increase_price', 'decrease_price', 'quantity', 'enabled', 'in_stock', 'of_stock', 'on_request', 'brand_id'];
->>>>>>> Stashed changes
     protected $casts = [
         'tables' => 'object',
         'lists' => 'object',
@@ -27,16 +23,6 @@ class Product extends Model
     public function getSaleAttribute()
     {
         return !is_null($this->discount_price) && $this->discount_price > 0;
-    }
-
-    public function getFormatPriceAttribute()
-    {
-        return currency_format($this->price) . ' руб.';
-    }
-
-    public function getFormatDiscountPriceAttribute()
-    {
-        return !is_null($this->discount_price) && $this->discount_price > 0 ? currency_format($this->discount_price) . ' руб.' : null;
     }
     
     public function parent()
@@ -55,8 +41,6 @@ class Product extends Model
     }
 
     public function brand()
-<<<<<<< Updated upstream
-=======
     {
         return $this->belongsTo('\Milax\Mconsole\Commerce\Models\Brand', 'brand_id');
     }
@@ -77,7 +61,6 @@ class Product extends Model
      * @return string
      */
     public function getFormatDiscountPriceAttribute()
->>>>>>> Stashed changes
     {
         return $this->belongsTo('\Milax\Mconsole\Commerce\Models\Brand', 'brand_id');
     }

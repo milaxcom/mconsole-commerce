@@ -66,15 +66,6 @@
                         'name' => 'categories',
                     ])
                 @endif
-<<<<<<< Updated upstream
-
-                @include('mconsole::commerce.products.brand', [
-                    'label' => trans('mconsole::commerce.products.form.brand'),
-                    'allBrands' => $brands,
-                    'current' => isset($item) ? $item->brand_id : '',
-                ])
-                
-=======
                 @if (count($brands) == 0)
                     <p>
                         {{ trans('mconsole::commerce.products.info.brands')}}
@@ -89,7 +80,6 @@
                         'class' => 'select2',
                     ])
                 @endif
->>>>>>> Stashed changes
                 @include('mconsole::forms.state')
                 @include('mconsole::forms.checkbox', [
                     'name' => 'new',
