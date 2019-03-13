@@ -11,7 +11,6 @@ use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
 use Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository;
-use Milax\Mconsole\Commerce\Models\Brand;
 
 class ProductsController extends Controller
 {
@@ -68,11 +67,8 @@ class ProductsController extends Controller
     {
         return $this->form->render('mconsole::commerce.products.form', [
             'languages' => Language::all(),
-<<<<<<< Updated upstream
             'brands' => Brand::enabled()->get(),
-=======
             'brands' => $this->brands,
->>>>>>> Stashed changes
         ]);
     }
     
@@ -113,11 +109,7 @@ class ProductsController extends Controller
         return $this->form->render('mconsole::commerce.products.form', [
             'item' => Product::find($id),
             'languages' => Language::all(),
-<<<<<<< Updated upstream
-            'brands' => Brand::enabled()->get(),
-=======
             'brands' => $this->brands,
->>>>>>> Stashed changes
         ]);
     }
 
