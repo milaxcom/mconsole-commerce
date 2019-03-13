@@ -6,6 +6,7 @@ namespace Milax\Mconsole\Commerce\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Milax\Mconsole\Commerce\Http\Requests\ProductRequest;
 use Milax\Mconsole\Commerce\Models\Product;
+use Milax\Mconsole\Commerce\Models\Brand;
 use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
@@ -27,6 +28,8 @@ class ProductsController extends Controller
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
+        $this->brands = Brand::query()->select('id', 'name')->orderBy('name')->get()->pluck('name', 'id')->all();
+        $this->brands = array_prepend($this->brands, 'Не указан');
         
         $this->setCaption(trans('mconsole::commerce.products.caption'));
     }
@@ -38,13 +41,20 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return $this->list->setQuery($this->repository->index())->setAddAction('commerce/products/create')->render(function ($item) {
+        $this->list
+            ->setText('#', 'id', true)
+            ->setText(trans('mconsole::commerce.products.form.article'), 'article', true)
+            ->setText(trans('mconsole::commerce.products.form.name'), 'name', true)
+            ->setSelect(trans('mconsole::commerce.products.form.brand'), 'brand_id', $this->brands, true);
+
+        return $this->list->setQuery($this->repository->index()->with('brand'))->setAddAction('commerce/products/create')->render(function ($item) {
             return [
                 trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::commerce.products.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::commerce.products.table.article') => $item->article,
-                trans('mconsole::commerce.products.table.slug') => $item->slug,
+                trans('mconsole::commerce.products.table.brand') => $item->brand->name ?? '',
                 trans('mconsole::commerce.products.table.name') => $item->name,
+                trans('mconsole::commerce.products.table.quantity') => $item->quantity,
             ];
         });
     }
@@ -58,7 +68,11 @@ class ProductsController extends Controller
     {
         return $this->form->render('mconsole::commerce.products.form', [
             'languages' => Language::all(),
+<<<<<<< Updated upstream
             'brands' => Brand::enabled()->get(),
+=======
+            'brands' => $this->brands,
+>>>>>>> Stashed changes
         ]);
     }
     
@@ -99,7 +113,11 @@ class ProductsController extends Controller
         return $this->form->render('mconsole::commerce.products.form', [
             'item' => Product::find($id),
             'languages' => Language::all(),
+<<<<<<< Updated upstream
             'brands' => Brand::enabled()->get(),
+=======
+            'brands' => $this->brands,
+>>>>>>> Stashed changes
         ]);
     }
 

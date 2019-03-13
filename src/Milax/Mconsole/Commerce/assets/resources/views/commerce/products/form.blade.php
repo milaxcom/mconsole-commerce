@@ -66,6 +66,7 @@
                         'name' => 'categories',
                     ])
                 @endif
+<<<<<<< Updated upstream
 
                 @include('mconsole::commerce.products.brand', [
                     'label' => trans('mconsole::commerce.products.form.brand'),
@@ -73,6 +74,22 @@
                     'current' => isset($item) ? $item->brand_id : '',
                 ])
                 
+=======
+                @if (count($brands) == 0)
+                    <p>
+                        {{ trans('mconsole::commerce.products.info.brands')}}
+                        <a href="{{ mconsole_url('commerce/brands/create') }}" class="btn green-jungle btn-xs">Create brand</a>
+                    </p>
+                @else
+                    @include('mconsole::forms.select', [
+                        'options' => $brands,
+                        'label' => trans('mconsole::commerce.products.form.brand'),
+                        'name' => 'brand_id',
+                        'value' => isset($item) ? $item->brand_id : 0,
+                        'class' => 'select2',
+                    ])
+                @endif
+>>>>>>> Stashed changes
                 @include('mconsole::forms.state')
                 @include('mconsole::forms.checkbox', [
                     'name' => 'new',

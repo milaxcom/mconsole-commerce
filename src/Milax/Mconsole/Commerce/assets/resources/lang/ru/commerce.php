@@ -100,6 +100,8 @@ return [
             'article' => 'Артикул',
             'slug' => 'Slug',
             'name' => 'Название',
+            'brand' => 'Производитель',
+            'quantity' => 'Количество',
         ],
         'tabs' => [
             'main' => 'Основное',
@@ -123,7 +125,11 @@ return [
             'in_stock' => 'В наличии',
             'of_stock' => 'Нет в наличии',
             'on_request' => 'Под заказ',
+<<<<<<< Updated upstream
             'new' => 'Пометить как новый',
+=======
+            'brand' => 'Производитель',
+>>>>>>> Stashed changes
         ],
         'categories' => [
             'placeholder' => 'Товар должен принадлежать хотя бы к одной категории',
