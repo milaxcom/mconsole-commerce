@@ -40,7 +40,28 @@
                             @endforeach
                         </div>
                     @endif
-    			</div>
+                </div>
+                @if (count(Config::get('commerce.products.tables')) > 0)
+                    @foreach (Config::get('commerce.products.tables') as $tableKey => $table)
+                        <div class="portlet light">
+                            @include('mconsole::partials.portlet-title', [
+                                'title' => trans($table['name']),
+                            ])
+                            <div class="portlet-body form">
+                                @foreach ($table['fields'] as $fieldKey => $value)
+                                    <div class="form-group">
+                                        <label>{{ trans($value) }}</label>
+                                        @if (isset($item->tables) && isset($item->tables->$tableKey->$fieldKey))
+                                            <input class="form-control" name="tables[{{ $tableKey }}][{{ $fieldKey }}]" type="text" value="{{ $item->tables->$tableKey->$fieldKey }}">
+                                        @else
+                                            <input class="form-control" name="tables[{{ $tableKey }}][{{ $fieldKey }}]" type="text">
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
                 <div class="form-actions">
                     @include('mconsole::forms.submit')
                 </div>
@@ -154,28 +175,6 @@
                 ])
             </div>
         </div>
-        
-        @if (count(Config::get('commerce.products.tables')) > 0)
-            @foreach (Config::get('commerce.products.tables') as $tableKey => $table)
-                <div class="portlet light">
-                    @include('mconsole::partials.portlet-title', [
-                        'title' => trans($table['name']),
-                    ])
-                    <div class="portlet-body form">
-                        @foreach ($table['fields'] as $fieldKey => $value)
-                            <div class="form-group">
-                            	<label>{{ trans($value) }}</label>
-                                @if (isset($item->tables) && isset($item->tables->$tableKey->$fieldKey))
-                                	<input class="form-control" name="tables[{{ $tableKey }}][{{ $fieldKey }}]" type="text" value="{{ $item->tables->$tableKey->$fieldKey }}">
-                                @else
-                                    <input class="form-control" name="tables[{{ $tableKey }}][{{ $fieldKey }}]" type="text">
-                                @endif
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            @endforeach
-        @endif
 
         @if (app('API')->options->getByKey('commerce_product_has_cover'))
             <div class="portlet light">
