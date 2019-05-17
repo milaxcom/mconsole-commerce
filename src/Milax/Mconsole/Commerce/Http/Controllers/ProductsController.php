@@ -42,8 +42,8 @@ class ProductsController extends Controller
     {
         $this->list
             ->setText('#', 'id', true)
-            ->setText(trans('mconsole::commerce.products.form.article'), 'article', true)
-            ->setText(trans('mconsole::commerce.products.form.name'), 'name', true)
+            ->setText(trans('mconsole::commerce.products.form.article'), 'article', false)
+            ->setText(trans('mconsole::commerce.products.form.name'), 'name', false)
             ->setSelect(trans('mconsole::commerce.products.form.brand'), 'brand_id', $this->brands, true);
 
         return $this->list->setQuery($this->repository->index()->with('brand'))->setAddAction('commerce/products/create')->render(function ($item) {
