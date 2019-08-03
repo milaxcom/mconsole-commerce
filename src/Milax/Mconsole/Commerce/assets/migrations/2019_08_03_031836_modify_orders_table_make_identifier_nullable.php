@@ -6,6 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class ModifyOrdersTableMakeIdentifierNullable extends Migration
 {
+    public function __construct()
+    {
+        DB::getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('json', 'text');
+    }
+    
     /**
      * Run the migrations.
      *
