@@ -2,10 +2,9 @@
 
 namespace Milax\Mconsole\Commerce\Events;
 
-use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 
-class OrderStatusUpdated extends Event
+class OrderStatusUpdated
 {
     use SerializesModels;
     

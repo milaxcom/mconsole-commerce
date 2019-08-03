@@ -2,10 +2,9 @@
 
 namespace Milax\Mconsole\Commerce\Events;
 
-use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 
-class OrderCreated extends Event
+class OrderCreated
 {
     use SerializesModels;
     
