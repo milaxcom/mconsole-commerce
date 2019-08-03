@@ -19,11 +19,12 @@ class OrdersRepository extends EloquentRepository implements Repository
         return $this->query()->orderBy('id', 'desc');
     }
     
-    public function place($cart, $delivery, $payment, $info, $promocode = null)
+    public function place($cart, $delivery, $payment, $info, $promocode = null, $userId = 0)
     {
         $order = new $this->model([
             'slug' => $this->makeSlug(),
             'cart' => $cart,
+            'user_id' => $userId,
             'delivery_type' => $delivery,
             'payment_method' => $payment,
             'promocode' => $promocode,
