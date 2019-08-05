@@ -42,7 +42,7 @@ class RobokassaPaymentProvider implements PaymentProvider
             'InvId' => $order->id,
             'Desc' => isset($order->description) ? $order->description : null,
             'SignatureValue' => $hash,
-            'IsTest' => $debug,
+            'IsTest' => $debug ? '1' : '0',
         ]);
         
         return sprintf('https://auth.robokassa.ru/Merchant/Index.aspx?%s', $query);

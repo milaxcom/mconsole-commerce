@@ -23,9 +23,9 @@ class OrderProcessor implements Processor
         // @todo get order by request from Yandex.Money
     }
     
-    public function getUrl($order)
+    public function getUrl($order, $debug = false)
     {
-        return $this->getPaymentProvider($order->payment_method)->getUrl($order);
+        return $this->getPaymentProvider($order->payment_method)->getUrl($order, $debug);
     }
     
     public function pay($payload, $callback)

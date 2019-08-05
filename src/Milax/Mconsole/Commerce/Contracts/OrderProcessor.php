@@ -16,9 +16,10 @@ interface OrderProcessor
      * Get link for pay
      * 
      * @param  object $order
+     * @param  boolean $debug
      * @return string
      */
-    public function getUrl($order);
+    public function getUrl($order, $debug = false);
     
     /**
      * Get response from PaymentProvider and change order status
