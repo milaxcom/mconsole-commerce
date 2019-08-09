@@ -50,7 +50,7 @@ class RobokassaPaymentProvider implements PaymentProvider
     
     protected function checkHash($order, $payload, $signature)
     {
-        if ($payload['OutSum'] == $order->getTotal() / config('commerce.currency.basic') && $payload['SignatureValue'] == $signature) {
+        if ($payload['OutSum'] == $order->getTotal() / config('commerce.currency.basic') && strtolower($payload['SignatureValue']) == strtolower($signature)) {
             return true;
         } else {
             return false;
