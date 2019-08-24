@@ -19,7 +19,8 @@ class RobokassaPaymentProvider implements PaymentProvider
         $signature = $this->verifySignature($order->getTotal(), $order->id, $this->settings->password2);
         if ($this->checkHash($order, $payload, $signature)) {
             if ($this->settings->robochecks == 1) {
-                // Send second receipt
+                $receipt = $this->getReceipt($order);
+                \Log::debug(json_encode($receipt));
             }
             
             return true;
@@ -124,5 +125,62 @@ class RobokassaPaymentProvider implements PaymentProvider
     protected function verifySignature($total, $id, $password)
     {
         return md5(sprintf('%s:%s:%s', $total / config('commerce.currency.basic'), $id, $password));
+    }
+    
+    /**
+     * Send second receipt
+     * https://docs.robokassa.ru/#7696
+     *
+     * @param object $order
+     * @return void
+     */
+    protected function getReceipt($order)
+    {
+        $receipt = [
+            'merchantId' => $this->settings->login,
+            'id' => $order->id * 100,
+            'originId' => $order->id,
+            'operation' => 'sell',
+            'sno' => $this->settings->sno,
+            'url' => 'https://www.protektor65.ru',
+            'total' => $order->getTotal(),
+            'items' => [],
+            'payments' => [
+                [
+                    'type' => 2,
+                    'sum' => $order->getTotal(),
+                ],
+            ],
+            'vats' => [
+                [
+                    'type' => 'none',
+                    'sum' => 0,
+                ],
+            ],
+        ];
+        
+        foreach ($order->cart->cart as $cartItem) {
+            $receipt['items'][] = [
+                'name' => $cartItem->name,
+                'sum' => $cartItem->price * $cartItem->quantity,
+                'quantity' => $cartItem->quantity,
+                'payment_method' => 'full_prepayment',
+                'payment_object' => 'commodity',
+                'tax' => 'none',
+            ];
+            
+            if ($order->delivery_type->cost > 0) {
+                $receipt['items'][] = [
+                    'name' => sprintf('Доставка: %s', $order->delivery_type->name),
+                    'sum' => floatVal($order->delivery_type->cost),
+                    'quantity' => 1,
+                    'payment_method' => 'full_prepayment',
+                    'payment_object' => 'service',
+                    'tax' => 'none',
+                ];
+            }
+        }
+        
+        return $receipt;
     }
 }
