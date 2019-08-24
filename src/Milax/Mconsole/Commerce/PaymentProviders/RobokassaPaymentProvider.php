@@ -142,7 +142,7 @@ class RobokassaPaymentProvider implements PaymentProvider
             'originId' => $order->id,
             'operation' => 'sell',
             'sno' => $this->settings->sno,
-            'url' => 'https://www.protektor65.ru',
+            'url' => config('app.url'),
             'total' => $order->getTotal(),
             'items' => [],
             'payments' => [
