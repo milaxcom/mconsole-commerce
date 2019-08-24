@@ -17,12 +17,15 @@ class RobokassaPaymentProvider implements PaymentProvider
     public function pay($order, $payload)
     {
         $signature = $this->verifySignature($order->getTotal(), $order->id, $this->settings->password2);
-        return $this->checkHash($order, $payload, $signature);
-        /*
-        ['InvId' => 1, 'OutSum' => 1401.54, 'SignatureValue' => '14351073458b4f60843acb523b273bb1', 'Culture' => 'ru', 'IsTest' => 1]
-        
-        verify: 14351073458b4f60843acb523b273bb1
-        */
+        if ($this->checkHash($order, $payload, $signature)) {
+            if ($this->settings->robochecks == 1) {
+                // Send second receipt
+            }
+            
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function check($order, $payload)
@@ -34,16 +37,53 @@ class RobokassaPaymentProvider implements PaymentProvider
     public function getUrl($order, $debug = false)
     {
         $total = $order->getTotal();
-        $hash = $this->calculateSignature($total, $order->id);
+        $receipt = [];
         
-        $query = http_build_query([
+        if ($this->settings->robochecks == 1) {
+            $receipt = [
+                'sno' => $this->settings->sno,
+                'items' => [],
+            ];
+            
+            foreach ($order->cart->cart as $cartItem) {
+                $receipt['items'][] = [
+                    'name' => $cartItem->name,
+                    'sum' => $cartItem->price * $cartItem->quantity,
+                    'quantity' => $cartItem->quantity,
+                    'payment_method' => 'full_prepayment',
+                    'payment_object' => 'commodity',
+                    'tax' => 'none',
+                ];
+                
+                if ($order->delivery_type->cost > 0) {
+                    $receipt['items'][] = [
+                        'name' => sprintf('Доставка: %s', $order->delivery_type->name),
+                        'sum' => floatVal($order->delivery_type->cost),
+                        'quantity' => 1,
+                        'payment_method' => 'full_prepayment',
+                        'payment_object' => 'service',
+                        'tax' => 'none',
+                    ];
+                }
+            }
+        }
+        
+        $hash = $this->calculateSignature($total, $order->id, $receipt);
+        
+        $queryData = [
             'MrchLogin' => $this->settings->login,
             'OutSum' => $total  / config('commerce.currency.basic'),
             'InvId' => $order->id,
             'Desc' => isset($order->description) ? $order->description : null,
             'SignatureValue' => $hash,
             'IsTest' => $debug ? '1' : '0',
-        ]);
+        ];
+        
+        if (count($receipt) > 0) {
+            $queryData['Receipt'] = urlencode(json_encode($receipt));
+        }
+        
+        $query = http_build_query($queryData);
         
         return sprintf('https://auth.robokassa.ru/Merchant/Index.aspx?%s', $query);
     }
@@ -62,10 +102,15 @@ class RobokassaPaymentProvider implements PaymentProvider
      * 
      * @param  float $total
      * @param  int $id
+     * @param  string $receipt
      * @return string
      */
-    protected function calculateSignature($total, $id)
+    protected function calculateSignature($total, $id, $receipt = [])
     {
+        if (count($receipt) > 0) {
+            return md5(sprintf('%s:%s:%s:%s:%s', $this->settings->login, $total / config('commerce.currency.basic'), $id, urlencode(json_encode($receipt)), $this->settings->password1)); 
+        }
+        
         return md5(sprintf('%s:%s:%s:%s', $this->settings->login, $total / config('commerce.currency.basic'), $id, $this->settings->password1));
     }
     

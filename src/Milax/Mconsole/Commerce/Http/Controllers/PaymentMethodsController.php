@@ -64,7 +64,10 @@ class PaymentMethodsController extends Controller
      */
     public function store(PaymentMethodRequest $request)
     {
-        $this->repository->create($request->all());
+        $data = $request->all();
+        $data['settings'] = [];
+        
+        $this->repository->create($data);
         
         $this->redirect();
     }

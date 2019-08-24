@@ -202,6 +202,8 @@ return [
             'login' => 'Shop login',
             'password1' => 'Password #1',
             'password2' => 'Password #2',
+            'robochecks' => 'Robochecks support',
+            'sno' => 'Tax system',
         ],
     ],
     'settings' => [
