@@ -27,4 +27,11 @@ interface PaymentProvider
      * @return bool
      */
     public function pay($order, $payload);
+    
+    /**
+     * Payment post processing
+     * 
+     * @param object $order
+     */
+    public function postPay($order);
 }

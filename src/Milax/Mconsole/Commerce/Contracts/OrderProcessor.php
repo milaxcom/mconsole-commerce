@@ -1,37 +1,32 @@
-<?php 
+<?php
 
 namespace Milax\Mconsole\Commerce\Contracts;
 
-interface PaymentProvider
+interface OrderProcessor
 {
     /**
-     * Set payment provider settings
+     * Get order by payment provider request
      * 
-     * @param object $settings
+     * @param  array $payload
+     * @return Order
      */
-    public function setSettings($settings);
+    public function getOrder($payload);
     
     /**
-     * Get url for payment
-     * 
-     * @param  Order $order
-     * @return string
-     */
-    public function getUrl($order);
-    
-    /**
-     * Attempt to pay order
+     * Get link for pay
      * 
      * @param  object $order
-     * @param  array $payload
-     * @return bool
+     * @param  boolean $debug
+     * @return string
      */
-    public function pay($order, $payload);
+    public function getUrl($order, $debug = false);
     
     /**
-     * Payment post processing
+     * Get response from PaymentProvider and change order status
      * 
-     * @param object $order
+     * @param  array $payload
+     * @param  function $callback
+     * @return void
      */
-    public function postPay($order);
+    public function pay($payload, $callback);
 }
