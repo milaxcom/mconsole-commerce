@@ -79,6 +79,11 @@ class Product extends Model
         
         return $price;
     }
+
+    public function getCover()
+    {
+        return $this->uploads->where('group', 'cover')->first() ?? null;
+    }
     
     /**
      * Automatically delete related data
