@@ -46,8 +46,10 @@ class ProductsController extends Controller
             ->setText(trans('mconsole::commerce.products.form.name'), 'name', false)
             ->setSelect(trans('mconsole::commerce.products.form.brand'), 'brand_id', $this->brands, true);
 
-        return $this->list->setQuery($this->repository->index()->with('brand'))->setAddAction('commerce/products/create')->render(function ($item) {
+        return $this->list->setQuery($this->repository->index()->with('brand')->with('uploads'))->setAddAction('commerce/products/create')->render(function ($item) {
+            $cover = $item->getCover();
             return [
+                trans('mconsole::tables.cover') => $cover ? $cover->getImagePath('mconsole') : null,
                 trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::commerce.products.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::commerce.products.table.article') => $item->article,
