@@ -50,23 +50,13 @@ class ProductRequest extends FormRequest
         
         return $rules;
     }
-    
-    /**
-     * Modify request input
-     * 
-     * @return array
-     */
-    public function all()
+
+    public function attributes()
     {
-        $input = parent::all();
-        
-        if (strlen($input['slug']) == 0) {
-            $input['slug'] = str_slug($input['name']);
-        } else {
-            $input['slug'] = str_slug($input['slug']);
-        }
-        
-        return $input;
+        return [
+            'name' => trans('mconsole::commerce.products.form.name'),
+            'slug' => trans('mconsole::commerce.products.form.slug'),
+        ];
     }
     
     /**
@@ -76,9 +66,13 @@ class ProductRequest extends FormRequest
      */
     protected function getValidatorInstance()
     {
-        $validator = parent::getValidatorInstance();
-        $validator->setAttributeNames(trans('mconsole::commerce.products.form'));
-        
-        return $validator;
+        $input = $this->all();
+        if (empty($input['slug'])) {
+            $input['slug'] = str_slug($input['name']);
+        }
+        $this->getInputSource()->replace($input);
+
+        /*modify data before send to validator*/
+        return parent::getValidatorInstance();
     }
 }
