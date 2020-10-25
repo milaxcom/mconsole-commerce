@@ -52,6 +52,7 @@ return [
             'status' => 'Status',
             'delivery' => 'Delivery',
             'payment' => 'Payment',
+            'article' => 'Article',
         ],
     ],
     'brands' => [

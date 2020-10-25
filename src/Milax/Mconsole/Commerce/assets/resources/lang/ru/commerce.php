@@ -52,6 +52,7 @@ return [
             'status' => 'Статус',
             'delivery' => 'Доставка',
             'payment' => 'Способ оплаты',
+            'article' => 'Артикул',
         ],
     ],
     'brands' => [

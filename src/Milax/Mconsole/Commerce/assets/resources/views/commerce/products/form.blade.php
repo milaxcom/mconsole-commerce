@@ -118,6 +118,7 @@
                         @include('mconsole::forms.text', [
                             'label' => trans('mconsole::commerce.products.form.article'),
                             'name' => 'article',
+                            'value' => isset($item) ? $item->article : '',
                         ])
                     </div>
                     <div class="col-sm-6">
