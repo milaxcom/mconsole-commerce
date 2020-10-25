@@ -41,7 +41,7 @@ class ProductsController extends Controller
     public function index()
     {
         $this->list
-            ->setText('#', 'id', true)
+            ->setText('#', 'id', false)
             ->setText(trans('mconsole::commerce.products.form.article'), 'article', false)
             ->setText(trans('mconsole::commerce.products.form.name'), 'name', false)
             ->setSelect(trans('mconsole::commerce.products.form.brand'), 'brand_id', $this->brands, true);
