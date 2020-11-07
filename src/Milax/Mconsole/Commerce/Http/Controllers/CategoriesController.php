@@ -37,8 +37,14 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return $this->list->setQuery($this->repository->index())->setAddAction('commerce/categories/create')->render(function ($item) {
+        $this->list
+            ->setText('#', 'id', false)
+            ->setText(trans('mconsole::commerce.categories.form.name'), 'name', false);
+
+        return $this->list->setQuery($this->repository->index()->with('uploads'))->setAddAction('commerce/categories/create')->render(function ($item) {
+            $cover = $item->getCover();
             return [
+                trans('mconsole::tables.cover') => $cover ? $cover->getImagePath('mconsole') : null,
                 trans('mconsole::tables.state') => view('mconsole::indicators.state', $item),
                 trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::commerce.categories.table.updated') => $item->updated_at->format('m.d.Y'),
