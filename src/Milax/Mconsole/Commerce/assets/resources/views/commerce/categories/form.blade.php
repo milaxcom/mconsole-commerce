@@ -46,7 +46,7 @@
                         'group' => 'cover',
                         'preset' => 'commerce_category',
                         'id' => isset($item) ? $item->id : null,
-                        'model' => 'Milax\Mconsole\Commerce\Models\Category;',
+                        'model' => sprintf('Milax\Mconsole\Commerce\Models\%s', Category::class),
                     ])
                 </div>
             </div>

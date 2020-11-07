@@ -189,7 +189,7 @@
                         'group' => 'cover',
                         'preset' => 'commerce_product_cover',
                         'id' => isset($item) ? $item->id : null,
-                        'model' => 'Milax\Mconsole\Commerce\Models\Product',
+                        'model' => sprintf('Milax\Mconsole\Commerce\Models\%s', Product::class),
                     ])
                 </div>
             </div>
@@ -206,7 +206,7 @@
                         'group' => 'gallery',
                         'preset' => 'commerce_product_gallery',
                         'id' => isset($item) ? $item->id : null,
-                        'model' => 'Milax\Mconsole\Commerce\Models\Product',
+                        'model' => sprintf('Milax\Mconsole\Commerce\Models\%s', Product::class),
                     ])
                 </div>
             </div>
