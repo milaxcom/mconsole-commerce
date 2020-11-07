@@ -27,6 +27,11 @@ class DiscountRequest extends FormRequest
             'name' => 'required|max:255',
         ];
     }
+
+    /*public function attributes()
+    {
+        return trans('mconsole::commerce.discounts.form');
+    }*/
     
     /**
      * Set custom validator attribute names
@@ -35,9 +40,7 @@ class DiscountRequest extends FormRequest
      */
     protected function getValidatorInstance()
     {
-        $validator = parent::getValidatorInstance();
-        $validator->setAttributeNames(trans('mconsole::commerce.discounts.form'));
-        
-        return $validator;
+        /*modify data before send to validator*/
+        return parent::getValidatorInstance();
     }
 }

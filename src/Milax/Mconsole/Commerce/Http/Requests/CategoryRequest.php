@@ -45,23 +45,10 @@ class CategoryRequest extends FormRequest
                 ];
         }
     }
-    
-    /**
-     * Modify request input
-     * 
-     * @return array
-     */
-    public function all()
+
+    public function attributes()
     {
-        $input = parent::all();
-        
-        if (strlen($input['slug']) == 0) {
-            $input['slug'] = str_slug($input['name']);
-        } else {
-            $input['slug'] = str_slug($input['slug']);
-        }
-        
-        return $input;
+        return trans('mconsole::commerce.categories.form');
     }
     
     /**
@@ -71,9 +58,15 @@ class CategoryRequest extends FormRequest
      */
     protected function getValidatorInstance()
     {
-        $validator = parent::getValidatorInstance();
-        $validator->setAttributeNames(trans('mconsole::commerce.categories.form'));
-        
-        return $validator;
+        $input = $this->all();
+        if (empty($input['slug'])) {
+            $input['slug'] = str_slug($input['name']);
+        } else {
+            $input['slug'] = str_slug($input['slug']);
+        }
+        $this->getInputSource()->replace($input);
+
+        /*modify data before send to validator*/
+        return parent::getValidatorInstance();
     }
 }

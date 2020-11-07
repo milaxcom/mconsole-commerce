@@ -36,6 +36,11 @@ class PaymentMethodRequest extends FormRequest
                 ];
         }
     }
+
+    public function attributes()
+    {
+        return trans('mconsole::commerce.payment.form');
+    }
     
     /**
      * Set custom validator attribute names
@@ -44,9 +49,7 @@ class PaymentMethodRequest extends FormRequest
      */
     protected function getValidatorInstance()
     {
-        $validator = parent::getValidatorInstance();
-        $validator->setAttributeNames(trans('mconsole::commerce.payment.form'));
-        
-        return $validator;
+        /*modify data before send to validator*/
+        return parent::getValidatorInstance();
     }
 }

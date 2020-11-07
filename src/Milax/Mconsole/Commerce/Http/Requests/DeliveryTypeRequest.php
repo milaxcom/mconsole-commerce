@@ -28,6 +28,11 @@ class DeliveryTypeRequest extends FormRequest
             'cost' => 'integer',
         ];
     }
+
+    public function attributes()
+    {
+        return trans('mconsole::commerce.delivery.form');
+    }
     
     /**
      * Set custom validator attribute names
@@ -36,9 +41,7 @@ class DeliveryTypeRequest extends FormRequest
      */
     protected function getValidatorInstance()
     {
-        $validator = parent::getValidatorInstance();
-        $validator->setAttributeNames(trans('mconsole::commerce.delivery.form'));
-        
-        return $validator;
+        /*modify data before send to validator*/
+        return parent::getValidatorInstance();
     }
 }

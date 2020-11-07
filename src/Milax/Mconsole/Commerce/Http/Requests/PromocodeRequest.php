@@ -56,25 +56,10 @@ class PromocodeRequest extends FormRequest
         }
 
     }
-    
-    /**
-     * Replace input
-     * 
-     * @return array
-     */
-    public function all()
+
+    public function attributes()
     {
-        $all = parent::all();
-        
-        if (strlen($all['started_at']) == 0) {
-            $all['started_at'] = null;
-        }
-        
-        if (strlen($all['expired_at']) == 0) {
-            $all['expired_at'] = null;
-        }
-        
-        return $all;
+        return trans('mconsole::commerce.promocodes.form');
     }
     
     /**
@@ -84,9 +69,17 @@ class PromocodeRequest extends FormRequest
      */
     protected function getValidatorInstance()
     {
-        $validator = parent::getValidatorInstance();
-        $validator->setAttributeNames(trans('mconsole::commerce.discounts.form'));
+        $input = $this->all();
+        if (strlen($input['started_at']) == 0) {
+            $input['started_at'] = null;
+        }
         
-        return $validator;
+        if (strlen($input['expired_at']) == 0) {
+            $input['expired_at'] = null;
+        }
+        $this->getInputSource()->replace($input);
+
+        /*modify data before send to validator*/
+        return parent::getValidatorInstance();
     }
 }

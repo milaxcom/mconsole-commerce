@@ -53,10 +53,7 @@ class ProductRequest extends FormRequest
 
     public function attributes()
     {
-        return [
-            'name' => trans('mconsole::commerce.products.form.name'),
-            'slug' => trans('mconsole::commerce.products.form.slug'),
-        ];
+        return trans('mconsole::commerce.products.form');
     }
     
     /**
