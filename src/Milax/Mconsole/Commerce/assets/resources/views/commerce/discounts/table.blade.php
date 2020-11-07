@@ -1,4 +1,4 @@
-@if (count($discounts) == 0)
+@if (is_null($discounts) || count($discounts) == 0)
     {{ trans('mconsole::commerce.discounts.table.nodiscounts') }}
 @else
     <table class="table table-striped table-bordered">
