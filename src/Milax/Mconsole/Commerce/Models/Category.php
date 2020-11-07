@@ -31,6 +31,11 @@ class Category extends Model
     {
         return self::max('level');
     }
+
+    public function getCover()
+    {
+        return $this->uploads->where('group', 'cover')->first() ?? null;
+    }
     
     public function scopeWithParent($query)
     {
