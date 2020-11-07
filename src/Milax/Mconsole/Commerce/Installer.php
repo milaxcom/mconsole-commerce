@@ -116,7 +116,7 @@ class Installer implements ModuleInstaller
             'key' => 'commerce_category',
             'type' => \MconsoleUploadType::Image,
             'name' => 'Commerce category',
-            'path' => 'commerce',
+            'path' => 'commerce/category',
             'extensions' => ['jpg', 'jpeg', 'png'],
             'min_width' => 90,
             'min_height' => 90,
@@ -129,7 +129,7 @@ class Installer implements ModuleInstaller
                 ],
                 [
                     'operation' => 'save',
-                    'path' => 'category',
+                    'path' => 'cover',
                     'quality' => '',
                 ],
             ],
