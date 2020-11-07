@@ -157,7 +157,7 @@ return [
             'accumulative' => 'Накопительная',
             'name' => 'Название',
             'description' => 'Описание',
-            'discounts' => 'Табоица скидок',
+            'discounts' => 'Таблица скидок',
             'discount' => 'Скидка',
             'sum' => 'Итого',
             'discount' => 'Скидка в процентах',
