@@ -16,11 +16,11 @@ class ProductsRepository extends EloquentRepository implements Repository
         }
         
         $instance = $this->fill($data);
-        if (!empty($data['categories'])) {
+        $instance->save();
+
+        if (isset($data['categories']) && count($data['categories']) > 0) {
             $instance->categories()->sync($data['categories']);
         }
-        
-        $instance->save();
         
         return $instance;
     }
@@ -36,7 +36,7 @@ class ProductsRepository extends EloquentRepository implements Repository
         $instance = $model::findOrFail((int) $id);
         $data = $this->fixDates($instance, $data);
         
-        if (!empty($data['categories'])) {
+        if (isset($data['categories']) && count($data['categories']) > 0) {
             $instance->categories()->sync($data['categories']);
         } else {
             $instance->categories()->detach();
