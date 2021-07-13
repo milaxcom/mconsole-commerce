@@ -203,14 +203,14 @@ class Installer implements ModuleInstaller
         app('API')->presets->uninstall(self::$presets);
         
         if (Schema::hasTable('commerce_categories')) {
-            $repository = app('\Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository');
+            $repository = app('Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository');
             foreach ($repository->get() as $instance) {
                 $instance->delete();
             }
         }
         
         if (Schema::hasTable('commerce_products')) {
-            $repository = app('\Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository');
+            $repository = app('Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository');
             foreach ($repository->get() as $instance) {
                 $instance->delete();
             }
