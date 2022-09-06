@@ -4,6 +4,7 @@ namespace Milax\Mconsole\Commerce\Repositories;
 
 use Milax\Mconsole\Repositories\EloquentRepository;
 use Milax\Mconsole\Commerce\Contracts\Repositories\OrdersRepository as Repository;
+use Str;
 
 class OrdersRepository extends EloquentRepository implements Repository
 {
@@ -52,9 +53,9 @@ class OrdersRepository extends EloquentRepository implements Repository
      */
     protected function makeSlug()
     {
-        $slug = strtolower(str_random(6));
+        $slug = strtolower(Str::random(6));
         while ($this->query()->where('slug', $slug)->count() > 0) {
-            $slug = strtolower(str_random(6));
+            $slug = strtolower(Str::random(6));
         }
         
         return $slug;

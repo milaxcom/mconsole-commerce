@@ -4,6 +4,7 @@ namespace Milax\Mconsole\Commerce\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Milax\Mconsole\Commerce\Contracts\Repositories\ProductsRepository;
+use Str;
 
 class ProductRequest extends FormRequest
 {
@@ -65,7 +66,7 @@ class ProductRequest extends FormRequest
     {
         $input = $this->all();
         if (empty($input['slug'])) {
-            $input['slug'] = str_slug($input['name']);
+            $input['slug'] = Str::slug($input['name']);
         }
         $this->getInputSource()->replace($input);
 

@@ -4,6 +4,7 @@ namespace Milax\Mconsole\Commerce\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Milax\Mconsole\Commerce\Contracts\Repositories\CategoriesRepository;
+use Str;
 
 class CategoryRequest extends FormRequest
 {
@@ -60,9 +61,9 @@ class CategoryRequest extends FormRequest
     {
         $input = $this->all();
         if (empty($input['slug'])) {
-            $input['slug'] = str_slug($input['name']);
+            $input['slug'] = Str::slug($input['name']);
         } else {
-            $input['slug'] = str_slug($input['slug']);
+            $input['slug'] = Str::slug($input['slug']);
         }
         $this->getInputSource()->replace($input);
 
