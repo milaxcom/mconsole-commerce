@@ -1,8 +1,6 @@
-@if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('commerce/discounts/%s', $item->id))]) !!}
-@else
-    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('commerce/discounts')]) !!}
-@endif
+<form method="POST" action="{{ mconsole_url(isset($item) ? sprintf('commerce/discounts/%s', $item->id) : 'commerce/discounts') }}">
+    @if (isset($item))@method('PUT')@endif
+    @csrf
 
 <div id="discounts-editor" class="row">
     <div class="col-sm-6">
@@ -18,20 +16,23 @@
                             @include('mconsole::forms.text', [
                                 'label' => trans('mconsole::commerce.discounts.form.name'),
                                 'name' => 'name',
+                                'value' => $item->name ?? null,
                             ])
                         </div>
                         <div class="col-sm-6">
-@include('mconsole::forms.select', [
-    'type' => MconsoleFormSelectType::YesNo,
-    'label' => trans('mconsole::commerce.discounts.form.accumulative'),
-    'name' => 'accumulative',
-])
+                            @include('mconsole::forms.select', [
+                                'type' => MconsoleFormSelectType::YesNo,
+                                'label' => trans('mconsole::commerce.discounts.form.accumulative'),
+                                'name' => 'accumulative',
+                                'value' => $item->accumulative ?? null,
+                            ])
                         </div>
                     </div>
                     @include('mconsole::forms.textarea', [
                         'label' => trans('mconsole::commerce.discounts.form.description'),
                         'name' => 'description',
                         'size' => '10x3',
+                        'value' => $item->description ?? null,
                     ])
                 </div>
                 <div class="form-actions">
@@ -54,7 +55,7 @@
                                     <div class="col-sm-6">
                                         @include('mconsole::forms.text', [
                                             'label' => null,
-                                            'name' => null,
+                                            'name' => 'sum',
                                             'class' => 'discount-sum',
                                             'placeholder' => trans('mconsole::commerce.discounts.form.sum'),
                                         ])
@@ -62,7 +63,7 @@
                                     <div class="col-sm-6">
                                         @include('mconsole::forms.text', [
                                             'label' => null,
-                                            'name' => null,
+                                            'name' => 'discount_value',
                                             'class' => 'discount-value',
                                             'placeholder' => trans('mconsole::commerce.discounts.form.discount'),
                                         ])
@@ -84,4 +85,4 @@
     </div>
 </div>
 
-{!! Form::close() !!}
+</form>

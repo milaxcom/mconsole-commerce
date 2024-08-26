@@ -1,8 +1,6 @@
-@if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('commerce/products/%s', $item->id))]) !!}
-@else
-    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('commerce/products')]) !!}
-@endif
+<form method="POST" action="{{ mconsole_url(isset($item) ? sprintf('commerce/products/%s', $item->id) : 'commerce/products') }}">
+    @if (isset($item))@method('PUT')@endif
+    @csrf
 
 <div class="row">
 	<div class="col-lg-7 col-md-6">
@@ -17,14 +15,18 @@
     				@include('mconsole::forms.text', [
     					'label' => trans('mconsole::commerce.products.form.slug'),
     					'name' => 'slug',
+                        'value' => $item->slug ?? null,
     				])
     				@include('mconsole::forms.text', [
     					'label' => trans('mconsole::commerce.products.form.name'),
     					'name' => 'name',
+                        'value' => $item->name ?? null,
     				])
     				@include('mconsole::forms.textarea', [
     					'label' => trans('mconsole::commerce.products.form.description'),
     					'name' => 'description',
+                        'value' => $item->description ?? null,
+                        'size' => '50x5',
     				])
                     @if (count(Config::get('commerce.products.lists')) > 0)
                         <div class="row">
@@ -104,7 +106,8 @@
                 @include('mconsole::forms.state')
                 @include('mconsole::forms.checkbox', [
                     'name' => 'new',
-                    'label' => trans('mconsole::commerce.products.form.new')
+                    'label' => trans('mconsole::commerce.products.form.new'),
+                    'value' => $item->new ?? null,
                 ])
             </div>
         </div>
@@ -125,14 +128,14 @@
                         @include('mconsole::forms.text', [
                             'label' => trans('mconsole::commerce.products.form.quantity'),
                             'name' => 'quantity',
-                            'value' => 0,
+                            'value' => isset($item) ? $item->quantity : 0,
                         ])
                     </div>
                     <div class="col-sm-6">
                         @include('mconsole::forms.text', [
                             'label' => trans('mconsole::commerce.products.form.price'),
                             'name' => 'price',
-                            'value' => 0,
+                            'value' => isset($item) ? $item->price : 0,
                         ])
                     </div>
                     <div class="col-sm-6">
@@ -140,6 +143,7 @@
                             'label' => trans('mconsole::commerce.products.form.discount_price'),
                             'name' => 'discount_price',
                             'value' => 0,
+                            'value' => isset($item) ? $item->discount_price : 0,
                         ])
                     </div>
                     <div class="col-sm-6">
@@ -147,6 +151,7 @@
                             'label' => trans('mconsole::commerce.products.form.increase_price'),
                             'name' => 'increase_price',
                             'value' => 0,
+                            'value' => isset($item) ? $item->increase_price : 0,
                         ])
                     </div>
                     <div class="col-sm-6">
@@ -154,6 +159,7 @@
                             'label' => trans('mconsole::commerce.products.form.decrease_price'),
                             'name' => 'decrease_price',
                             'value' => 0,
+                            'value' => isset($item) ? $item->decrease_price : 0,
                         ])
                     </div>
                 </div>
@@ -163,14 +169,17 @@
                             'label' => trans('mconsole::commerce.products.form.in_stock'),
                             'name' => 'in_stock',
                             'checked' => true,
+                            'value' => isset($item) ? $item->in_stock : null,
                         ],
                         [
                             'label' => trans('mconsole::commerce.products.form.of_stock'),
                             'name' => 'of_stock',
+                            'value' => isset($item) ? $item->of_stock : null,
                         ],
                         [
                             'label' => trans('mconsole::commerce.products.form.on_request'),
                             'name' => 'on_request',
+                            'value' => isset($item) ? $item->on_request : null,
                         ],
                     ],
                 ])
@@ -214,4 +223,4 @@
     </div>
 </div>
 
-{!! Form::close() !!}
+</form>

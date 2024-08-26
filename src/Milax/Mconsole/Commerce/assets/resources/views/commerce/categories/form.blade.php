@@ -1,8 +1,6 @@
-@if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('commerce/categories/%s', $item->id))]) !!}
-@else
-    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('commerce/categories')]) !!}
-@endif
+<form method="POST" action="{{ mconsole_url(isset($item) ? sprintf('commerce/categories/%s', $item->id) : 'commerce/categories') }}">
+    @if (isset($item))@method('PUT')@endif
+    @csrf
 
 <div class="row">
 	<div class="col-lg-7 col-md-6">
@@ -17,14 +15,17 @@
                     @include('mconsole::forms.text', [
                         'label' => trans('mconsole::commerce.categories.form.name'),
                         'name' => 'name',
+                        'value' => $item->name ?? null,
                     ])
     				@include('mconsole::forms.text', [
     					'label' => trans('mconsole::commerce.categories.form.slug'),
     					'name' => 'slug',
+                        'value' => $item->slug ?? null,
     				])
     				@include('mconsole::forms.textarea', [
     					'label' => trans('mconsole::commerce.categories.form.description'),
     					'name' => 'description',
+                        'value' => $item->description ?? null,
     				])
     			</div>
                 <div class="form-actions">
@@ -66,7 +67,7 @@
                         'options' => $categories,
                         'label' => trans('mconsole::commerce.categories.form.category_id'),
                         'name' => 'category_id',
-                        'value' => 0,
+                        'value' => $item->category_id ?? null,
                         'class' => 'select2',
                     ])
                 @endif
@@ -99,4 +100,4 @@
     </div>
 </div>
 
-{!! Form::close() !!}
+</form>

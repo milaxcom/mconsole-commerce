@@ -1,8 +1,6 @@
-@if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('commerce/promocodes/%s', $item->id))]) !!}
-@else
-    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('commerce/promocodes')]) !!}
-@endif
+<form method="POST" action="{{ mconsole_url(isset($item) ? sprintf('commerce/promocodes/%s', $item->id) : 'commerce/promocodes') }}">
+    @if (isset($item))@method('PUT')@endif
+    @csrf
 
 <div class="row">
 	<div class="col-lg-7 col-md-6">
@@ -24,6 +22,7 @@
                         @include('mconsole::forms.text', [
                             'label' => trans('mconsole::commerce.promocodes.form.code'),
                             'name' => 'code',
+                            'value' => $item->code ?? null,
                         ])
                     @endif
                     <div class="row">
@@ -35,12 +34,14 @@
                                     'perc' => trans('mconsole::commerce.promocodes.type.percent'),
                                     'amount' => trans('mconsole::commerce.promocodes.type.amount'),
                                 ],
+                                'value' => $item->type ?? null,
                             ])
                         </div>
                         <div class="col-xs-6">
                             @include('mconsole::forms.text', [
                                 'label' => trans('mconsole::commerce.promocodes.form.amount'),
                                 'name' => 'amount',
+                                'value' => $item->amount ?? null,
                             ])
                         </div>
                     </div>
@@ -61,14 +62,17 @@
                 @include('mconsole::forms.checkbox', [
                     'label' => trans('mconsole::commerce.promocodes.form.one_off'),
                     'name' => 'one_off',
+                    'value' => $item->one_off ?? null,
                 ])
                 @include('mconsole::forms.datetime', [
                     'label' => trans('mconsole::commerce.promocodes.form.started_at'),
                     'name' => 'started_at',
+                    'value' => $item->started_at ?? null,
                 ])
                 @include('mconsole::forms.datetime', [
                     'label' => trans('mconsole::commerce.promocodes.form.expired_at'),
                     'name' => 'expired_at',
+                    'value' => $item->expired_at ?? null,
                 ])
             </div>
         </div>
@@ -76,4 +80,4 @@
     </div>
 </div>
 
-{!! Form::close() !!}
+</form>

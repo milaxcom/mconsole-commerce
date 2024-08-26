@@ -1,8 +1,6 @@
-@if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('commerce/brands/%s', $item->id))]) !!}
-@else
-    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('commerce/brands')]) !!}
-@endif
+<form method="POST" action="{{ mconsole_url(isset($item) ? sprintf('commerce/brands/%s', $item->id) : 'commerce/brands') }}">
+    @if (isset($item))@method('PUT')@endif
+    @csrf
 
 <div class="row">
 	<div class="col-lg-7 col-md-6">
@@ -17,14 +15,17 @@
                     @include('mconsole::forms.text', [
                         'label' => trans('mconsole::commerce.brands.form.name'),
                         'name' => 'name',
+                        'value' => $item->name ?? null,
                     ])
     				@include('mconsole::forms.text', [
     					'label' => trans('mconsole::commerce.brands.form.slug'),
     					'name' => 'slug',
+                        'value' => $item->slug ?? null,
     				])
     				@include('mconsole::forms.textarea', [
     					'label' => trans('mconsole::commerce.brands.form.description'),
     					'name' => 'description',
+                        'value' => $item->description ?? null,
     				])
     			</div>
                 <div class="form-actions">
@@ -35,4 +36,4 @@
 	</div>
 </div>
 
-{!! Form::close() !!}
+</form>

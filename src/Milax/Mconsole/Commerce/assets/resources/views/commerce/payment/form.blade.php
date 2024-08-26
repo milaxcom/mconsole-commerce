@@ -1,8 +1,6 @@
-@if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('commerce/payment/%s', $item->id))]) !!}
-@else
-    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('commerce/payment')]) !!}
-@endif
+<form method="POST" action="{{ mconsole_url(isset($item) ? sprintf('commerce/payment/%s', $item->id) : 'commerce/payment') }}">
+    @if (isset($item))@method('PUT')@endif
+    @csrf
 
 <div class="row">
     <div class="col-sm-7">
@@ -18,6 +16,7 @@
                             @if(isset($item))
                                 @include('mconsole::forms.hidden', [
                                     'name' => 'type',
+                                    'value' => $item->type ?? null,
                                 ])
                             @else
                                 @include('mconsole::forms.select', [
@@ -25,19 +24,22 @@
                                     'name' => 'type',
                                     'options' => [
                                         'robokassa' => 'Robokassa',
-                                        'yandexmoney' => 'Yandex.money',
+                                        'yookassa' => 'Yookassa',
                                     ],
+                                    'value' => $item->type ?? null,
                                 ])
                             @endif
                             @include('mconsole::forms.text', [
                                 'label' => trans('mconsole::commerce.payment.form.name'),
                                 'name' => 'name',
+                                'value' => $item->name ?? null,
                             ])
                             <div class="row">
                                 <div class="col-sm-6">
                                     @include('mconsole::forms.text', [
                                         'label' => trans('mconsole::commerce.payment.form.commission'),
                                         'name' => 'commission',
+                                        'value' => $item->commission ?? null,
                                     ])
                                 </div>
                                 <div class="col-sm-6">
@@ -48,6 +50,7 @@
                                             'percent' => '%',
                                             'currency' => 'currency',
                                         ],
+                                        'value' => $item->commission_type ?? null,
                                     ])
                                 </div>
                             </div>
@@ -57,6 +60,7 @@
                         'label' => trans('mconsole::commerce.payment.form.description'),
                         'name' => 'description',
                         'size' => '10x3',
+                        'value' => $item->description ?? null,
                     ])
                 </div>
                 <div class="form-actions">
@@ -81,4 +85,4 @@
     @endif
 </div>
 
-{!! Form::close() !!}
+</form>
