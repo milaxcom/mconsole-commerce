@@ -104,7 +104,7 @@ class Installer implements ModuleInstaller
             'group' => 'mconsole::commerce.settings.group.name',
             'label' => 'mconsole::commerce.settings.shop.notifications_email',
             'key' => 'commerce_notifications_email',
-            'value' => NULL,
+            'value' => 'hello@arkout.ru',
             'type' => 'text',
             'options' => NULL,
             'rules' => NULL,
