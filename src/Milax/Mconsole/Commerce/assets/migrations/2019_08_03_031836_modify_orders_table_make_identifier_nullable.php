@@ -8,7 +8,7 @@ class ModifyOrdersTableMakeIdentifierNullable extends Migration
 {
     public function __construct()
     {
-        DB::getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('json', 'text');
+        //
     }
     
     /**
