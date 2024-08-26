@@ -15,6 +15,8 @@ class CategoriesController extends Controller
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = 'Milax\Mconsole\Commerce\Models\Category';
+
+    protected $form, $list, $repository, $redirectTo;
     
     /**
      * Create new class instance

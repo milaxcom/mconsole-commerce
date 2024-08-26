@@ -13,6 +13,8 @@ class DiscountsController extends Controller
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = '\Milax\Mconsole\Commerce\Models\Discount';
+
+    protected $form, $list, $repository, $redirectTo;
     
     /**
      * Create new instance

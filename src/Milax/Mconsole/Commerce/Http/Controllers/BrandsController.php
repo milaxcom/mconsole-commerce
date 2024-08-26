@@ -14,6 +14,8 @@ class BrandsController extends Controller
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = 'Milax\Mconsole\Commerce\Models\Brand';
+
+    protected $form, $list, $redirectTo;
     
     /**
      * Create new class instance

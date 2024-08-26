@@ -15,6 +15,8 @@ class OrdersController extends Controller
     
     protected $model = 'Milax\Mconsole\Commerce\Models\Order';
     protected $statuses = [];
+
+    protected $list, $form, $redirectTo, $person, $module, $repository;
     
     /**
      * Create new class instance

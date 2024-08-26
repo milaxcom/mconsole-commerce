@@ -13,6 +13,8 @@ class DeliveryTypesController extends Controller
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = '\Milax\Mconsole\Commerce\Models\DeliveryType';
+
+    protected $form, $list, $repository, $redirectTo;
     
     /**
      * Create new instance
