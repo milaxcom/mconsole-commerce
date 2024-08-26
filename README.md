@@ -2,6 +2,8 @@
 
 Commerce module for Mconsole
 
+Support for Laravel 10
+
 ## Installation
 
 ```
