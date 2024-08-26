@@ -2,7 +2,7 @@
 
 Commerce module for Mconsole
 
-Support for Laravel 10
+Support for Laravel 11
 
 ## Installation
 
